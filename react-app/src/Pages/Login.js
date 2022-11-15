@@ -2,6 +2,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Header from "../components/Header";
 
 function Login() {
   let [id, setId] = useState("");
@@ -70,30 +71,23 @@ function Login() {
 
   return (
     <>
-      <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand m-3" href="/">
-            KWIC_WEB Shop 🏛
-          </a>
-        </div>
-      </nav>
-      <h4 class="container mt-5 col-6">로그인</h4>
-      <div class="container mt-3 col-6 mx-auto">
+      <h4 className="container mt-5 col-6">로그인</h4>
+      <div className="container mt-3 col-6 mx-auto">
         <form onSubmit={submitHandler}>
-          <div class="form-group">
+          <div className="form-group">
             <label>ID</label>
-            <input type="text" class="form-control" value={id} onChange={idHandler}></input>
+            <input type="text" className="form-control" value={id} onChange={idHandler}></input>
           </div>
-          <div class="form-group">
+          <div className="form-group">
             <label>Password</label>
 
-            <input type="password" class="form-control" value={pw} onChange={pwHandler}></input>
+            <input type="password" className="form-control" value={pw} onChange={pwHandler}></input>
           </div>
-          <button class="btn btn-dark mt-5 d-grid gap-2 col-6 mx-auto" type="submit">
+          <button className="btn btn-dark mt-5 d-grid gap-2 col-6 mx-auto" type="submit">
             로그인하기
           </button>
         </form>
-        <Link class="btn btn-primary mt-5 btn-lg d-grid gap-2 col-6 mx-auto" to="/Signup">
+        <Link className="btn btn-primary mt-5 btn-lg d-grid gap-2 col-6 mx-auto" to="/Signup">
           회원가입
         </Link>
       </div>
