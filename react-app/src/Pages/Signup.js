@@ -84,24 +84,24 @@ function Signup() {
   }
   return (
     <>
-      <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand m-3" href="/">
+      <nav className="navbar navbar-expand-lg bg-light">
+        <div className="container-fluid">
+          <a className="navbar-brand m-3" href="/">
             KWIC_WEB Shop 🏛
           </a>
         </div>
       </nav>
-      <h4 class="container mt-5 col-6">회원가입</h4>
-      <div class="container mt-3 col-6 mx-auto">
+      <h4 className="container mt-5 col-6">회원가입</h4>
+      <div className="container mt-3 col-6 mx-auto">
         <form onSubmit={submitHandler}>
           {/* 아이디 입력 */}
-          <div class="form-group">
+          <div className="form-group">
             <label>ID</label>
             <div>
-              <input type="text" class="form-control" value={id} onChange={idHandler} placeholder="사용할 아이디를 입력하세요."></input>
+              <input type="text" className="form-control" value={id} onChange={idHandler} placeholder="사용할 아이디를 입력하세요."></input>
             </div>
             <button
-              class="btn btn-dark mt-3 d-grid gap-2 col-3 mx-auto"
+              className="btn btn-dark mt-3 d-grid gap-2 col-3 mx-auto"
               onClick={(e) => {
                 e.preventDefault();
                 CHECK_ID();
@@ -115,7 +115,7 @@ function Signup() {
           <label>Password</label>
           <input
             type="password"
-            class="form-control"
+            className="form-control"
             value={pw}
             onChange={pwHandler}
             onClick={(e) => {
@@ -125,13 +125,13 @@ function Signup() {
           ></input>
           {/* 비밀번호 확인 */}
 
-          <div class="form-group mt-3">
+          <div className="form-group mt-3">
             <label>Password 확인</label>
-            <input type="password" class="form-control" placeholder="비밀번호 확인" onChange={pwConfirm} />
+            <input type="password" className="form-control" placeholder="비밀번호 확인" onChange={pwConfirm} />
             {pwchk.length > 0 && <span>{pwmessage}</span>}
           </div>
           {/* 회원가입 완료 */}
-          <button onSubmit={submitHandler} class="btn btn-primary mt-5 d-grid gap-2 col-6 mx-auto" type="submit" disabled={ispwconfirm}>
+          <button onSubmit={submitHandler} className="btn btn-primary mt-5 d-grid gap-2 col-6 mx-auto" type="submit" disabled={ispwconfirm}>
             회원가입 완료
           </button>
         </form>
