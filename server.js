@@ -32,6 +32,7 @@ MongoClient.connect(process.env.DB_URL, function (에러, client) {
   });
 });
 
+// 회원가입 정보 기입
 app.post("/api/Signup", function (요청, 응답) {
   db.collection("login").findOne({ 아이디: 요청.body.id }, function (에러, 결과) {
     if (결과) {
@@ -40,11 +41,11 @@ app.post("/api/Signup", function (요청, 응답) {
       // 소금 + 해시값 동시 생성 및 DB 적재
       bcrypt.hash(요청.body.pw, saltRounds, (err, hash) => {
         console.log(`생성 hash\t${hash}`);
-        db.collection("login").insertOne({ 아이디: 요청.body.id, 패스워드: hash }, function (에러, 결과) {
+        db.collection("login").insertOne({ 아이디: 요청.body.id, 패스워드: hash, 닉네임: 요청.body.name }, function (에러, 결과) {
           if (에러) return console.log(에러);
           console.log("저장완료");
           응답.redirect("/");
-          console.log("아이디 : ", 요청.body.id, " 비밀번호 : ", hash);
+          console.log("아이디 : ", 요청.body.id, " 비밀번호 : ", hash, "닉네임 : ", 요청.body.name);
         });
       });
     }
@@ -62,6 +63,15 @@ app.post("/api/Signup/checkID", function (요청, 응답) {
       응답.json("미존재");
     }
   });
+});
+
+app.get("/detail/:id", function (요청, 응답) {
+  db.collection("detail")
+    .find()
+    .toArray(function (에러, 결과) {
+      console.log(결과);
+      응답.json(결과);
+    });
 });
 
 // 데이터베이스 암호화 비밀번호 전달 API

@@ -1,17 +1,44 @@
 /* eslint-disable */
-// import Slider_Food from "../components/Slider_FOOD";
-// // import "../styles/Main.css";
-// import styled from "styled-components";
 import SimpleImageSlider from "react-simple-image-slider";
 import "../styles/Detail.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function Detail() {
   let navigate = useNavigate();
-  const images = [{ url: "/assets/soju.jpg" }, { url: "images/2.jpg" }, { url: "images/3.jpg" }, { url: "images/4.jpg" }, { url: "images/5.jpg" }, { url: "images/6.jpg" }, { url: "images/7.jpg" }];
+  let [category, setCategory] = useState([]);
+  // 들어온 페이지의 id 받아오기
+  let { id } = useParams();
+
+  // 페이지의 id값과 일치하는 주류 데이터베이스에서 찾아오기
+  useEffect(() => {
+    axios.get("detail").then((응답) => {
+      // console.log(응답.data[id]);
+      // setCategory(...응답.data[id]);
+      // console.log(category);
+      let copy = [...category];
+      copy = 응답.data[id];
+      setCategory(copy);
+    });
+  }, []);
+  console.log(category);
+  console.log(category.drink);
+
+  const images = [{ url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }];
   return (
-    <>
-      <p>대표 안주 표시 - 훑어보기</p>
+    <div className="test2">
+      <h1>{category.drink}</h1>
+      <img src={`/assets/${id}/${id}.jpg`}></img>
+      <p>대표 안주 표시 - 훑어보기 - 데이터베이스에 경로 저장해서 가져오기로</p>
+      {/* <button
+        onClick={(e) => {
+          e.preventDefault();
+          getCategory();
+        }}
+      >
+        테스트
+      </button> */}
 
       <div className="test">
         <SimpleImageSlider width={896} height={504} images={images} showBullets={true} showNavs={true} autoPlay={true} autoPlayDelay={2.0} />
@@ -27,7 +54,7 @@ function Detail() {
       <button className="btn btn-secondary mx-3 " onClick={() => navigate("/Result")}>
         다음
       </button>
-    </>
+    </div>
   );
 }
 
