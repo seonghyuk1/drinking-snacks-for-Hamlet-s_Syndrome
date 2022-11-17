@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 // import ImageSlider from "../components/Slider";
 import "../styles/Main.css";
 import React from "react";
@@ -8,6 +8,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import SimpleImageSlider from "react-simple-image-slider";
 import { Link, useNavigate } from "react-router-dom";
+import io from "socket.io-client";
+
+const socket = io.connect("http://localhost:80");
 
 function Main() {
   let settings = {
@@ -31,7 +34,56 @@ function Main() {
     }
   }, []);
 
-  const images = [{ url: "/assets/soju.jpg" }, { url: "images/2.jpg" }, { url: "images/3.jpg" }, { url: "images/4.jpg" }, { url: "images/5.jpg" }, { url: "images/6.jpg" }, { url: "images/7.jpg" }];
+  useEffect(() => {
+    const URL =
+      "https://geolocation-db.com/json/697de680-a737-11ea-9820-af05f4014d91";
+    fetch(URL)
+      .then((res) => res.json())
+      .then((data) => setAddress(data));
+  }, []);
+
+  //서버에 메세지 보내기
+  const [message, setMessage] = useState("");
+  const sendMessage = () => {
+    socket.emit("send_message", { message });
+  };
+
+  const [receiveMessage, setReceiveMessage] = useState("");
+
+  //모든 처리 완료시 socket 닫기
+  useEffect(() => {
+    return () => {
+      socket.close();
+    };
+  }, []);
+
+  //서버로 부터 받은 메세지 뿌리기
+  const listGroup = useRef(null);
+  useEffect(() => {
+    socket.on("receive_message", (data) => {
+      setReceiveMessage(data.message);
+      // setChatArr((chatArr) => chatArr.concat(message));
+      console.log(data.message);
+      listGroup.current.append(
+        React.createElement(
+          "li",
+          { className: "list-group-item" },
+          { receiveMessage }
+        )
+      );
+    });
+  }, []);
+
+  const images = [
+    { url: "/assets/soju.jpg" },
+    { url: "images/2.jpg" },
+    { url: "images/3.jpg" },
+    { url: "images/4.jpg" },
+    { url: "images/5.jpg" },
+    { url: "images/6.jpg" },
+    { url: "images/7.jpg" },
+  ];
+
   return (
     <>
       {/* <div>
@@ -76,7 +128,10 @@ function Main() {
             </ul>
             <div className="details">
               <h2>
-                양주 <span className="job-title">80,000-200,000원 | 평균도수 30</span>
+                양주{" "}
+                <span className="job-title">
+                  80,000-200,000원 | 평균도수 30
+                </span>
               </h2>
             </div>
           </div>
@@ -146,12 +201,29 @@ function Main() {
           </div>
         </div>
       </Slider>
-      <div>
-        <h1>채팅방 - 안주 추천</h1>
-        <h1>채팅방 - 술 같이 마실 사람 (?) </h1>
-      </div>
+      <h3>채팅방</h3>
+      <ul class="list-group" ref={listGroup}>
+        <li class="list-group-item">{receiveMessage}</li>
+      </ul>
+      <input
+        id="input1"
+        placeholder="메세지 입력하기"
+        onChange={(event) => {
+          setMessage(event.target.value);
+        }}
+      ></input>
+      <button onClick={sendMessage}>등록</button>
+
       <div className="test">
-        <SimpleImageSlider width={468} height={300} images={images} showBullets={true} showNavs={true} autoPlay={true} autoPlayDelay={2.0} />
+        <SimpleImageSlider
+          width={468}
+          height={300}
+          images={images}
+          showBullets={true}
+          showNavs={true}
+          autoPlay={true}
+          autoPlayDelay={2.0}
+        />
       </div>
     </>
   );
