@@ -1,175 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
-/* Arrows */
-.slick-prev,
-.slick-next {
-  font-size: 0;
-  line-height: 0;
-
-  position: absolute;
-  top: 50%;
-
-  display: block;
-
-  width: 20px;
-  height: 20px;
-  padding: 0;
-  -webkit-transform: translate(0, -50%);
-  -ms-transform: translate(0, -50%);
-  transform: translate(0, -50%);
-
-  cursor: pointer;
-
-  color: transparent;
-  border: none;
-  outline: none;
-  background: transparent;
-}
-.slick-prev:hover,
-.slick-prev:focus,
-.slick-next:hover,
-.slick-next:focus {
-  color: transparent;
-  outline: none;
-  background: transparent;
-}
-.slick-prev:hover:before,
-.slick-prev:focus:before,
-.slick-next:hover:before,
-.slick-next:focus:before {
-  opacity: 1;
-}
-.slick-prev.slick-disabled:before,
-.slick-next.slick-disabled:before {
-  opacity: 1;
-}
-
-.slick-prev:before,
-.slick-next:before {
-  font-family: "slick";
-  font-size: 20px;
-  line-height: 1;
-
-  opacity: 0.75;
-  color: white;
-
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.slick-prev {
-  left: -25px;
-}
-[dir="rtl"] .slick-prev {
-  right: -25px;
-  left: auto;
-}
-.slick-prev:before {
-  content: "←";
-}
-[dir="rtl"] .slick-prev:before {
-  content: "→";
-}
-
-.slick-next {
-  right: -25px;
-}
-[dir="rtl"] .slick-next {
-  right: auto;
-  left: -25px;
-}
-.slick-next:before {
-  content: "→";
-}
-[dir="rtl"] .slick-next:before {
-  content: "←";
-}
-
-점들 .slick-dotted.slick-slider {
-  margin-bottom: 30px;
-}
-
-.slick-dots {
-  position: absolute;
-  bottom: -25px;
-
-  display: block;
-
-  width: 100%;
-  padding: 0;
-  margin: 0;
-
-  list-style: none;
-
-  text-align: center;
-}
-.slick-dots li {
-  position: relative;
-
-  display: inline-block;
-
-  width: 20px;
-  height: 20px;
-  margin: 0 5px;
-  padding: 0;
-
-  cursor: pointer;
-}
-.slick-dots li button {
-  font-size: 0;
-  line-height: 0;
-
-  display: block;
-
-  width: 20px;
-  height: 20px;
-  padding: 5px;
-
-  cursor: pointer;
-
-  color: transparent;
-  border: 0;
-  outline: none;
-  background: transparent;
-}
-.slick-dots li button:hover,
-.slick-dots li button:focus {
-  outline: none;
-}
-.slick-dots li button:hover:before,
-.slick-dots li button:focus:before {
-  opacity: 1;
-}
-.slick-dots li button:before {
-  font-family: "slick";
-  font-size: 6px;
-  line-height: 20px;
-
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  width: 20px;
-  height: 20px;
-
-  content: "•";
-  text-align: center;
-
-  opacity: 0.25;
-  color: black;
-
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-.slick-dots li.slick-active button:before {
-  opacity: 0.75;
-  color: black;
-}
-
-/* =========================================== */
 body {
   display: block;
   width: 100%;
@@ -192,7 +20,6 @@ body {
   position: relative;
   width: 100%;
   padding: 0 10px;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -220,7 +47,6 @@ body {
   height: 100%;
   z-index: 2;
   background-color: white;
-  -webkit-transition: 0.5s;
   transition: 0.5s;
 }
 
@@ -233,25 +59,20 @@ body {
 
 .card:hover img {
   opacity: 0.4;
-  -webkit-transition: 0.5s;
   transition: 0.5s;
 }
 
 .card:hover .card-image {
-  -webkit-transform: translateY(-100px);
   transform: translateY(-100px);
-  -webkit-transition: all 0.9s;
   transition: all 0.9s;
 }
 
 .social-icons {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
+  top: 25%;
+  left: 45%;
   transform: translate(-50%, -50%);
   z-index: 3;
-  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   justify-content: center;
@@ -274,15 +95,12 @@ body {
   color: #333;
   font-weight: bold;
   margin: 0 6px;
-  -webkit-transition: 0.4s;
   transition: 0.9s;
-  -webkit-transform: translateY(200px);
   transform: translateY(200px);
   opacity: 0;
 }
 
 .card:hover .social-icons li a {
-  -webkit-transform: translateY(0px);
   transform: translateY(0px);
   opacity: 1;
   text-decoration: none;
@@ -290,7 +108,6 @@ body {
 
 .social-icons li a:hover {
   /* background: rgb(89, 77, 253); */
-  -webkit-transition: 0.2s;
   transition: 0.2s;
 }
 
@@ -299,34 +116,28 @@ body {
 }
 
 .social-icons li a .fa {
-  -webkit-transition: 0.8s;
   transition: 0.8s;
 }
 
 .social-icons li a .fa:hover {
   /* 문구 마우스 오버시 색, 동작 */
-  -webkit-transform: rotateY(360deg);
   transform: rotateY(360deg);
-  color: rgb(0, 0, 0);
+  color: rgb(48, 48, 48);
 }
 
 .card:hover li:nth-child(1) a {
-  -webkit-transition-delay: 0.1s;
   transition-delay: 0.1s;
 }
 
 .card:hover li:nth-child(2) a {
-  -webkit-transition-delay: 0.2s;
   transition-delay: 0.2s;
 }
 
 .card:hover li:nth-child(3) a {
-  -webkit-transition-delay: 0.3s;
   transition-delay: 0.3s;
 }
 
 .card:hover li:nth-child(4) a {
-  -webkit-transition-delay: 0.4s;
   transition-delay: 0.4s;
 }
 
@@ -339,7 +150,6 @@ body {
   height: 120px;
   z-index: 1;
   padding: 10px;
-  -webkit-transition: 0.6s;
   transition: 0.6s;
 }
 
@@ -384,9 +194,7 @@ body {
   opacity: 0.5;
   color: #000;
   background-color: #fff;
-  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
 

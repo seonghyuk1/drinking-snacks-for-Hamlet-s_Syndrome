@@ -7,6 +7,7 @@ import Header from "../components/Header";
 function Login() {
   let [id, setId] = useState("");
   let [pw, setPw] = useState("");
+  let [NickName, setNickName] = useState("");
   const navigate = useNavigate();
 
   const idHandler = (e) => {
@@ -27,6 +28,7 @@ function Login() {
     };
     // 폼에 입력한 ID를 세션 스토리지에 저장 (회원정보 띄울용)
     sessionStorage.setItem("ID", id);
+
     try {
       await axios.get("api/pw").then((응답) => {
         console.log("입력한 아이디", id);
@@ -34,11 +36,14 @@ function Login() {
           for (let i = 0; i < 응답.data.length; i++) {
             // 암호화된 비밀번호를 전달하기 위해 폼 비밀번호에 대입
             응답.data[i].아이디 == id && (body.SALT_pw = 응답.data[i].패스워드);
+            응답.data[i].아이디 == id && (NickName = 응답.data[i].닉네임);
           }
         }
 
+        sessionStorage.setItem("Nickname", NickName);
         console.log("암호화 비번", body.SALT_pw);
         console.log("입력한 비번", pw);
+        console.log(응답.data);
         // 암호화된 비밀번호와 그냥 비밀번호 둘 다 전달
         let R_body = {
           id: id,
@@ -87,7 +92,7 @@ function Login() {
             로그인하기
           </button>
         </form>
-        <Link className="btn btn-primary mt-5 btn-lg d-grid gap-2 col-6 mx-auto" to="/Signup">
+        <Link className="btn btn-primary m-5 btn-lg d-grid gap-2 col-6 mx-auto" to="/Signup">
           회원가입
         </Link>
       </div>
