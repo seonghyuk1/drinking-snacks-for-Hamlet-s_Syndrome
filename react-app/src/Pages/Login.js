@@ -2,7 +2,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import "../css/master.css"
+import logo from '../logo.png'
 function Login() {
   let [id, setId] = useState("");
   let [pw, setPw] = useState("");
@@ -70,33 +71,46 @@ function Login() {
 
   return (
     <>
-      <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand m-3" href="/">
-            KWIC_WEB Shop 🏛
-          </a>
-        </div>
-      </nav>
-      <h4 class="container mt-5 col-6">로그인</h4>
-      <div class="container mt-3 col-6 mx-auto">
-        <form onSubmit={submitHandler}>
-          <div class="form-group">
-            <label>ID</label>
-            <input type="text" class="form-control" value={id} onChange={idHandler}></input>
+      {/* <div>
+        <nav class="navbar navbar-expand-lg bg-light">
+          <div class="container-fluid">
+            <a class="navbar-brand m-3" href="/">내일 지구가 끝나더라도 나는 오늘 밤 최고의 술자리를 가지겠어🍻🍷🍾</a>
           </div>
-          <div class="form-group">
-            <label>Password</label>
+        </nav>
+      </div> */}
 
-            <input type="password" class="form-control" value={pw} onChange={pwHandler}></input>
+      <div class="container position-absolute top-50 start-50 translate-middle bg-white rounded shadow-lg ">
+        <div class="row p-5">
+          
+          <div class="col-lg-8 col-12 mx-auto bg-white">
+            <div class="m-2 text-center">
+              <a href="/">
+              <img src={logo} class="img-fluid" alt="내일 지구가 끝나더라도 나는 오늘 밤 최고의 술자리를 가지겠어" width="400"/>
+              </a>
+            </div>
+            <div class="p-2">
+              <div class="border  rounded m-3 p-3">
+                <form onSubmit={submitHandler}>
+                  <label class="p-3 font-500">ID</label>
+                  <input type="text" class="form-control form-control-lg mb-3 rounded-pill"  placeholder="Input your ID" value={id} onChange={idHandler}></input>
+                  <label class="p-3 font-500">Password</label>
+                  <input type="password" class="form-control form-control-lg rounded-pill" placeholder="Input your PW" value={pw} onChange={pwHandler}></input>
+
+                  <button class="btn btn-lg press_btn mt-5 d-grid gap-2 col-11 mx-auto" type="submit">LOGIN</button>
+                </form>
+                <div class="text-center pt-4">
+                  <p class="m-3 text-secondary font-500">아직 계정이 없으신가요? <a href="/Signup" class="text-dark font-500">회원가입</a></p>
+                </div>   
+                {/* <Link class="btn btn-lg btn-primary mt-3 btn-lg d-grid gap-2 col-10 mx-auto" to="/Signup">회원가입</Link> */}
+              </div>
+            </div>
           </div>
-          <button class="btn btn-dark mt-5 d-grid gap-2 col-6 mx-auto" type="submit">
-            로그인하기
-          </button>
-        </form>
-        <Link class="btn btn-primary mt-5 btn-lg d-grid gap-2 col-6 mx-auto" to="/Signup">
-          회원가입
-        </Link>
+        </div>
       </div>
+      
+
+
+      
     </>
   );
 }
