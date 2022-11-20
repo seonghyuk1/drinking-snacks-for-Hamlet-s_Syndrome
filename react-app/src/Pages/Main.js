@@ -76,8 +76,15 @@ function Main() {
     });
   }, []);
 
- 
-  const images = [{ url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }];
+  const images = [
+    { url: "/assets/soju.jpg" },
+    { url: "/assets/soju.jpg" },
+    { url: "/assets/soju.jpg" },
+    { url: "/assets/soju.jpg" },
+    { url: "/assets/soju.jpg" },
+    { url: "/assets/soju.jpg" },
+    { url: "/assets/soju.jpg" },
+  ];
 
   return (
     <>
@@ -99,7 +106,8 @@ function Main() {
             </ul>
             <div className="details">
               <h2>
-                소주 <span className="job-title">평균가격 4,500원 | 도수 16</span>
+                소주{" "}
+                <span className="job-title">평균가격 4,500원 | 도수 16</span>
               </h2>
             </div>
           </div>
@@ -118,8 +126,11 @@ function Main() {
             </ul>
             <div className="details">
               <h2>
-                양주 <span className="job-title"> 평균가격 90,000원 | 평균도수 30</span>
-
+                양주{" "}
+                <span className="job-title">
+                  {" "}
+                  평균가격 90,000원 | 평균도수 30
+                </span>
               </h2>
             </div>
           </div>
@@ -138,7 +149,11 @@ function Main() {
             </ul>
             <div className="details">
               <h2>
-                와인 <span className="job-title"> 평균가격 50,000원 | 평균도수 13</span>
+                와인{" "}
+                <span className="job-title">
+                  {" "}
+                  평균가격 50,000원 | 평균도수 13
+                </span>
               </h2>
             </div>
           </div>
@@ -157,7 +172,10 @@ function Main() {
             </ul>
             <div className="details">
               <h2>
-                맥주 <span className="job-title">평균 가격 5,000원 | 평균도수 5</span>
+                맥주{" "}
+                <span className="job-title">
+                  평균 가격 5,000원 | 평균도수 5
+                </span>
               </h2>
             </div>
           </div>
@@ -170,13 +188,16 @@ function Main() {
             <ul className="social-icons">
               <li>
                 <Link to={"/detail/4"}>
-                  <p className="fa fa-facebook">*문구창가나다라마바사아자차카타파하가나다라마바사아자차카타파하</p>
+                  <p className="fa fa-facebook">
+                    *문구창가나다라마바사아자차카타파하가나다라마바사아자차카타파하
+                  </p>
                 </Link>
               </li>
             </ul>
             <div className="details">
               <h2>
-                막걸리 <span className="job-title">평균가격 4,000원 | 평균도수 5</span>
+                막걸리{" "}
+                <span className="job-title">평균가격 4,000원 | 평균도수 5</span>
               </h2>
             </div>
           </div>

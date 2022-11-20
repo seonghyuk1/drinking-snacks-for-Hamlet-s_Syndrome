@@ -20,7 +20,8 @@ function Header() {
   // 위치 받아오기
   useEffect(() => {
     myJWT == null ? navigate("/") : navigate("/Main");
-    const URL = "https://geolocation-db.com/json/2725d960-5eef-11ed-9b62-857a2b26943e";
+    const URL =
+      "https://geolocation-db.com/json/2725d960-5eef-11ed-9b62-857a2b26943e";
     fetch(URL)
       .then((res) => res.json())
       .then((data) => setAddress(data));
@@ -30,7 +31,10 @@ function Header() {
   // faker.internet.userName()추후 채팅방에 사용
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-light" style={{ width: "100%" }}>
+      <nav
+        className="navbar navbar-expand-lg bg-light"
+        style={{ width: "100%" }}
+      >
         <div className="container-fluid">
           <a className="navbar-brand m-3" href="/main">
             우리는 오늘 어떤 한 잔의 추억을 쌓을까? 🍻
@@ -39,7 +43,10 @@ function Header() {
         {myJWT != null && (
           <>
             <button className="btn btn-secondary mx-5">
-              <Link to="/Mypage" style={{ textDecoration: "none", color: "white " }}>
+              <Link
+                to="/Mypage"
+                style={{ textDecoration: "none", color: "white " }}
+              >
                 마이페이지
               </Link>
             </button>
