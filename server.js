@@ -111,6 +111,7 @@ app.get("/api/pw", function (요청, 응답) {
       응답.json(결과);
     });
 });
+
 // 로그인
 app.post("/api/login", function (요청, 응답) {
   db.collection("login").findOne(
@@ -162,6 +163,30 @@ io.on("connection", (socket) => {
     io.emit("receive_message", data);
     // console.log(data); //data는 json형태로 옴
   });
+});
+
+//마이페이지 구현
+app.get("/selection", function (req, res) {
+  //아이디별로 selection에 저장되어 있는 것들 중에 가져옴
+  db.collection("selection")
+    .find({ ID: "kdh" }) //현재 로그인돼있는 아이디 가져오기
+    .toArray()
+    .then((result) => {
+      res.json(result);
+    });
+});
+
+//마이페이지 찜 목록에서 삭제
+app.delete("/delete", function (req, res) {
+  //서버 통신간 delete
+  db.collection("selection").deleteOne(
+    { _id: req.body.deleteId.toString() },
+    function (err, result) {
+      //DB에서 삭제
+      console.log("삭제 완료");
+      res.json("삭제 완료");
+    }
+  );
 });
 
 app.get("*", function (요청, 응답) {
