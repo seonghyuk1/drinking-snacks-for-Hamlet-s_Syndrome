@@ -7,6 +7,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import SimpleImageSlider from "react-simple-image-slider";
 import { Link, useNavigate } from "react-router-dom";
+import ChatContainer from "../components/ChatContainer";
+// 소켓
 
 function Main() {
   let settings = {
@@ -24,10 +26,9 @@ function Main() {
   const images = [{ url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }];
   return (
     <>
-      <p className="slider_title mt-3">오늘은 뭐로 달릴까?</p>
       <span>옆으로 스와이프하여 넘겨주세요!</span>
 
-      <Slider {...settings}>
+      <Slider {...settings} style={{ display: "flex" }}>
         <div className="card-wrapper">
           <div className="card">
             <div className="card-image">
@@ -124,13 +125,13 @@ function Main() {
           </div>
         </div>
       </Slider>
-      <div>
-        <h1>채팅방 - 안주 추천</h1>
-        <h1>채팅방 - 술 같이 마실 사람 (?) </h1>
-      </div>
       <div className="test">
         <SimpleImageSlider width={468} height={300} images={images} showBullets={true} showNavs={true} autoPlay={true} autoPlayDelay={2.0} />
+        <ChatContainer />
       </div>
+      <h1>주간 베스트 안주 & 식당의 이미지와 정보 | </h1>
+
+      <div style={{ clear: "both" }}></div>
     </>
   );
 }

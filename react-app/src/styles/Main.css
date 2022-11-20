@@ -1,3 +1,10 @@
+/* html,
+body {
+  font-family: "Roboto", sans-serif;
+  padding: 0;
+  margin: 0;
+} */
+
 body {
   display: block;
   width: 100%;
@@ -6,6 +13,7 @@ body {
   position: relative;
   /* background: #333; */
   overflow-x: hidden;
+  font-family: "Roboto", sans-serif;
 }
 
 .slider_title {
@@ -230,9 +238,12 @@ body {
 
 /* ============여기서부터 그냥 CSS */
 .test {
-  align-items: center;
+  /* align-items: center; */
   background-color: aquamarine;
-  justify-content: center;
+  /* justify-content: center; */
   text-align: center;
-  display: flex;
+  /* display: flex; */
+  /* display: inline-block; */
+  /* float: left; */
+  margin-top: 100px;
 }

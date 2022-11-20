@@ -2,6 +2,32 @@ const express = require("express");
 const path = require("path");
 const app = express();
 
+//소켓용
+const http = require("http");
+const Server = require("socket.io").Server;
+
+const server = http.createServer(app);
+// 소켓 뚫기
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+  },
+});
+
+io.on("connection", (socket) => {
+  // 연결시
+  console.log("연결 되었습니다.");
+  // 연결 해제시
+  socket.on("disconnect", () => {
+    console.log("연결 해제!");
+  });
+
+  // chat이벤트를 받으면 받은 말들을 전체에 뿌려주세요
+  socket.on("chat", (data) => {
+    io.emit("chat", data);
+  });
+});
+
 let cors = require("cors");
 app.use(cors());
 app.use(express.json());
@@ -27,7 +53,7 @@ MongoClient.connect(process.env.DB_URL, function (에러, client) {
   if (에러) return console.log(에러);
   db = client.db("kwic");
 
-  app.listen(process.env.PORT, function () {
+  server.listen(process.env.PORT, function () {
     console.log("80에서 돌아가는 중");
   });
 });
@@ -76,7 +102,7 @@ app.get("/detail/:id", function (요청, 응답) {
 
 // 데이터베이스 암호화 비밀번호 전달 API
 app.get("/api/pw", function (요청, 응답) {
-  console.log(응답);
+  // console.log(응답);
   db.collection("login")
     .find()
     .toArray(function (에러, 결과) {
@@ -115,5 +141,9 @@ app.post("/api/login", function (요청, 응답) {
 });
 
 app.get("*", function (요청, 응답) {
-  응답.sendFile(path.join(__dirname, "/react-app/build/index.html"));
+  응답.sendFile(path.join(__dirname, "/react-app/build/index.html"), function (에러) {
+    if (에러) {
+      요청.status(500).send(에러);
+    }
+  });
 });
