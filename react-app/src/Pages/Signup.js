@@ -15,7 +15,6 @@ function Signup() {
 
   // 검사완료 확인
   let [ispwconfirm, setIspwconfirm] = useState(true);
-  let [isnameConfirm, setIsnameconfirm] = useState(true);
 
   // 중복 확인 검사
   let [idchk, setIdchk] = useState(false);
@@ -139,7 +138,7 @@ function Signup() {
           <div className="form-group mt-5">
             <label>Custom Nickname</label>
             <div>
-              <input type="text" className="form-control" value={name} onChange={nameHandler} placeholder="원하는 닉네임을 입력하세요."></input>
+              <input type="text" className="form-control" value={name} onChange={nameHandler} placeholder="원하는 닉네임을 입력하세요. (생략가능)"></input>
               {name.length < 1 ? <span>닉네임을 입력하여 주세요.</span> : <span>멋진 닉네임입니다. 😎</span>}
             </div>
           </div>

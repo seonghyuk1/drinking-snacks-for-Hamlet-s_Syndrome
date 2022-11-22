@@ -2,17 +2,37 @@ const express = require("express");
 const path = require("path");
 const app = express();
 
+//소켓용
+const http = require("http");
+const Server = require("socket.io").Server;
+
+const server = http.createServer(app);
+// 소켓 뚫기
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+  },
+});
+
+io.on("connection", (socket) => {
+  // 연결시
+  console.log("연결 되었습니다.");
+  // 연결 해제시
+  socket.on("disconnect", () => {
+    console.log("연결 해제!");
+  });
+
+  // chat이벤트를 받으면 받은 말들을 전체에 뿌려주세요
+  socket.on("chat", (data) => {
+    io.emit("chat", data);
+  });
+});
+
 let cors = require("cors");
 
 //Socket 사용하는 코드
-const http = require("http").createServer(app);
-const { Server } = require("socket.io");
-const io = new Server(http, {
-  cors: {
-    origin: "http://localhost:3000", //env 처리 해주기
-    methods: ["GET", "POST"],
-  },
-});
+// const http = require("http").createServer(app);
+// const { Server } = require("socket.io");
 
 app.use(cors());
 app.use(express.json());
@@ -38,7 +58,7 @@ MongoClient.connect(process.env.DB_URL, function (에러, client) {
   if (에러) return console.log(에러);
   db = client.db("kwic");
 
-  http.listen(process.env.PORT, function () {
+  server.listen(process.env.PORT, function () {
     console.log("80에서 돌아가는 중");
   });
 });
@@ -153,18 +173,6 @@ app.post("/api/login", function (요청, 응답) {
   );
 });
 
-//socket에 연결
-io.on("connection", (socket) => {
-  console.log(`${socket.id}에 연결되었어요`);
-  //사용자가 socket에 user-send라는 이름으로 보내면 그 안에 담긴건 data에
-  socket.on("send_message", (data) => {
-    // socket.broadcast.emit("receive_message", data);
-    //쏘켓에 접속돼있는 모든 사용자한테 뿌려줌
-    io.emit("receive_message", data);
-    // console.log(data); //data는 json형태로 옴
-  });
-});
-
 //마이페이지 구현
 app.post("/selection", function (req, res) {
   // console.log(req.body.params.id);
@@ -192,5 +200,12 @@ app.delete("/delete", function (req, res) {
 });
 
 app.get("*", function (요청, 응답) {
-  응답.sendFile(path.join(__dirname, "/react-app/build/index.html"));
+  응답.sendFile(
+    path.join(__dirname, "/react-app/build/index.html"),
+    function (에러) {
+      if (에러) {
+        요청.status(500).send(에러);
+      }
+    }
+  );
 });

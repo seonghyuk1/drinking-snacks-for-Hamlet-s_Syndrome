@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { useEffect, useState, useRef } from "react";
+// import { useEffect, useState, useRef } from "react";
 // import ImageSlider from "../components/Slider";
 import "../styles/Main.css";
 import React from "react";
@@ -8,9 +8,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import SimpleImageSlider from "react-simple-image-slider";
 import { Link, useNavigate } from "react-router-dom";
-import io from "socket.io-client";
-
-const socket = io.connect("http://localhost:80");
+import ChatContainer from "../components/ChatContainer";
 
 function Main() {
   let settings = {
@@ -25,57 +23,6 @@ function Main() {
   };
   const navigate = useNavigate();
 
-  const myJWT = sessionStorage.getItem("JWT");
-  // 토큰 없을 시 로그인으로
-  const userName = sessionStorage.getItem("ID");
-
-  // 무한 렌더링 방지
-  useEffect(() => {
-    {
-      myJWT == null && navigate("/");
-    }
-  }, []);
-
-  useEffect(() => {
-    const URL =
-      "https://geolocation-db.com/json/697de680-a737-11ea-9820-af05f4014d91";
-    fetch(URL)
-      .then((res) => res.json())
-      .then((data) => setAddress(data));
-  }, []);
-
-  //서버에 메세지 보내기
-  const [message, setMessage] = useState("");
-  const sendMessage = () => {
-    socket.emit("send_message", { message });
-  };
-
-  const [receiveMessage, setReceiveMessage] = useState("");
-
-  //모든 처리 완료시 socket 닫기
-  useEffect(() => {
-    return () => {
-      socket.close();
-    };
-  }, []);
-
-  //서버로 부터 받은 메세지 뿌리기
-  const listGroup = useRef(null);
-  useEffect(() => {
-    socket.on("receive_message", (data) => {
-      setReceiveMessage(data.message);
-      // setChatArr((chatArr) => chatArr.concat(message));
-      console.log(data.message);
-      listGroup.current.append(
-        React.createElement(
-          "li",
-          { className: "list-group-item" },
-          { receiveMessage }
-        )
-      );
-    });
-  }, []);
-
   const images = [
     { url: "/assets/soju.jpg" },
     { url: "/assets/soju.jpg" },
@@ -88,10 +35,9 @@ function Main() {
 
   return (
     <>
-      <p className="slider_title mt-3">오늘은 뭐로 달릴까?</p>
       <span>옆으로 스와이프하여 넘겨주세요!</span>
 
-      <Slider {...settings}>
+      <Slider {...settings} style={{ display: "flex" }}>
         <div className="card-wrapper">
           <div className="card">
             <div className="card-image">
@@ -203,19 +149,6 @@ function Main() {
           </div>
         </div>
       </Slider>
-      <h3>채팅방</h3>
-      <ul class="list-group" ref={listGroup}>
-        <li class="list-group-item">{receiveMessage}</li>
-      </ul>
-      <input
-        id="input1"
-        placeholder="메세지 입력하기"
-        onChange={(event) => {
-          setMessage(event.target.value);
-        }}
-      ></input>
-      <button onClick={sendMessage}>등록</button>
-
       <div className="test">
         <SimpleImageSlider
           width={468}
@@ -226,7 +159,11 @@ function Main() {
           autoPlay={true}
           autoPlayDelay={2.0}
         />
+        <ChatContainer />
       </div>
+      <h1>주간 베스트 안주 & 식당의 이미지와 정보 | </h1>
+
+      <div style={{ clear: "both" }}></div>
     </>
   );
 }

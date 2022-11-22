@@ -57,20 +57,25 @@ function Header() {
                 {address?.city}({address?.country_code})
               </b>
             </span>
-            <div>
-              {NickName ? (
+            <Link to="/Mypage" style={{ textDecoration: "none", color: "Black " }}>
+              {/* {NickName ? (
                 <p className="nav-link disabled  col-12 ">
-                  환영합니다💖! <b>{NickName + ID.slice(-3)}</b> 님!
+                  환영합니다💖! <b>{NickName}</b> 님!
                 </p>
               ) : (
                 <p className="nav-link disabled  col-12 ">
                   환영합니다💖! <b>{ID}</b> 님!
                 </p>
+              )} */}
+              {NickName && (
+                <p className="nav-link disabled  col-12 ">
+                  환영합니다💖! <b>{NickName}</b> 님!
+                </p>
               )}
               {/* <p className="nav-link disabled  col-12 ">
                 환영합니다💖! <b>{NickName}</b> 고객님
               </p> */}
-            </div>
+            </Link>
             <div>
               <button
                 className="btn btn-secondary col-12 "
