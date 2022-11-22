@@ -38,14 +38,17 @@ function Mypage() {
   return (
     <>
       {/* 메뉴바를 만들어서 해당 기능으로 이동 */}
+
       <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link active" to="/selection">
-                  찜 목록({count})
-                </Link>
+                <b>
+                  <Link className="nav-link active" to="/selection">
+                    찜 목록({count})
+                  </Link>
+                </b>
               </li>
               <li className="nav-item">
                 <Link className="nav-link active" to="/selection">
@@ -66,7 +69,7 @@ function Mypage() {
           </div>
         </div>
       </nav>
-      <p>여기는 찜 목록</p>
+
       <div className="row row-cols-1 row-cols-md-3 g-4">{viewList}</div>
     </>
   );
