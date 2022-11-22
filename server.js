@@ -166,10 +166,11 @@ io.on("connection", (socket) => {
 });
 
 //마이페이지 구현
-app.get("/selection", function (req, res) {
+app.post("/selection", function (req, res) {
+  // console.log(req.body.params.id);
   //아이디별로 selection에 저장되어 있는 것들 중에 가져옴
   db.collection("selection")
-    .find({ ID: "kdh" }) //현재 로그인돼있는 아이디 가져오기
+    .find({ ID: req.body.params.id }) //현재 로그인돼있는 아이디 가져오기
     .toArray()
     .then((result) => {
       res.json(result);
@@ -180,9 +181,10 @@ app.get("/selection", function (req, res) {
 app.delete("/delete", function (req, res) {
   //서버 통신간 delete
   db.collection("selection").deleteOne(
-    { _id: req.body.deleteId.toString() },
+    { _id: req.body.deleteId },
     function (err, result) {
       //DB에서 삭제
+
       console.log("삭제 완료");
       res.json("삭제 완료");
     }

@@ -30,6 +30,12 @@ const Show = (props) => {
         .then((res) => {
           setState(!state);
           //fadeout 시키면서 view에 있는 해당 내용 삭제
+          // setUsers(users.filter(user => user.id !== id));
+        })
+        .then((res) => {
+          props.setView(
+            props.views.filter((view) => view._id !== props.obj._id)
+          );
         });
     } catch (err) {
       console.log(err);
@@ -39,7 +45,8 @@ const Show = (props) => {
   return (
     <>
       <form onSubmit={submitHandler}>
-        <div className="col" style={state ? hidden : active}>
+        {/* style={state ? hidden : active} */}
+        <div className="col">
           <div className="card h-100">
             <img
               src={"/assets/3/3.jpg"}
