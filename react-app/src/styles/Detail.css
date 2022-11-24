@@ -1,0 +1,15 @@
+.test {
+    align-items: center;
+    background-color: aquamarine;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+  }
+  
+  /* 
+  .listHolder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: blue;
+  } */

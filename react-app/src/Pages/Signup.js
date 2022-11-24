@@ -2,20 +2,22 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState, useRef } from "react";
 import axios from "axios";
-import "../css/master.css"
-import logo from '../logo.png'
 
 function Signup() {
   // id, pw, pw확인 상태 저장
   let [id, setId] = useState("");
   let [pw, setPw] = useState("");
+  let [name, setName] = useState("");
   let [pwchk, setPwchk] = useState("");
 
   // 패스워드 검사 메세지
   let [pwmessage, setPwmessage] = useState("");
 
-  //유효성 검사
+  // 검사완료 확인
   let [ispwconfirm, setIspwconfirm] = useState(true);
+  let [isnameConfirm, setIsnameconfirm] = useState(true);
+
+  // 중복 확인 검사
   let [idchk, setIdchk] = useState(false);
 
   const navigate = useNavigate();
@@ -32,43 +34,24 @@ function Signup() {
     setPw(e.target.value);
   };
 
+  // name 값 인식
+  const nameHandler = (e) => {
+    e.preventDefault();
+    setName(e.target.value);
+  };
+
   // 비밀번호 확인
   const pwConfirm = (e) => {
     const passwordConfirm = e.target.value;
     setPwchk(passwordConfirm);
 
     if (pw === passwordConfirm) {
-      document.getElementById("alert").setAttribute("class","mt-4 alert alert-success alert-dismissible fade show")
       setPwmessage("비밀번호가 일치합니다. 😊 회원가입 버튼을 눌러주세요.");
       setIspwconfirm(false);
     } else {
-      document.getElementById("alert").setAttribute("class","mt-4 alert alert-danger alert-dismissible fade show")
       setPwmessage("비밀번호가 일치하지 않습니다. 😢");
       setIspwconfirm(true);
     }
-  };
-
-  // 회원가입 완료
-  const submitHandler = (e) => {
-    e.preventDefault();
-    let body = {
-      id: id,
-      // pw: btoa(pw),
-      pw: pw,
-    };
-    {
-      idchk
-        ? axios.post("api/signup", body).then((res) => {
-            {
-              // 존재함요면 안 넣고 존재 안 하면 넣고 페이지 이동
-              res.data == "존재함요" ? alert("이미 존재하는 아이디이오니 다른 아이디를 사용하여 주세요.") : navigate("/");
-            }
-          })
-        : alert("반드시 ID 중복 확인을 해주세요");
-    }
-
-    console.log("입력한 아이디 " + id);
-    console.log("입력한 비밀번호 " + pw);
   };
 
   async function CHECK_ID() {
@@ -86,10 +69,33 @@ function Signup() {
       console.log(err);
     }
   }
+
+  // 회원가입 완료
+  const submitHandler = (e) => {
+    e.preventDefault();
+    let body = {
+      id: id,
+      // pw: btoa(pw),
+      name: name,
+      pw: pw,
+    };
+    {
+      idchk
+        ? axios.post("api/signup", body).then((res) => {
+            {
+              res.data == "존재함요" ? alert("이미 존재하는 아이디이오니 다른 아이디를 사용하여 주세요.") : navigate("/");
+            }
+          })
+        : alert("반드시 ID 중복 확인을 해주세요");
+    }
+
+    console.log("입력한 아이디 " + id);
+    console.log("입력한 비밀번호 " + pw);
+    console.log("입력한 닉네임 " + name);
+  };
   return (
     <>
-    
-      <div class="container position-absolute top-50 start-50 translate-middle bg-white rounded shadow-lg ">
+       <div class="container position-absolute top-50 start-50 translate-middle bg-white rounded shadow-lg ">
         <div class="row p-5">
           <div class="col-lg-8 col-12 mx-auto bg-white">
             {/* <div class="m-2 text-center">
@@ -157,9 +163,64 @@ function Signup() {
         </div>
       </div>
       
-     
     </>
   );
 }
 
 export default Signup;
+// const submitHandler = (e) => {
+//   e.preventDefault();
+//   let body = {
+//     id: id,
+//     // pw: btoa(pw),
+//     name: name,
+//     pw: pw,
+//   };
+
+//   {
+//     idchk
+//       ? axios.post("api/signup", body).then((res) => {
+//           {
+//             // if (res.data == "존재함요") {
+//             //   alert("아이디가 이미 존재한다니까.");
+//             // } else if (res.data == "닉네임존재함요") {
+//             //   alert("닉네임 존재한다니까");
+//             // } else {
+//             //   navigate("/");
+//             // }
+//             // 존재함요면 안 넣고 존재 안 하면 넣고 페이지 이동
+//             // res.data == "존재함요" ? alert("이미 존재하는 아이디이오니 다른 아이디를 사용하여 주세요.") : navigate("/");
+//             res.data == "존재함요" ? alert("이미 존재하는 아이디이오니 다른 아이디를 사용하여 주세요.") : setTotalChk1(true);
+//             // res.data == "존재함요" && alert("이미 존재하는 아이디이오니 다른 아이디를 사용하여 주세요.");
+//             // name == false ? alert("닉네임 중복검사를 해주세요.") :
+//             // res.data == "닉네임존재함요" && alert("이미 존재하는 닉네임이라니까");
+//           }
+//         })
+//       : alert("반드시 ID 중복 확인을 해주세요");
+//   }
+//   {
+//     nameChk
+//       ? axios.post("api/signup", body).then((res) => {
+//           {
+//             // if (res.data == "존재함요") {
+//             //   alert("아이디가 이미 존재한다니까.");
+//             // } else if (res.data == "닉네임존재함요") {
+//             //   alert("닉네임 존재한다니까");
+//             // } else {
+//             //   navigate("/");
+//             // }
+//             // 존재함요면 안 넣고 존재 안 하면 넣고 페이지 이동
+//             // res.data == "존재함요" ? alert("이미 존재하는 아이디이오니 다른 아이디를 사용하여 주세요.") : navigate("/");
+//             // name == false ? alert("닉네임 중복검사를 해주세요.") :
+//             res.data == "닉네임존재함요" ? alert("이미 존재하는 닉네임이라니까") : setTotalChk2(true);
+//           }
+//         })
+//       : alert("반드시 닉네임 중복 확인을 해주세요");
+//   }
+
+//   console.log("입력한 아이디 " + id);
+//   console.log("입력한 비밀번호 " + pw);
+//   console.log("입력한 닉네임 " + name);
+
+//   (totalChk1 & totalChk2) && navigate("/");
+// };

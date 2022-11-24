@@ -2,11 +2,14 @@
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../css/master.css"
+//import Header from "../components/Header";
+import "../styles/Login_Header.css"
 import logo from '../logo.png'
+
 function Login() {
   let [id, setId] = useState("");
   let [pw, setPw] = useState("");
+  let [NickName, setNickName] = useState("");
   const navigate = useNavigate();
 
   const idHandler = (e) => {
@@ -27,6 +30,7 @@ function Login() {
     };
     // 폼에 입력한 ID를 세션 스토리지에 저장 (회원정보 띄울용)
     sessionStorage.setItem("ID", id);
+
     try {
       await axios.get("api/pw").then((응답) => {
         console.log("입력한 아이디", id);
@@ -34,11 +38,14 @@ function Login() {
           for (let i = 0; i < 응답.data.length; i++) {
             // 암호화된 비밀번호를 전달하기 위해 폼 비밀번호에 대입
             응답.data[i].아이디 == id && (body.SALT_pw = 응답.data[i].패스워드);
+            응답.data[i].아이디 == id && (NickName = 응답.data[i].닉네임);
           }
         }
 
+        sessionStorage.setItem("Nickname", NickName);
         console.log("암호화 비번", body.SALT_pw);
         console.log("입력한 비번", pw);
+        console.log(응답.data);
         // 암호화된 비밀번호와 그냥 비밀번호 둘 다 전달
         let R_body = {
           id: id,
@@ -71,15 +78,7 @@ function Login() {
 
   return (
     <>
-      {/* <div>
-        <nav class="navbar navbar-expand-lg bg-light">
-          <div class="container-fluid">
-            <a class="navbar-brand m-3" href="/">내일 지구가 끝나더라도 나는 오늘 밤 최고의 술자리를 가지겠어🍻🍷🍾</a>
-          </div>
-        </nav>
-      </div> */}
-
-      <div class="container position-absolute top-50 start-50 translate-middle bg-white rounded shadow-lg ">
+      <div class="container mt-5 bg-white rounded shadow-lg ">
         <div class="row p-5">
           
           <div class="col-lg-8 col-12 mx-auto bg-white">
@@ -101,17 +100,16 @@ function Login() {
                 <div class="text-center pt-4">
                   <p class="m-3 text-secondary font-500">아직 계정이 없으신가요? <a href="/Signup" class="text-dark font-500">회원가입</a></p>
                 </div>   
-                {/* <Link class="btn btn-lg btn-primary mt-3 btn-lg d-grid gap-2 col-10 mx-auto" to="/Signup">회원가입</Link> */}
               </div>
             </div>
           </div>
         </div>
       </div>
-      
 
 
-      
     </>
+
+
   );
 }
 
