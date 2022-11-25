@@ -48,6 +48,7 @@ function Header() {
     
           <div class="row gx-3 collapse navbar-collapse" id="navbarSupportedContent">
             {/* 로그인 시 추가 내용 */}
+            
             { myJWT != null &&(
             <>
             

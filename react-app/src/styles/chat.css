@@ -1,0 +1,21 @@
+.chat_container {
+    /* width: 250px; */
+    height: 50vh;
+    overflow: auto;
+  }
+
+.chat_container::-webkit-scrollbar {
+width: 10px;
+background-color: black;
+}
+
+
+.chat_container::-webkit-scrollbar-thumb {
+background-color: #2f3542;
+border-radius: 10px;
+}
+
+.chat_container::-webkit-scrollbar-track {
+background-color: grey;
+border-radius: 10px;
+}

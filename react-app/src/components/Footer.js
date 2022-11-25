@@ -66,12 +66,13 @@ function Footer() {
             return (
               <div key={i}>
                 <div className="TextWrap">
-                <div className="Title">
+                  <div className="Title">
                     <b>{a.title}</b>
                   </div>
 
                   <div>{a.lists.text1}</div>
                   <div>{a.lists.text2}</div>
+                  
                 </div>
               </div>
             );

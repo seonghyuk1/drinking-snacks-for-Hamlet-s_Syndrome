@@ -46,6 +46,7 @@ export default function InputText({ addMessage }) {
   };
   return (
     <>
+    {/* 아래라인구성 */}
     <div class="container">
       <div class="row">
         <div class="col-sm-9">

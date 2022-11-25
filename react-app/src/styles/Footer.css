@@ -27,6 +27,8 @@
     color: white;
     vertical-align: bottom;
   }
+
+  /* footer내용 */
   
   .Content {
     /* margin: 0 10% 0 25%; */
@@ -44,6 +46,7 @@
   
   .TextWrap {
     padding: 0 2% 1.5% 2%;
+  
     margin-bottom: 1%;
     float: left;
     vertical-align: super;

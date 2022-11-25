@@ -95,7 +95,7 @@ function Signup() {
   };
   return (
     <>
-       <div class="container position-absolute top-50 start-50 translate-middle bg-white rounded shadow-lg ">
+       <div class="container mt-5 bg-white rounded shadow-lg">
         <div class="row p-5">
           <div class="col-lg-8 col-12 mx-auto bg-white">
             {/* <div class="m-2 text-center">
