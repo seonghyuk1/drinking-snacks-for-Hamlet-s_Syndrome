@@ -40,40 +40,43 @@ export default function ChatContainer() {
 
   function ChatsList() {
     return chats.map((chat, i) => {
-      if (chat.user === user) return <ChatBoxSender key={i} message={chat.message} user={chat.user} />;
-      return <ChatBoxReciever key={i} message={chat.message} user={chat.user} />;
+      if (chat.user === user)
+        return (
+          <ChatBoxSender key={i} message={chat.message} user={chat.user} />
+        );
+      return (
+        <ChatBoxReciever key={i} message={chat.message} user={chat.user} />
+      );
     });
   }
 
   return (
     <div>
       {chatOn ? ( // 등록 해놨던 유저라면 상단바와 대화창 다 불러오기
-<<<<<<< HEAD
-        <div>
-          <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-            <h4>닉네임: {user}</h4>
-            <p onClick={() => logout()} style={{ color: "blue", cursor: "pointer" }}>
-              채팅나가기
-            </p>
-=======
-        <div class="container col-8 m-1 p-3 bg-light rounded shadow-lg mx-auto" >
-          <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-            
+        <div class="container col-8 m-1 p-3 bg-light rounded shadow-lg mx-auto">
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}
+          >
             {/* 윗라인구성 */}
             <div class="container">
               <div class="row">
                 <div class="col-1">
-                  <h3 onClick={() => logout()}><i class="bi bi-arrow-left arrow "></i></h3>
+                  <h3 onClick={() => logout()}>
+                    <i class="bi bi-arrow-left arrow "></i>
+                  </h3>
                 </div>
-                
+
                 <div class="col-6  mx-auto ">
-                <div class="container pt-1 bg-dark rounded-pill">
-                  <h4 class="text-center text-light">닉네임:{user}</h4>
+                  <div class="container pt-1 bg-dark rounded-pill">
+                    <h4 class="text-center text-light">닉네임:{user}</h4>
                   </div>
                 </div>
               </div>
             </div>
->>>>>>> d27c97a42f5ea01dc134cdbe6ce96369c63fd9ae
           </div>
           <ChatsList />
 
@@ -85,8 +88,4 @@ export default function ChatContainer() {
       )}
     </div>
   );
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> d27c97a42f5ea01dc134cdbe6ce96369c63fd9ae

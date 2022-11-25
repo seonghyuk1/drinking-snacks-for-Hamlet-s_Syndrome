@@ -1,20 +1,5 @@
 .test {
-<<<<<<< HEAD
-  align-items: center;
-  background-color: aquamarine;
-  justify-content: center;
-  text-align: center;
-  display: flex;
-}
 
-/* 
-.listHolder {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: blue;
-} */
-=======
     align-items: center;
     background-color: aquamarine;
     justify-content: center;
@@ -29,4 +14,4 @@
     align-items: center;
     background-color: blue;
   } */
->>>>>>> d27c97a42f5ea01dc134cdbe6ce96369c63fd9ae
+

@@ -15,10 +15,9 @@ function Signup() {
 
   // 검사완료 확인
   let [ispwconfirm, setIspwconfirm] = useState(true);
-<<<<<<< HEAD
-=======
+
   let [isnameConfirm, setIsnameconfirm] = useState(true);
->>>>>>> d27c97a42f5ea01dc134cdbe6ce96369c63fd9ae
+
 
   // 중복 확인 검사
   let [idchk, setIdchk] = useState(false);
@@ -98,62 +97,7 @@ function Signup() {
   };
   return (
     <>
-<<<<<<< HEAD
-      <h4 className="container mt-5 col-6">회원가입</h4>
-      <div className="container mt-3 col-6 mx-auto">
-        <form onSubmit={submitHandler}>
-          {/* 아이디 입력 */}
-          <div className="form-group">
-            <label>ID</label>
-            <div>
-              <input type="text" className="form-control" value={id} onChange={idHandler} placeholder="사용할 아이디를 입력하세요."></input>
-            </div>
-            <button
-              className="btn btn-dark mt-3 d-grid gap-2 col-3 mx-auto"
-              onClick={(e) => {
-                e.preventDefault();
-                CHECK_ID();
-                setIdchk(true);
-              }}
-            >
-              중복확인
-            </button>
-          </div>
-          {/* 비밀번호 입력 */}
-          <label>Password</label>
-          <input
-            type="password"
-            className="form-control"
-            value={pw}
-            onChange={pwHandler}
-            onClick={(e) => {
-              e.preventDefault(e);
-            }}
-            placeholder="비밀번호 입력"
-          ></input>
-          {/* 비밀번호 확인 */}
 
-          <div className="form-group mt-3">
-            <label>Password 확인</label>
-            <input type="password" className="form-control" placeholder="비밀번호 확인" onChange={pwConfirm} />
-            {pwchk.length > 0 && <span>{pwmessage}</span>}
-          </div>
-
-          {/* 닉네임 */}
-          <div className="form-group mt-5">
-            <label>Custom Nickname</label>
-            <div>
-              <input type="text" className="form-control" value={name} onChange={nameHandler} placeholder="원하는 닉네임을 입력하세요. (생략가능)"></input>
-              {name.length < 1 ? <span>닉네임을 입력하여 주세요.</span> : <span>멋진 닉네임입니다. 😎</span>}
-            </div>
-          </div>
-
-          {/* 회원가입 완료 */}
-          <button onSubmit={submitHandler} className="btn btn-danger mt-5 d-grid gap-2 col-6 mx-auto" type="submit" disabled={ispwconfirm}>
-            회원가입 완료
-          </button>
-        </form>
-=======
        <div class="container position-absolute top-50 start-50 translate-middle bg-white rounded shadow-lg ">
         <div class="row p-5">
           <div class="col-lg-8 col-12 mx-auto bg-white">
@@ -220,7 +164,7 @@ function Signup() {
             </div>
           </div>
         </div>
->>>>>>> d27c97a42f5ea01dc134cdbe6ce96369c63fd9ae
+
       </div>
       
     </>
@@ -283,8 +227,6 @@ export default Signup;
 //   console.log("입력한 닉네임 " + name);
 
 //   (totalChk1 & totalChk2) && navigate("/");
-<<<<<<< HEAD
+
 // };
-=======
-// };
->>>>>>> d27c97a42f5ea01dc134cdbe6ce96369c63fd9ae
+

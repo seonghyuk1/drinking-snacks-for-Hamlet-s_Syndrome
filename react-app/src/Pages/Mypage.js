@@ -2,12 +2,10 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Show from "./Show";
 import React, { useState, useEffect } from "react";
-<<<<<<< HEAD
-=======
+
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
->>>>>>> d27c97a42f5ea01dc134cdbe6ce96369c63fd9ae
 function Mypage() {
   //찜 목록을 보여주기 위해, views에 DB에 저장된 하나의 객체를 입력
   let [views, setView] = useState([]);
@@ -77,16 +75,8 @@ function Mypage() {
       </nav>
 
       <div className="row row-cols-1 row-cols-md-3 g-4">{viewList}</div>
-<<<<<<< HEAD
-=======
-
->>>>>>> d27c97a42f5ea01dc134cdbe6ce96369c63fd9ae
     </>
   );
 }
 
-<<<<<<< HEAD
 export default Mypage;
-=======
-export default Mypage;
->>>>>>> d27c97a42f5ea01dc134cdbe6ce96369c63fd9ae
