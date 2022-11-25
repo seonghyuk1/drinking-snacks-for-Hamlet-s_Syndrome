@@ -71,4 +71,8 @@ const Show = (props) => {
   );
 };
 
+<<<<<<< HEAD
 export default Show;
+=======
+export default Show;
+>>>>>>> d27c97a42f5ea01dc134cdbe6ce96369c63fd9ae

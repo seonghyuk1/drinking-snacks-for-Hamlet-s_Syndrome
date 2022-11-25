@@ -58,4 +58,8 @@ function Detail() {
   );
 }
 
+<<<<<<< HEAD
 export default Detail;
+=======
+export default Detail;
+>>>>>>> d27c97a42f5ea01dc134cdbe6ce96369c63fd9ae

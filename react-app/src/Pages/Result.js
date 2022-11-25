@@ -5,6 +5,11 @@
 import SimpleImageSlider from "react-simple-image-slider";
 import "../styles/Detail.css";
 import { Link, useNavigate } from "react-router-dom";
+<<<<<<< HEAD
+=======
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+>>>>>>> d27c97a42f5ea01dc134cdbe6ce96369c63fd9ae
 
 function Detail() {
   let navigate = useNavigate();
@@ -24,8 +29,16 @@ function Detail() {
       <button className="btn btn-secondary mx-3 " onClick={() => navigate("/Result")}>
         다음
       </button>
+<<<<<<< HEAD
+=======
+
+>>>>>>> d27c97a42f5ea01dc134cdbe6ce96369c63fd9ae
     </>
   );
 }
 
+<<<<<<< HEAD
 export default Detail;
+=======
+export default Detail;
+>>>>>>> d27c97a42f5ea01dc134cdbe6ce96369c63fd9ae

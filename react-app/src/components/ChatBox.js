@@ -22,4 +22,8 @@ export function ChatBoxSender({ avatar, user, message }) {
       </p>
     </div>
   );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> d27c97a42f5ea01dc134cdbe6ce96369c63fd9ae

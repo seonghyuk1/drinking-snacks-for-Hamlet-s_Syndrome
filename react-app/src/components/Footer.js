@@ -2,6 +2,11 @@ import { IoIosArrowUp } from "react-icons/io";
 import "../styles/Footer.css";
 
 function Footer() {
+<<<<<<< HEAD
+=======
+  // eslint-disable-next-line no-restricted-globals
+  
+>>>>>>> d27c97a42f5ea01dc134cdbe6ce96369c63fd9ae
   const clickToTop = () => {
     window.scrollTo(0, 0);
   };
@@ -56,6 +61,10 @@ function Footer() {
         <div className="UpBtn" onClick={clickToTop}>
           <IoIosArrowUp className="UpIcon" />
         </div>
+<<<<<<< HEAD
+=======
+        
+>>>>>>> d27c97a42f5ea01dc134cdbe6ce96369c63fd9ae
       </div>
       <div className="FooterWrap">
         <div className="Content">
@@ -63,7 +72,11 @@ function Footer() {
             return (
               <div key={i}>
                 <div className="TextWrap">
+<<<<<<< HEAD
                   <div className="Title">
+=======
+                <div className="Title">
+>>>>>>> d27c97a42f5ea01dc134cdbe6ce96369c63fd9ae
                     <b>{a.title}</b>
                   </div>
 
@@ -75,7 +88,11 @@ function Footer() {
           })}
         </div>
       </div>
+<<<<<<< HEAD
       <hr style={{ margin: "0 0 0.3px 0" }} />
+=======
+      {/* <hr style={{ margin: "0 0 0.3px 0" }} /> */}
+>>>>>>> d27c97a42f5ea01dc134cdbe6ce96369c63fd9ae
 
       <div>
         <span className="FooterText">KWIC_웹 설계 및 구현 6조 &copy; </span>
@@ -84,4 +101,8 @@ function Footer() {
   );
 }
 
+<<<<<<< HEAD
 export default Footer;
+=======
+export default Footer;
+>>>>>>> d27c97a42f5ea01dc134cdbe6ce96369c63fd9ae

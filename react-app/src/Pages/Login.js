@@ -2,12 +2,22 @@
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+<<<<<<< HEAD
 import Header from "../components/Header";
+=======
+//import Header from "../components/Header";
+import "../styles/Login_Header.css"
+import logo from '../logo.png'
+>>>>>>> d27c97a42f5ea01dc134cdbe6ce96369c63fd9ae
 
 function Login() {
   let [id, setId] = useState("");
   let [pw, setPw] = useState("");
+<<<<<<< HEAD
   let NickName;
+=======
+  let [NickName, setNickName] = useState("");
+>>>>>>> d27c97a42f5ea01dc134cdbe6ce96369c63fd9ae
   const navigate = useNavigate();
 
   const idHandler = (e) => {
@@ -25,23 +35,41 @@ function Login() {
 
     let saltPw;
     // 폼에 입력한 ID를 세션 스토리지에 저장 (회원정보 띄울용)
+<<<<<<< HEAD
+=======
+    sessionStorage.setItem("ID", id);
+>>>>>>> d27c97a42f5ea01dc134cdbe6ce96369c63fd9ae
 
     try {
       await axios.get("api/pw").then((응답) => {
         // 입력한 아이디와 데이터베이스 속 아이디가 같다면 그 암호화 비밀번호를 SALT_pw에 저장
         {
           for (let i = 0; i < 응답.data.length; i++) {
+<<<<<<< HEAD
             // 암호화된 비밀번호를 변수에 저장
             응답.data[i].아이디 == id && (saltPw = 응답.data[i].패스워드);
+=======
+            // 암호화된 비밀번호를 전달하기 위해 폼 비밀번호에 대입
+            응답.data[i].아이디 == id && (body.SALT_pw = 응답.data[i].패스워드);
+>>>>>>> d27c97a42f5ea01dc134cdbe6ce96369c63fd9ae
             응답.data[i].아이디 == id && (NickName = 응답.data[i].닉네임);
           }
         }
 
+<<<<<<< HEAD
         console.log("암호화 비번", saltPw);
         console.log("입력한 비번", pw);
         console.log(응답.data);
         // 암호화된 비밀번호와 입력 비밀번호 둘 다 전달
         let body = {
+=======
+        sessionStorage.setItem("Nickname", NickName);
+        console.log("암호화 비번", body.SALT_pw);
+        console.log("입력한 비번", pw);
+        console.log(응답.data);
+        // 암호화된 비밀번호와 그냥 비밀번호 둘 다 전달
+        let R_body = {
+>>>>>>> d27c97a42f5ea01dc134cdbe6ce96369c63fd9ae
           id: id,
           pw: saltPw,
           form_pw: pw,
@@ -74,6 +102,7 @@ function Login() {
 
   return (
     <>
+<<<<<<< HEAD
       <h4 className="container mt-5 col-6">로그인</h4>
       <div className="container mt-3 col-6 mx-auto">
         <form onSubmit={submitHandler}>
@@ -93,11 +122,44 @@ function Login() {
         <Link className="btn btn-primary m-5 btn-lg d-grid gap-2 col-6 mx-auto" to="/Signup">
           회원가입
         </Link>
+=======
+      <div class="container mt-5 bg-white rounded shadow-lg ">
+        <div class="row p-5">
+          
+          <div class="col-lg-8 col-12 mx-auto bg-white">
+            <div class="m-2 text-center">
+              <a href="/">
+              <img src={logo} class="img-fluid" alt="내일 지구가 끝나더라도 나는 오늘 밤 최고의 술자리를 가지겠어" width="400"/>
+              </a>
+            </div>
+            <div class="p-2">
+              <div class="border  rounded m-3 p-3">
+                <form onSubmit={submitHandler}>
+                  <label class="p-3 font-500">ID</label>
+                  <input type="text" class="form-control form-control-lg mb-3 rounded-pill"  placeholder="Input your ID" value={id} onChange={idHandler}></input>
+                  <label class="p-3 font-500">Password</label>
+                  <input type="password" class="form-control form-control-lg rounded-pill" placeholder="Input your PW" value={pw} onChange={pwHandler}></input>
+
+                  <button class="btn btn-lg press_btn mt-5 d-grid gap-2 col-11 mx-auto" type="submit">LOGIN</button>
+                </form>
+                <div class="text-center pt-4">
+                  <p class="m-3 text-secondary font-500">아직 계정이 없으신가요? <a href="/Signup" class="text-dark font-500">회원가입</a></p>
+                </div>   
+              </div>
+            </div>
+          </div>
+        </div>
+>>>>>>> d27c97a42f5ea01dc134cdbe6ce96369c63fd9ae
       </div>
+
+
     </>
+
+
   );
 }
 
+<<<<<<< HEAD
 export default Login;
 
 // /* eslint-disable */
@@ -203,3 +265,6 @@ export default Login;
 // }
 
 // export default Login;
+=======
+export default Login;
+>>>>>>> d27c97a42f5ea01dc134cdbe6ce96369c63fd9ae
