@@ -46,9 +46,11 @@ function Signup() {
     setPwchk(passwordConfirm);
 
     if (pw === passwordConfirm) {
+      document.getElementById("alert").setAttribute("class","mt-4 alert alert-success alert-dismissible fade show")
       setPwmessage("비밀번호가 일치합니다. 😊 회원가입 버튼을 눌러주세요.");
       setIspwconfirm(false);
     } else {
+      document.getElementById("alert").setAttribute("class","mt-4 alert alert-danger alert-dismissible fade show")
       setPwmessage("비밀번호가 일치하지 않습니다. 😢");
       setIspwconfirm(true);
     }
@@ -124,6 +126,10 @@ function Signup() {
                       중복확인
                     </button>
                   </div>
+
+
+                  <label class="p-3 font-500">Username</label>
+                  <input type="text" class="form-control form-control-lg mb-3 rounded-pill"  placeholder="닉네임을 입력하세요 (수정가능합니다)" value={name} onChange={nameHandler}></input>
 
                   <label class="p-3 font-500">Password</label>
                   <input 
