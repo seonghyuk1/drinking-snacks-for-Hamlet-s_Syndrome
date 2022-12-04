@@ -65,7 +65,7 @@ function Mypage() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link active" to="/selection">
+                <Link className="nav-link active" to="/Resign">
                   회원 탈퇴
                 </Link>
               </li>

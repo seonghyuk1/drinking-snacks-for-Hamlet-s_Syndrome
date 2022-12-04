@@ -240,6 +240,34 @@ app.post("/changePW", function (req, res) {
   );
 });
 
+//회원탈퇴
+app.post("/resign", function (req, res) {
+  db.collection("login").findOne(
+    { 아이디: req.body.id },
+    function (err, result) {
+      if (result) {
+        bcrypt.compare(req.body.current, req.body.hash).then((result) => {
+          if (result) {
+            //패스워드 일치
+            db.collection("login").deleteOne(
+              { 아이디: req.body.id },
+              function (err, result) {
+                console.log("삭제완료");
+                res.redirect("/");
+              }
+            );
+          } else {
+            //패스워드 일치하지 않음
+            res.json("현재 패스워드 안맞음");
+          }
+        });
+      } else {
+        console.log("찾는 아이디 없음");
+      }
+    }
+  );
+});
+
 app.get("*", function (요청, 응답) {
   응답.sendFile(
     path.join(__dirname, "/react-app/build/index.html"),

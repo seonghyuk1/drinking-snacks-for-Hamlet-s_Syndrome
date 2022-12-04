@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import Mypage from "./Pages/Mypage";
 import Selection from "./Pages/Selection";
 import ChangePassword from "./Pages/ChangePassword";
+import Resign from "./Pages/Resign";
 
 import { Routes, Route } from "react-router-dom";
 
@@ -25,6 +26,7 @@ function App() {
         <Route path="/Mypage" element={<Mypage />} />
         <Route path="/Selection" element={<Selection />} />
         <Route path="/ChangePassword" element={<ChangePassword />} />
+        <Route path="/Resign" element={<Resign />} />
       </Routes>
       <Footer />
     </>
