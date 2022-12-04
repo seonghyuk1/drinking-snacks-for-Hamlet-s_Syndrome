@@ -63,9 +63,7 @@ function Signup() {
       await axios.post("api/signup/checkID", body).then((res) => {
         console.log("검사여부 : " + res.data);
         {
-          res.data === "존재"
-            ? alert("이미 존재하는 아이디입니다.")
-            : alert("아이디가 사용이 가능합니다.");
+          res.data === "존재" ? alert("이미 존재하는 아이디입니다.") : alert("아이디가 사용이 가능합니다.");
         }
       });
     } catch (err) {
@@ -86,11 +84,7 @@ function Signup() {
       idchk
         ? axios.post("api/signup", body).then((res) => {
             {
-              res.data == "존재함요"
-                ? alert(
-                    "이미 존재하는 아이디이오니 다른 아이디를 사용하여 주세요."
-                  )
-                : navigate("/");
+              res.data == "존재함요" ? alert("이미 존재하는 아이디이오니 다른 아이디를 사용하여 주세요.") : navigate("/");
             }
           })
         : alert("반드시 ID 중복 확인을 해주세요");
@@ -122,13 +116,7 @@ function Signup() {
 
                 <form onSubmit={submitHandler}>
                   <label class="p-3 font-500">ID</label>
-                  <input
-                    type="text"
-                    class="form-control form-control-lg mb-3 rounded-pill"
-                    placeholder="사용할 아이디를 입력하세요"
-                    value={id}
-                    onChange={idHandler}
-                  ></input>
+                  <input type="text" class="form-control form-control-lg mb-3 rounded-pill" placeholder="사용할 아이디를 입력하세요" value={id} onChange={idHandler}></input>
 
                   <div class="d-grid d-md-flex justify-content-md-end">
                     <button
@@ -156,24 +144,22 @@ function Signup() {
                   ></input>
 
                   {/* <label class="p-3 font-500">Password 확인</label> */}
-                  <input
-                    type="password"
-                    class="form-control form-control-lg mt-3 rounded-pill"
-                    placeholder="다시 비밀번호를 입력하세요"
-                    onChange={pwConfirm}
-                  />
+                  <input type="password" class="form-control form-control-lg mt-3 rounded-pill" placeholder="다시 비밀번호를 입력하세요" onChange={pwConfirm} />
                   <div id="alert">
                     <h6 id="errormessage">{pwmessage}</h6>
                   </div>
                   {/* {pwchk.length > 0 && <span>{pwmessage}</span>} */}
 
+                  {/* 닉네임 */}
+                  <div className="form-group mt-5">
+                    <label>Custom Nickname</label>
+                    <div>
+                      <input type="text" className="form-control" value={name} onChange={nameHandler} placeholder="원하는 닉네임을 입력하세요. (생략가능)"></input>
+                      {name.length < 1 ? <span>닉네임을 입력하여 주세요.</span> : <span>멋진 닉네임입니다. 😎</span>}
+                    </div>
+                  </div>
                   <div class="d-grid gap-2 col-md-11 mx-auto">
-                    <button
-                      onSubmit={submitHandler}
-                      class="btn btn-lg press_btn mt-5 gap-2 "
-                      type="submit"
-                      disabled={ispwconfirm}
-                    >
+                    <button onSubmit={submitHandler} class="btn btn-lg press_btn mt-5 gap-2 " type="submit" disabled={ispwconfirm}>
                       회원가입 완료
                     </button>
                   </div>
