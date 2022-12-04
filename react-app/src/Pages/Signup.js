@@ -113,7 +113,7 @@ function Signup() {
 
                 <form onSubmit={submitHandler}>
                   <label class="p-3 font-500">ID</label>
-                  <input type="text" class="form-control form-control-lg mb-3 rounded-pill"  placeholder="사용할 아이디를 입력하세요" value={id} onChange={idHandler}></input>
+                  <input type="text" class="form-control form-control-lg mb-3 rounded-pill"  placeholder="사용할 아이디를 입력해 주세요" value={id} onChange={idHandler}></input>
                   
                   <div class="d-grid d-md-flex justify-content-md-end">
                     <button
@@ -127,15 +127,24 @@ function Signup() {
                     </button>
                   </div>
 
-
+                      {/* 수정추가한것 */}
                   <label class="p-3 font-500">Username</label>
-                  <input type="text" class="form-control form-control-lg mb-3 rounded-pill"  placeholder="닉네임을 입력하세요 (수정가능합니다)" value={name} onChange={nameHandler}></input>
+                  <input type="text" class="form-control form-control-lg mb-3 rounded-pill"  placeholder="닉네임을 입력해 주세요 (수정가능합니다)" value={name} onChange={nameHandler}></input>
+
+                  {/* 닉네임
+                  <div className="form-group mt-5">
+                    <label>Custom Nickname</label>
+                    <div>
+                      <input type="text" className="form-control" value={name} onChange={nameHandler} placeholder="원하는 닉네임을 입력하세요. (생략가능)"></input>
+                      {name.length < 1 ? <span>닉네임을 입력하여 주세요.</span> : <span>멋진 닉네임입니다. 😎</span>}
+                    </div>
+                  </div> */}
 
                   <label class="p-3 font-500">Password</label>
                   <input 
                     type="password" 
                     class="form-control form-control-lg rounded-pill" 
-                    placeholder="사용할 비밀번호를 입력하세요" 
+                    placeholder="사용할 비밀번호를 입력해 주세요" 
                     value={pw} 
                     onChange={pwHandler}
                     onClick={(e) => {
@@ -145,7 +154,7 @@ function Signup() {
                   </input>
 
                   {/* <label class="p-3 font-500">Password 확인</label> */}
-                  <input type="password" class="form-control form-control-lg mt-3 rounded-pill" placeholder="다시 비밀번호를 입력하세요" onChange={pwConfirm} />
+                  <input type="password" class="form-control form-control-lg mt-3 rounded-pill" placeholder="다시 비밀번호를 입력해 주세요" onChange={pwConfirm} />
                   <div id="alert">
                     <h6 id="errormessage">{pwmessage}</h6>
                   </div>

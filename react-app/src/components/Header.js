@@ -50,7 +50,8 @@ function Header() {
           {/* nav-item */}
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             {/* 로그인 시 추가 내용 */}
-            {  myJWT != null &&(
+            
+            {myJWT != null &&  (
             <>
            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
