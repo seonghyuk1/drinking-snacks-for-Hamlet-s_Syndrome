@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Link } from "react-router-dom";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
@@ -104,7 +105,7 @@ function Resign() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link active" to="/selection">
+                <Link className="nav-link active" to="/ChangeNickname">
                   닉네임 변경
                 </Link>
               </li>
