@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Show from "./Show";
 import React, { useState, useEffect } from "react";
+
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
@@ -74,7 +75,6 @@ function Mypage() {
       </nav>
 
       <div className="row row-cols-1 row-cols-md-3 g-4">{viewList}</div>
-
     </>
   );
 }

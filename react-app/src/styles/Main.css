@@ -83,7 +83,7 @@ body {
   
   .social-icons {
     position: absolute;
-    top: 25%;
+    top: 30%;
     left: 45%;
     transform: translate(-50%, -50%);
     z-index: 3;
@@ -240,6 +240,15 @@ body {
   
   .carousel .slick-prev {
     left: -55px;
+  }
+
+ 
+
+  .testBOX {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    display: flex;
   }
   
   /* ============여기서부터 그냥 CSS */

@@ -38,8 +38,9 @@ function Main() {
   return (
     <>
       <div class="container mt-5 p-1 rounded shadow-lg">
-      <h2 class="m-3 text-center text-light"><strong>무슨 술을 마실까요?🍻</strong></h2>
+        <h2 class="m-3 text-center text-light"><strong>무슨 술을 마실까요?🍻</strong></h2>
       </div>
+      
       <div class="col-11 mx-auto">
       <Slider {...settings}  className="slider_center" dotsClass="test-css">
         <div className="card-wrapper">
@@ -50,7 +51,7 @@ function Main() {
             <ul className="social-icons">
               <li>
                 <Link to={"/detail/0"} onClick={() => {}}>
-                  <p className="fa fa-facebook">*문구창</p>
+                  <p className=" fa fa-facebook">마시는 것이 힘이다</p>
                 </Link>
               </li>
             </ul>
@@ -70,7 +71,7 @@ function Main() {
             <ul className="social-icons">
               <li>
                 <Link to={"/detail/1"} onClick={() => {}}>
-                  <p className="fa fa-facebook">*문구창</p>
+                  <p className="fa fa-facebook">나의 사전에 <br></br>금주란 없다</p>
                 </Link>
               </li>
             </ul>
@@ -90,7 +91,7 @@ function Main() {
             <ul className="social-icons">
               <li>
                 <Link to={"/detail/2"} onClick={() => {}}>
-                  <p className="fa fa-facebook">*문구창</p>
+                  <p className="fa fa-facebook">나는 음주한다<br></br> 고로 나는 존재한다</p>
                 </Link>
               </li>
             </ul>
@@ -110,7 +111,7 @@ function Main() {
             <ul className="social-icons">
               <li>
                 <Link to={"/detail/3"} onClick={() => {}}>
-                  <p className="fa fa-facebook">*문구창</p>
+                  <p className="fa fa-facebook">내일 지구의 종말이 온다고 해도<br></br> 나는 오늘 한 잔의 술을 들겠다</p>
                 </Link>
               </li>
             </ul>
@@ -130,7 +131,7 @@ function Main() {
             <ul className="social-icons">
               <li>
                 <Link to={"/detail/4"}>
-                  <p className="fa fa-facebook">*문구창가나다라마바사아자차카타파하가나다라마바사아자차카타파하</p>
+                  <p className="fa fa-facebook">신은 음주하는 자를 결코 버리지 않는다</p>
                 </Link>
               </li>
             </ul>
@@ -146,12 +147,27 @@ function Main() {
 
       </div>
 
-      
-      <div className="test2">
-        {/* <SimpleImageSlider width={468} height={300} images={images} showBullets={true} showNavs={true} autoPlay={true} autoPlayDelay={2.0} /> */}
-        <ChatContainer />
+      {/* test2 */}
+      <div className="mt-5 row mx-auto "  >
+       
+          <div className="col-lg-6  mx-auto">
+            <div class="container mt-2 p-1 rounded shadow-lg">
+              <h2 class="m-3 text-center text-light"><strong>✨Weekly✨ 안주</strong></h2>
+            </div>
+            <div class="pt-3 mx-auto testBOX ">
+              <SimpleImageSlider width={500} height={350} images={images} showBullets={true} showNavs={true} autoPlay={true} autoPlayDelay={2.0} />
+            </div>
+          </div>
+
+          <div className="col-lg-6 ">
+            <div class="mx-auto">
+              <ChatContainer />
+            </div>
+          </div>
+        
       </div>
-      <h1>주간 베스트 안주 & 식당의 이미지와 정보 | </h1>
+
+      {/* <h1>주간 베스트 안주 & 식당의 이미지와 정보 | </h1> */}
 
       <div style={{ clear: "both" }}></div>
       

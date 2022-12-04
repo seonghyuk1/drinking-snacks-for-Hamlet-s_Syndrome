@@ -7,13 +7,14 @@ import Result from "./Pages/Result";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Mypage from "./Pages/Mypage";
+import Selection from "./Pages/Selection";
+
 import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <> 
       <Header />
-      
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
@@ -21,6 +22,7 @@ function App() {
         <Route path="/Detail/:id" element={<Detail />} />
         <Route path="/Result" element={<Result />} />
         <Route path="/mypage" element={<Mypage />} />
+        <Route path="/Selection" element={<Selection/>}/>
       </Routes>
       <Footer />
     </>
