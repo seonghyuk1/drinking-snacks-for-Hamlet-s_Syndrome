@@ -173,9 +173,9 @@ app.post("/api/login", function (요청, 응답) {
   );
 });
 
+///////////////////////////////////김대현 작업/////////////////////////////////
 //마이페이지 구현
 app.post("/selection", function (req, res) {
-  // console.log(req.body.params.id);
   //아이디별로 selection에 저장되어 있는 것들 중에 가져옴
   db.collection("selection")
     .find({ ID: req.body.params.id }) //현재 로그인돼있는 아이디 가져오기
@@ -192,9 +192,50 @@ app.delete("/delete", function (req, res) {
     { _id: req.body.deleteId },
     function (err, result) {
       //DB에서 삭제
-
       console.log("삭제 완료");
       res.json("삭제 완료");
+    }
+  );
+});
+
+//비밀번호 변경
+app.post("/changePW", function (req, res) {
+  db.collection("login").findOne(
+    { 아이디: req.body.id },
+    function (err, result) {
+      if (result) {
+        bcrypt.compare(req.body.current, req.body.hash).then((result) => {
+          if (result) {
+            //패스워드 일치
+            //새 비밀번호와 다시 입력한게 다를때
+            if (req.body.new != req.body.re) {
+              res.json("비밀번호 재입력 오류");
+            } else {
+              //현재 비밀번호와 새로 작성한 비밀번호가 동일할때
+              if (req.body.new == req.body.current) {
+                res.json("비밀번호 동일");
+              } else {
+                //정상적으로 바꾸면 DB 업데이트 하고 홈 이동
+                bcrypt.hash(req.body.new, saltRounds, (err, hash) => {
+                  db.collection("login").updateOne(
+                    { 아이디: req.body.id },
+                    { $set: { 패스워드: hash } },
+                    function (err, result) {
+                      console.log("수정완료");
+                      res.redirect("/Main");
+                    }
+                  );
+                });
+              }
+            }
+          } else {
+            //패스워드 일치하지 않음
+            res.json("현재 패스워드 안맞음");
+          }
+        });
+      } else {
+        console.log("찾는 아이디 없음");
+      }
     }
   );
 });

@@ -3,17 +3,17 @@ import axios from "axios";
 import Show from "./Show";
 import React, { useState, useEffect } from "react";
 
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+// import Header from "../components/Header";
+// import Footer from "../components/Footer";
 
 function Mypage() {
   //찜 목록을 보여주기 위해, views에 DB에 저장된 하나의 객체를 입력
   let [views, setView] = useState([]);
-
+  const ID = sessionStorage.getItem("ID");
   useEffect(() => {
     axios
       .post("selection", {
-        params: { id: "kdh" },
+        params: { id: ID },
       })
       .then((res) => {
         // views에 DB로부터 가져온 json 객체를 저장하고, 밑에서 map 함수를 통해 렌더링
@@ -49,7 +49,7 @@ function Mypage() {
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <b>
-                  <Link className="nav-link active" to="/selection">
+                  <Link className="nav-link active" to="/Mypage">
                     찜 목록({count})
                   </Link>
                 </b>
@@ -60,7 +60,7 @@ function Mypage() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link active" to="/selection">
+                <Link className="nav-link active" to="/ChangePassword">
                   비밀번호 변경
                 </Link>
               </li>
