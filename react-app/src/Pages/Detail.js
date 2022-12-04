@@ -25,7 +25,15 @@ function Detail() {
   console.log(category);
   console.log(category.drink);
 
-  const images = [{ url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }];
+  const images = [
+    { url: "/assets/soju.jpg" },
+    { url: "/assets/soju.jpg" },
+    { url: "/assets/soju.jpg" },
+    { url: "/assets/soju.jpg" },
+    { url: "/assets/soju.jpg" },
+    { url: "/assets/soju.jpg" },
+    { url: "/assets/soju.jpg" },
+  ];
   return (
     <div className="test2">
       <h1>{category.drink}</h1>
@@ -41,17 +49,34 @@ function Detail() {
       </button> */}
 
       <div className="test">
-        <SimpleImageSlider width={896} height={504} images={images} showBullets={true} showNavs={true} autoPlay={true} autoPlayDelay={2.0} />
+        <SimpleImageSlider
+          width={896}
+          height={504}
+          images={images}
+          showBullets={true}
+          showNavs={true}
+          autoPlay={true}
+          autoPlayDelay={2.0}
+        />
       </div>
-      <h1>안주 추천 받기 명수입력 - 안주 이름 (안주이름만 DB저장) | 사진은 로컬 명수에 따라 안주 이미지 보여줌 </h1>
-      <h1>안주 누르면 평균 가격대와 근처 식당 - GET 데베에 저장된 식당 정보 가격대로 다르게 | POST 세션에 유저 아이디, 위에서 선택한 안주이름, 식당</h1>
+      <h1>
+        안주 추천 받기 명수입력 - 안주 이름 (안주이름만 DB저장) | 사진은 로컬
+        명수에 따라 안주 이미지 보여줌{" "}
+      </h1>
+      <h1>
+        안주 누르면 평균 가격대와 근처 식당 - GET 데베에 저장된 식당 정보
+        가격대로 다르게 | POST 세션에 유저 아이디, 위에서 선택한 안주이름, 식당
+      </h1>
       <h4>이전 (주류선택), 다음 (Result) 버튼 </h4>
       <button className="btn btn-secondary mx-3">
         <Link to="/result" style={{ textDecoration: "none" }}>
           이전
         </Link>
       </button>
-      <button className="btn btn-secondary mx-3 " onClick={() => navigate("/Result")}>
+      <button
+        className="btn btn-secondary mx-3 "
+        onClick={() => navigate("/Result")}
+      >
         다음
       </button>
     </div>

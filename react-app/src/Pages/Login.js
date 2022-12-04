@@ -55,7 +55,9 @@ function Login() {
             alert("비밀번호가 틀렸습니다.");
           } else {
             {
-              NickName !== "" ? sessionStorage.setItem("Nickname", NickName) : sessionStorage.setItem("Nickname", id);
+              NickName !== ""
+                ? sessionStorage.setItem("Nickname", NickName)
+                : sessionStorage.setItem("Nickname", id);
             }
             sessionStorage.setItem("ID", id);
             // 세션에 토큰 저장
@@ -79,18 +81,34 @@ function Login() {
         <form onSubmit={submitHandler}>
           <div className="form-group">
             <label>ID</label>
-            <input type="text" className="form-control" value={id} onChange={idHandler}></input>
+            <input
+              type="text"
+              className="form-control"
+              value={id}
+              onChange={idHandler}
+            ></input>
           </div>
           <div className="form-group">
             <label>Password</label>
 
-            <input type="password" className="form-control" value={pw} onChange={pwHandler}></input>
+            <input
+              type="password"
+              className="form-control"
+              value={pw}
+              onChange={pwHandler}
+            ></input>
           </div>
-          <button className="btn btn-dark mt-5 d-grid gap-2 col-6 mx-auto" type="submit">
+          <button
+            className="btn btn-dark mt-5 d-grid gap-2 col-6 mx-auto"
+            type="submit"
+          >
             로그인하기
           </button>
         </form>
-        <Link className="btn btn-primary m-5 btn-lg d-grid gap-2 col-6 mx-auto" to="/Signup">
+        <Link
+          className="btn btn-primary m-5 btn-lg d-grid gap-2 col-6 mx-auto"
+          to="/Signup"
+        >
           회원가입
         </Link>
       </div>

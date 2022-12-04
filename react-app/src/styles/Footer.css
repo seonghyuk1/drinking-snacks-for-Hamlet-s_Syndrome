@@ -1,65 +1,67 @@
 .Container {
-  bottom: 0;
-  width: 100%;
-}
 
-.UpBtn {
-  background-color: #37475a;
-  text-align: center;
-  font-size: 2em;
-  padding-bottom: 1%;
-}
+    bottom: 0;
+    width: 100%;
+  }
+  
+  .UpBtn {
+    background-color: #37475a;
+    text-align: center;
+    font-size: 2em;
+    padding-bottom: 1%;
+  }
+  
+  .UpBtn:hover {
+    background-color: #485769;
+  }
+  
+  .FooterWrap {
+    background-color: #232f3e;
+    height: 100%;
+  }
+  
+  .UpIcon:hover {
+    font-size: 45px;
+  }
+  
+  .UpIcon {
+    color: white;
+    vertical-align: bottom;
+  }
+  
+  .Content {
+    /* margin: 0 10% 0 25%; */
+    /* padding: 2% 0 1% 0; */
+    width: 100%;
+    justify-content: center;
+    display: flex;
+  }
+  
+  .Title {
+    color: rgb(255, 255, 255);
+    font-size: large;
+    line-height: 2em;
+  }
+  
+  .TextWrap {
+    padding: 0 2% 1.5% 2%;
+    margin-bottom: 1%;
+    float: left;
+    vertical-align: super;
+    color: rgb(255, 255, 255);
+    font-size: small;
+  }
+  
+  /* .TextWrap:last-child {
+    float: none;
+  } */
+  
+  .FooterText {
+    color: rgb(255, 254, 254);
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    background-color: #232f3e;
+    align-items: center;
+  }
 
-.UpBtn:hover {
-  background-color: #485769;
-}
-
-.FooterWrap {
-  background-color: #232f3e;
-  height: 100%;
-}
-
-.UpIcon:hover {
-  font-size: 45px;
-}
-
-.UpIcon {
-  color: white;
-  vertical-align: bottom;
-}
-
-.Content {
-  /* margin: 0 10% 0 25%; */
-  /* padding: 2% 0 1% 0; */
-  width: 100%;
-  justify-content: center;
-  display: flex;
-}
-
-.Title {
-  color: rgb(255, 255, 255);
-  font-size: large;
-  line-height: 2em;
-}
-
-.TextWrap {
-  padding: 0 2% 1.5% 2%;
-  margin-bottom: 1%;
-  float: left;
-  vertical-align: super;
-  color: rgb(255, 255, 255);
-  font-size: small;
-}
-
-/* .TextWrap:last-child {
-  float: none;
-} */
-
-.FooterText {
-  color: rgb(255, 254, 254);
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  background-color: #232f3e;
-  align-items: center;
-}

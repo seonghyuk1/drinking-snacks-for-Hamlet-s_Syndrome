@@ -2,6 +2,8 @@ import { IoIosArrowUp } from "react-icons/io";
 import "../styles/Footer.css";
 
 function Footer() {
+  // eslint-disable-next-line no-restricted-globals
+
   const clickToTop = () => {
     window.scrollTo(0, 0);
   };
@@ -75,7 +77,8 @@ function Footer() {
           })}
         </div>
       </div>
-      <hr style={{ margin: "0 0 0.3px 0" }} />
+
+      {/* <hr style={{ margin: "0 0 0.3px 0" }} /> */}
 
       <div>
         <span className="FooterText">KWIC_웹 설계 및 구현 6조 &copy; </span>

@@ -2,15 +2,9 @@ import React, { useState } from "react";
 import _ from "lodash";
 
 const button = {
-  width: "30%",
-  height: "20%",
-  fontWeight: "bold",
-  borderRadius: 10,
-  fontSize: 18,
-  backgroundColor: "#075e54",
-  borderWidth: 0,
+  background: "rgb(59, 42, 57)",
   color: "#fff",
-  margin: 10,
+  fontweight: "bold",
 };
 
 export default function UserLogin({ setUser, chatOn, setChatOn }) {
@@ -25,17 +19,20 @@ export default function UserLogin({ setUser, chatOn, setChatOn }) {
   }
 
   return (
-    <div>
-      <h1 style={{ margin: 10, textAlign: "center" }}>술쟁이 대화방</h1>
+    <div class="container col-8 m-1 p-3 bg-light rounded shadow-lg mx-auto">
+      <h4 class="text-center m-2 p-2">
+        <strong>술덕후 모임</strong>
+      </h4>
 
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div>
         <button
+          class=" btn btn-lg col-8 mx-auto"
           onClick={() => {
             handleSetUser();
           }}
           style={button}
         >
-          입장
+          채팅하기
         </button>
       </div>
     </div>
