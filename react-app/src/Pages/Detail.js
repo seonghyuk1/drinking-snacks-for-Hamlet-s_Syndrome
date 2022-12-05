@@ -16,6 +16,8 @@ function Detail() {
   const [content, setContent] = useState();
   const [modal, setModal] = useState(false);
 
+  let [내거, 내거변경] = useState([]);
+
   const handleClickButton = (e) => {
     const { name } = e.target;
     setContent(name);
@@ -41,7 +43,15 @@ function Detail() {
       // console.log("안주", 응답.data[id]);
       setfoodCago(음식응답.data[id]);
     });
+
+    axios.get("/selection").then((하트응답) => {
+      console.log(하트응답.data);
+
+      내거변경([...하트응답.data]);
+    });
   }, []);
+
+  let 내가찜한거 = 내거.filter((e) => e.id === sessionStorage.getItem("ID"));
 
   // * 추후 하트 눌렀는지 정보 데이터베이스 연동
   // useEffect(async () => {
@@ -53,13 +63,16 @@ function Detail() {
   // }, []);
 
   // 하트상태관리
-  const toggleLike = async (e) => {
-    // const res = await axios.post(...) // [POST] 사용자가 좋아요를 누름 -> DB 갱신
-    setLike(!like);
-  };
+  // const toggleLike = async (e) => {
+  //   // const res = await axios.post(...) // [POST] 사용자가 좋아요를 누름 -> DB 갱신
+  //   setLike(!like);
+  // };
+
   console.log("디비갖고온 정보", category);
 
   console.log("디비갖고온 정보22", foodCago);
+
+  console.log("내가 찜한거 ", 내가찜한거);
 
   // 토스트 알림
   const toastTrigger = document.getElementById("liveToastBtn");
@@ -73,8 +86,8 @@ function Detail() {
   }
 
   const selectComponent = {
-    회: <Fish foodCago={foodCago} />,
-    찜: <Boil foodCago={foodCago} />,
+    회: <Fish foodCago={foodCago} 내가찜한거={내가찜한거} />,
+    찜: <Boil foodCago={foodCago} 내가찜한거={내가찜한거} />,
   };
   const images = [{ url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }];
   return (

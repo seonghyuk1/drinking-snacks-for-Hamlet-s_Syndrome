@@ -96,6 +96,7 @@ app.post("/api/Signup/checkID", function (요청, 응답) {
   });
 });
 
+// 큰틀용 detail : 주류마다 detail에 다른 정보 제공
 app.get("/detail/:id", function (요청, 응답) {
   db.collection("detail")
     .find()
@@ -105,6 +106,7 @@ app.get("/detail/:id", function (요청, 응답) {
     });
 });
 
+// 음식정보 : 소주 음식 정보 관련은 0번~
 app.get("/food", function (요청, 응답) {
   db.collection("food")
     .find()
@@ -113,6 +115,7 @@ app.get("/food", function (요청, 응답) {
       응답.json(결과);
     });
 });
+
 // 데이터베이스 암호화 비밀번호 전달 API
 app.get("/api/pw", function (요청, 응답) {
   // console.log(응답);
@@ -154,25 +157,42 @@ app.post("/api/login", function (요청, 응답) {
   });
 });
 
-///////////////////////////////////김대현 작업/////////////////////////////////
-//마이페이지 구현
-app.post("/selection", function (req, res) {
-  //아이디별로 selection에 저장되어 있는 것들 중에 가져옴
+//마이페이지 구현 - 저장 (각 음식 페이지에서 활용)
+app.post("/selection", function (요청, 응답) {
+  db.collection("selection").insertOne({ drink: 요청.body.drink, 식당: 요청.body.식당, 위치: 요청.body.위치, 특징: 요청.body.특징, 평균가격: 요청.body.평균가격, 좋아요: 요청.body.좋아요, id: 요청.body.id, 종류: 요청.body.종류, 삭제용: 요청.body.삭제용 }, function (에러, 결과) {
+    if (에러) return console.log(에러);
+    console.log("저장완료");
+    console.log("요청", 요청.body);
+  });
+
+  // // 저장한 거 전달
+  // db.collection("selection")
+  //   .find()
+  //   .toArray(function (에러, 결과) {
+  //     // console.log(결과);
+  //     응답.json(결과);
+  //   });
+});
+
+//마이페이지용 꺼내오기
+app.get("/selection", function (요청, 응답) {
   db.collection("selection")
-    .find({ ID: req.body.params.id }) //현재 로그인돼있는 아이디 가져오기
-    .toArray()
-    .then((result) => {
-      res.json(result);
+    .find()
+    .toArray(function (에러, 결과) {
+      // console.log("아래", 결과);
+
+      응답.json(결과);
     });
 });
 
 //마이페이지 찜 목록에서 삭제
-app.delete("/delete", function (req, res) {
+app.post("/delete", function (요청, 응답) {
   //서버 통신간 delete
-  db.collection("selection").deleteOne({ _id: req.body.deleteId }, function (err, result) {
-    //DB에서 삭제
-    console.log("삭제 완료");
-    res.json("삭제 완료");
+
+  db.collection("selection").deleteOne({ 삭제용: 요청.body.data }, function (err, result) {
+    console.log(result);
+    응답.json("삭제완료");
+    // 응답.redirect("/mypage");
   });
 });
 
