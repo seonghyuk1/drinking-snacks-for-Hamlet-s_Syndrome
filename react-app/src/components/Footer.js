@@ -71,6 +71,7 @@ function Footer() {
 
                   <div>{a.lists.text1}</div>
                   <div>{a.lists.text2}</div>
+                  
                 </div>
               </div>
             );

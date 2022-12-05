@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import _ from "lodash";
+import "../styles/chat.css";
 
 const button = {
   background: "rgb(59, 42, 57)",
@@ -19,21 +20,22 @@ export default function UserLogin({ setUser, chatOn, setChatOn }) {
   }
 
   return (
-    <div class="container col-8 m-1 p-3 bg-light rounded shadow-lg mx-auto">
-      <h4 class="text-center m-2 p-2">
-        <strong>술덕후 모임</strong>
-      </h4>
-
-      <div>
-        <button
-          class=" btn btn-lg col-8 mx-auto"
-          onClick={() => {
-            handleSetUser();
-          }}
-          style={button}
-        >
-          채팅하기
-        </button>
+    <div class="container col-8 m-1 p-3 bg-light rounded shadow-lg mx-auto  chat_container_login  ">
+      <div class=" container">
+        <h4 class="text-center m-2 p-2">
+          <strong>술덕후 모임</strong>
+        </h4>
+        <div class="container ">
+          <button
+            class=" btn btn-lg press_btn mt-2 d-grid gap-2 col-11 mx-auto"
+            onClick={() => {
+              handleSetUser();
+            }}
+            style={button}
+          >
+            채팅하기
+          </button>
+        </div>
       </div>
     </div>
   );

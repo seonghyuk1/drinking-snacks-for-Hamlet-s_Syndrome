@@ -18,9 +18,7 @@ const styles = {
     width: "100%",
     height: 50,
     borderRadius: 10,
-
     borderWidth: 1,
-
     padding: 10,
     fontSize: 14,
   },
@@ -48,6 +46,7 @@ export default function InputText({ addMessage }) {
   };
   return (
     <>
+      {/* 아래라인구성 */}
       <div class="container">
         <div class="row">
           <div class="col-sm-9">

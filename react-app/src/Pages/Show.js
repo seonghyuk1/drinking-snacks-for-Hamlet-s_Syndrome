@@ -47,7 +47,7 @@ const Show = (props) => {
       <form onSubmit={submitHandler}>
         {/* style={state ? hidden : active} */}
         <div className="col">
-          <div className="card h-100">
+          <div className="card">
             <img
               src={"/assets/3/3.jpg"}
               className="card-img-top"
@@ -58,7 +58,7 @@ const Show = (props) => {
               <p className="card-text">주류 : {props.obj.drink}</p>
               <p className="card-text">안주 : {props.obj.food}</p>
               <button
-                className="btn btn-dark mt-5 d-grid gap-2 col-6 mx-auto"
+                className="btn btn-dark mt-4 mb-2 d-grid gap-2 col-6 mx-auto"
                 type="submit"
               >
                 삭제하기

@@ -142,8 +142,4 @@ function ImageSlider_Food() {
   );
 }
 
-<<<<<<< HEAD
 export default ImageSlider_Food;
-=======
-export default ImageSlider_Food;
->>>>>>> d27c97a42f5ea01dc134cdbe6ce96369c63fd9ae

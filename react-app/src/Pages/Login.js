@@ -2,7 +2,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-// import Header from "../components/Header";
+import Header from "../components/Header";
+import "../styles/Login_Header.css";
+import logo from "../logo.png";
 
 function Login() {
   let [id, setId] = useState("");
@@ -76,41 +78,58 @@ function Login() {
 
   return (
     <>
-      <h4 className="container mt-5 col-6">로그인</h4>
-      <div className="container mt-3 col-6 mx-auto">
-        <form onSubmit={submitHandler}>
-          <div className="form-group">
-            <label>ID</label>
-            <input
-              type="text"
-              className="form-control"
-              value={id}
-              onChange={idHandler}
-            ></input>
-          </div>
-          <div className="form-group">
-            <label>Password</label>
+      <div class="container mt-5 bg-white rounded shadow-lg ">
+        <div class="row p-5">
+          <div class="col-lg-8 col-12 mx-auto bg-white">
+            <div class="m-2 text-center">
+              <a href="/">
+                <img
+                  src={logo}
+                  class="img-fluid"
+                  alt="내일 지구가 끝나더라도 나는 오늘 밤 최고의 술자리를 가지겠어"
+                  width="400"
+                />
+              </a>
+            </div>
+            <div class="p-2">
+              <div class="border  rounded m-3 p-3">
+                <form onSubmit={submitHandler}>
+                  <label class="p-3 font-500">ID</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-lg mb-3 rounded-pill"
+                    placeholder="Input your ID"
+                    value={id}
+                    onChange={idHandler}
+                  ></input>
+                  <label class="p-3 font-500">Password</label>
+                  <input
+                    type="password"
+                    class="form-control form-control-lg rounded-pill"
+                    placeholder="Input your PW"
+                    value={pw}
+                    onChange={pwHandler}
+                  ></input>
 
-            <input
-              type="password"
-              className="form-control"
-              value={pw}
-              onChange={pwHandler}
-            ></input>
+                  <button
+                    class="btn btn-lg press_btn mt-5 d-grid gap-2 col-11 mx-auto"
+                    type="submit"
+                  >
+                    LOGIN
+                  </button>
+                </form>
+                <div class="text-center pt-4">
+                  <p class="m-3 text-secondary font-500">
+                    아직 계정이 없으신가요?{" "}
+                    <Link to="/Signup" class="text-dark font-500">
+                      회원가입
+                    </Link>
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
-          <button
-            className="btn btn-dark mt-5 d-grid gap-2 col-6 mx-auto"
-            type="submit"
-          >
-            로그인하기
-          </button>
-        </form>
-        <Link
-          className="btn btn-primary m-5 btn-lg d-grid gap-2 col-6 mx-auto"
-          to="/Signup"
-        >
-          회원가입
-        </Link>
+        </div>
       </div>
     </>
   );

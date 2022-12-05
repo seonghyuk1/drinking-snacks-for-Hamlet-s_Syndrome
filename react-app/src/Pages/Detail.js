@@ -50,8 +50,8 @@ function Detail() {
 
       <div className="test">
         <SimpleImageSlider
-          width={896}
-          height={504}
+          width={700}
+          height={500}
           images={images}
           showBullets={true}
           showNavs={true}

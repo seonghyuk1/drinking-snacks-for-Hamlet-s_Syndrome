@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Show from "./Show";
 import React, { useState, useEffect } from "react";
+import "../styles/Mypage.css";
 
 // import Header from "../components/Header";
 // import Footer from "../components/Footer";
@@ -75,7 +76,12 @@ function Mypage() {
         </div>
       </nav>
 
-      <div className="row row-cols-1 row-cols-md-3 g-4">{viewList}</div>
+      {/* 찜목록 */}
+      <div className=" bg-light rounded m-3 p-3 containerBox">
+        <div className="row row-cols-1 row-cols-md-3 g-4  d-flex">
+          {viewList}
+        </div>
+      </div>
     </>
   );
 }

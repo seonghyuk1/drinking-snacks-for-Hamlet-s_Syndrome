@@ -2,7 +2,8 @@ html, body {
   height: 100%;
   width: 100%;
   font-size: 1rem;
-  background: linear-gradient( to top left, rgb(44, 58, 97), rgb(192, 112, 125));
+  background-repeat: no-repeat;
+  background: linear-gradient( to top left, rgb(44, 58, 97), rgb(192, 112, 125)) fixed;
 
 }
 

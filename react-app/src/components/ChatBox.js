@@ -13,7 +13,7 @@ export default function ChatBoxReciever({ avatar, user, message }) {
       <p
         style={{
           padding: 10,
-          backgroundColor: "#dcf8c6",
+          backgroundColor: "#dbdbb2",
           borderRadius: 10,
           maxWidth: "60%",
         }}
@@ -39,7 +39,7 @@ export function ChatBoxSender({ avatar, user, message }) {
       <p
         style={{
           padding: 10,
-          backgroundColor: "#fff",
+          backgroundColor: "#d4d4d4",
           borderRadius: 10,
           maxWidth: "60%",
         }}
