@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { useState } from "react";
 import axios from "axios";
 
@@ -33,9 +35,7 @@ const Show = (props) => {
           // setUsers(users.filter(user => user.id !== id));
         })
         .then((res) => {
-          props.setView(
-            props.views.filter((view) => view._id !== props.obj._id)
-          );
+          props.setView(props.views.filter((view) => view._id !== props.obj._id));
         });
     } catch (err) {
       console.log(err);
@@ -48,19 +48,12 @@ const Show = (props) => {
         {/* style={state ? hidden : active} */}
         <div className="col">
           <div className="card h-100">
-            <img
-              src={"/assets/3/3.jpg"}
-              className="card-img-top"
-              alt="..."
-            ></img>
+            <img src={"/assets/3/3.jpg"} className="card-img-top" alt="..."></img>
             <div className="card-body">
               <h5 className="card-title">{props.obj.place}</h5>
               <p className="card-text">주류 : {props.obj.drink}</p>
               <p className="card-text">안주 : {props.obj.food}</p>
-              <button
-                className="btn btn-dark mt-5 d-grid gap-2 col-6 mx-auto"
-                type="submit"
-              >
+              <button className="btn btn-dark mt-5 d-grid gap-2 col-6 mx-auto" type="submit">
                 삭제하기
               </button>
             </div>

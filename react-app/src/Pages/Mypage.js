@@ -4,9 +4,6 @@ import axios from "axios";
 import Show from "./Show";
 import React, { useState, useEffect } from "react";
 
-// import Header from "../components/Header";
-// import Footer from "../components/Footer";
-
 function Mypage() {
   //찜 목록을 보여주기 위해, views에 DB에 저장된 하나의 객체를 입력
   let [views, setView] = useState([]);
@@ -34,9 +31,7 @@ function Mypage() {
   }, []);
 
   //DB에서 가져온 찜한 데이터는 반복문을 돌면서 Show에서 렌더링
-  const viewList = views.map((obj) => (
-    <Show obj={obj} views={views} setView={setView} />
-  ));
+  const viewList = views.map((obj) => <Show obj={obj} views={views} setView={setView} />);
   //찜목록 옆에 현재 찜한 개수 표현하기
   const count = views.length;
 
@@ -56,7 +51,7 @@ function Mypage() {
                 </b>
               </li>
               <li className="nav-item">
-                <Link className="nav-link active" to="/ChangeNickname">
+                <Link className="nav-link active" to="/selection">
                   닉네임 변경
                 </Link>
               </li>

@@ -1,4 +1,5 @@
 /* eslint-disable */
+
 import { Link } from "react-router-dom";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
@@ -105,7 +106,7 @@ function Resign() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link active" to="/ChangeNickname">
+                <Link className="nav-link active" to="/selection">
                   닉네임 변경
                 </Link>
               </li>
@@ -129,36 +130,16 @@ function Resign() {
       <div className="border  rounded m-3 p-3">
         <form onSubmit={submitHandler}>
           <label className="p-3 font-500">현재 비밀번호</label>
-          <input
-            type="password"
-            className="form-control form-control-lg mb-3 rounded-pill"
-            placeholder="계정을 삭제하려면 현재 사용중인 비밀번호를 입력하세요"
-            value={PW}
-            onChange={PWHandler}
-          ></input>
-          <label className="p-3 font-500">
-            계정삭제시 모든 게시물이 삭제되며 복구 불가능합니다.
-          </label>
+          <input type="password" className="form-control form-control-lg mb-3 rounded-pill" placeholder="계정을 삭제하려면 현재 사용중인 비밀번호를 입력하세요" value={PW} onChange={PWHandler}></input>
+          <label className="p-3 font-500">계정삭제시 모든 게시물이 삭제되며 복구 불가능합니다.</label>
           <div className="form-check">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              checked={checked}
-              onChange={handleChange}
-              id="flexCheckDefault"
-            ></input>
+            <input class="form-check-input" type="checkbox" value="" checked={checked} onChange={handleChange} id="flexCheckDefault"></input>
             <label className="form-check-label" for="flexCheckDefault">
               동의합니다.
             </label>
           </div>
           <div className="d-grid gap-2 col-md-11 mx-auto">
-            <button
-              onSubmit={submitHandler}
-              onClick={checkAgreement}
-              className="btn btn-lg press_btn mt-5 gap-2 "
-              type="submit"
-            >
+            <button onSubmit={submitHandler} onClick={checkAgreement} className="btn btn-lg press_btn mt-5 gap-2 " type="submit">
               계정 삭제하기
             </button>
           </div>

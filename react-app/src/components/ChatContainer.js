@@ -3,6 +3,7 @@ import socketIOClient from "socket.io-client";
 import ChatBoxReciever, { ChatBoxSender } from "./ChatBox";
 import InputText from "./InputText";
 import UserLogin from "./ChatUserLogin";
+import "../styles/chat.css";
 
 export default function ChatContainer() {
   let socketio = socketIOClient("http://localhost:80");
@@ -40,27 +41,16 @@ export default function ChatContainer() {
 
   function ChatsList() {
     return chats.map((chat, i) => {
-      if (chat.user === user)
-        return (
-          <ChatBoxSender key={i} message={chat.message} user={chat.user} />
-        );
-      return (
-        <ChatBoxReciever key={i} message={chat.message} user={chat.user} />
-      );
+      if (chat.user === user) return <ChatBoxSender key={i} message={chat.message} user={chat.user} />;
+      return <ChatBoxReciever key={i} message={chat.message} user={chat.user} />;
     });
   }
 
   return (
     <div>
       {chatOn ? ( // 등록 해놨던 유저라면 상단바와 대화창 다 불러오기
-        <div class="container col-8 m-1 p-3 bg-light rounded shadow-lg mx-auto">
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-            }}
-          >
+        <div class="container col-8 m-1 p-3 bg-light rounded shadow-lg mx-auto ">
+          <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
             {/* 윗라인구성 */}
             <div class="container">
               <div class="row">
@@ -78,9 +68,16 @@ export default function ChatContainer() {
               </div>
             </div>
           </div>
-          <ChatsList />
 
-          <InputText addMessage={addMessage} />
+          {/* 채팅내용 */}
+          <div class="container  rounded chat_container">
+            <ChatsList />
+          </div>
+
+          {/* 아래라인 */}
+          <div class="container pt-3">
+            <InputText addMessage={addMessage} />
+          </div>
         </div>
       ) : (
         // 등록돼있던 유저 아니라면 Login창

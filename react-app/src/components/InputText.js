@@ -18,9 +18,7 @@ const styles = {
     width: "100%",
     height: 50,
     borderRadius: 10,
-
     borderWidth: 1,
-
     padding: 10,
     fontSize: 14,
   },
@@ -48,17 +46,11 @@ export default function InputText({ addMessage }) {
   };
   return (
     <>
+      {/* 아래라인구성 */}
       <div class="container">
         <div class="row">
           <div class="col-sm-9">
-            <input
-              style={styles.textarea}
-              rows={6}
-              placeholder="할 말을 입력하세요..."
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              onKeyPress={handleOnKeyPress}
-            ></input>
+            <input style={styles.textarea} rows={6} placeholder="할 말을 입력하세요..." value={message} onChange={(e) => setMessage(e.target.value)} onKeyPress={handleOnKeyPress}></input>
           </div>
           <div class="col-sm-3">
             <button
