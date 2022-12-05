@@ -2,7 +2,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Header from "../components/Header";
+// import Header from "../components/Header";
 
 function Login() {
   let [id, setId] = useState("");

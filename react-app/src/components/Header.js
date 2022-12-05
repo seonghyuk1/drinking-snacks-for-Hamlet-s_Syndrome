@@ -24,8 +24,7 @@ function Header() {
 
   useEffect(() => {
     myJWT == null ? navigate("/") : navigate("/Main");
-    const URL =
-      "https://geolocation-db.com/json/2725d960-5eef-11ed-9b62-857a2b26943e";
+    const URL = "https://geolocation-db.com/json/2725d960-5eef-11ed-9b62-857a2b26943e";
 
     fetch(URL)
       .then((res) => res.json())
@@ -39,30 +38,14 @@ function Header() {
       <nav className="navbar navbar-expand-lg bg-light navbar-light ">
         <div className="container-fluid">
           <a href="/main" class="navbar-brand">
-            <img
-              src={logo}
-              class="d-inline-block align-middle rounded p-1"
-              alt="내일 지구가 끝나더라도 나는 오늘 밤 최고의 술자리를 가지겠어"
-              width="150"
-            />
+            <img src={logo} class="d-inline-block align-middle rounded p-1" alt="내일 지구가 끝나더라도 나는 오늘 밤 최고의 술자리를 가지겠어" width="150" />
           </a>
 
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <div
-            class="row gx-3 collapse navbar-collapse"
-            id="navbarSupportedContent"
-          >
+          <div class="row gx-3 collapse navbar-collapse" id="navbarSupportedContent">
             {/* 로그인 시 추가 내용 */}
             {myJWT != null && (
               <>
@@ -75,10 +58,7 @@ function Header() {
                   </p>
                 </div>
                 <div className="col-2">
-                  <Link
-                    to="/Mypage"
-                    style={{ textDecoration: "none", color: "Black " }}
-                  >
+                  <Link to="/Mypage" style={{ textDecoration: "none", color: "Black " }}>
                     {/* {NickName ? (
                 <p className="nav-link disabled  col-12 ">
                   환영합니다💖! <b>{NickName}</b> 님!
@@ -102,10 +82,7 @@ function Header() {
                 </div>
                 <div className="col-1">
                   <button className="btn btn-secondary press_btn ">
-                    <Link
-                      to="/Mypage"
-                      style={{ textDecoration: "none", color: "white " }}
-                    >
+                    <Link to="/Mypage" style={{ textDecoration: "none", color: "white " }}>
                       마이페이지
                     </Link>
                   </button>
