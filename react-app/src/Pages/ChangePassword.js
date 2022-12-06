@@ -6,12 +6,17 @@ import { useNavigate } from "react-router-dom";
 
 function ChangePassword() {
   //찜 목록을 보여주기 위해, views에 DB에 저장된 하나의 객체를 입력
-  let [views, setView] = useState([]);
+  const ID = sessionStorage.getItem("ID");
   let [currentPW, setcurrentPW] = useState("");
   let [newPW, setnewPW] = useState("");
   let [renewPW, setrenewPW] = useState("");
 
-  const sessionID = sessionStorage.getItem("ID");
+  let [views, setView] = useState([]);
+  useEffect(() => {
+    axios.post("/mypage", { data: ID }).then((응답) => {
+      setView([...views, ...응답.data]);
+    });
+  }, []);
 
   // 현재 비밀번호 인식
   const cPWHandler = (e) => {
@@ -32,28 +37,6 @@ function ChangePassword() {
   };
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    axios
-      .post("selection", {
-        params: { id: sessionID },
-      })
-      .then((res) => {
-        // views에 DB로부터 가져온 json 객체를 저장하고, 밑에서 map 함수를 통해 렌더링
-        for (let i = 0; i < res.data.length; i++) {
-          setView((views) => [
-            ...views,
-            {
-              ID: res.data[i].ID,
-              drink: res.data[i].drink,
-              food: res.data[i].food,
-              place: res.data[i].place,
-              _id: res.data[i]._id,
-            },
-          ]);
-        }
-      });
-  }, []);
 
   //찜목록 옆에 현재 찜한 개수 표현하기
   const count = views.length;

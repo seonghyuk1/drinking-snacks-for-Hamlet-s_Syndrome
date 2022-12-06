@@ -1,5 +1,4 @@
 /* eslint-disable */
-
 import { Link } from "react-router-dom";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
@@ -26,27 +25,10 @@ function Resign() {
   };
 
   useEffect(() => {
-    axios
-      .post("selection", {
-        params: { id: ID },
-      })
-      .then((res) => {
-        // views에 DB로부터 가져온 json 객체를 저장하고, 밑에서 map 함수를 통해 렌더링
-        for (let i = 0; i < res.data.length; i++) {
-          setView((views) => [
-            ...views,
-            {
-              ID: res.data[i].ID,
-              drink: res.data[i].drink,
-              food: res.data[i].food,
-              place: res.data[i].place,
-              _id: res.data[i]._id,
-            },
-          ]);
-        }
-      });
+    axios.post("/mypage", { data: ID }).then((응답) => {
+      setView([...views, ...응답.data]);
+    });
   }, []);
-
   //찜목록 옆에 현재 찜한 개수 표현하기
   const count = views.length;
 

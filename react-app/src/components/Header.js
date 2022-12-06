@@ -35,9 +35,9 @@ function Header() {
     <>
       <nav className="navbar navbar-expand-lg bg-light navbar-light ">
         <div className="container-fluid">
-          <a href="/main" class="navbar-brand">
+          <Link to="/main" class="navbar-brand">
             <img src={logo} class="d-inline-block align-middle rounded p-1" alt="내일 지구가 끝나더라도 나는 오늘 밤 최고의 술자리를 가지겠어" width="150" />
-          </a>
+          </Link>
 
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
