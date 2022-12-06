@@ -110,6 +110,7 @@ function Mypage() {
           </div>
         </div>
       </nav>
+
       {내거.length == 0 && <h1>텅</h1>}
       {내거 &&
         내거.map((v, i) => {

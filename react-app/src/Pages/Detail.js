@@ -6,7 +6,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Fish from "../components/Store/Soju/Fish";
 import Boil from "../components/Store/Soju/Boil";
-
+import Gob from "../components/Store/Soju/Gob";
+import Jock from "../components/Store/Soju/Jock";
+import Sam from "../components/Store/Soju/Sam";
+import Tang from "../components/Store/Soju/Tang";
 // import HeartImg from ".../public/assets/heart";
 // import EmptyHeartImg from ".../public/assets/em_heart.png";
 
@@ -88,6 +91,10 @@ function Detail() {
   const selectComponent = {
     회: <Fish foodCago={foodCago} 내가찜한거={내가찜한거} />,
     찜: <Boil foodCago={foodCago} 내가찜한거={내가찜한거} />,
+    곱창: <Gob foodCago={foodCago} 내가찜한거={내가찜한거} />,
+    족발: <Jock foodCago={foodCago} 내가찜한거={내가찜한거} />,
+    삼겹살: <Sam foodCago={foodCago} 내가찜한거={내가찜한거} />,
+    탕: <Tang foodCago={foodCago} 내가찜한거={내가찜한거} />,
   };
   const images = [{ url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }];
   return (
@@ -117,9 +124,24 @@ function Detail() {
           </>
         );
       })} */}
+      <div class="btn btn-light">
+        <div class="btn btn-danger m-2">내 찜목록</div>
+        <br />
+        {내가찜한거.length != 0 ? (
+          내가찜한거.map((v, i) => {
+            return (
+              <h1 class="btn btn-dark mx-3" key={i} name={v} onClick={handleClickButton}>
+                {내가찜한거[i].drink}-{내가찜한거[i].식당}-{내가찜한거[i].종류}-{내가찜한거[i].평균가격}
+              </h1>
+            );
+          })
+        ) : (
+          <h1>텅~</h1>
+        )}
+      </div>
       <div class="container mt-2 p-1 rounded shadow-lg col-4">
         <h2 class="m-3 text-center text-light">
-          <strong>어울리는 안주들 💯</strong>
+          <strong>어울리는 안주들 💯 </strong>
         </h2>
       </div>
       <div className="test">
@@ -148,64 +170,14 @@ function Detail() {
             );
           })}
       </div>
-      {modal ? content && selectComponent[content] : <></>}
-      {/* <div style={{ display: "flex", justifyContent: "space-evenly" }}>
-        {foodCago &&
-          foodCago.회.map((v, i) => {
-            return (
-              <div class="card mb-3 h-100" style={{ maxWidth: 500 }}>
-                <img src="..." class="card-img-top" />
-                <div class="card-body">
-                  <div>
-                    <h5 class="card-title">{foodCago.회[i].식당}</h5>
-                    <img
-                      src={like ? process.env.PUBLIC_URL + "/assets/heart.png" : process.env.PUBLIC_URL + "/assets/em_heart.png"}
-                      onClick={() => {
-                        toggleLike();
-                      }}
-                      style={{ width: 50, height: 50 }}
-                      id="liveToastBtn"
-                    />
-                  </div>
-                  <p class="card-text">위치 : {foodCago.회[i].위치}</p>
-                  <p class="card-text">특징 : {foodCago.회[i].특징}</p>
-                  <p class="card-text">평균가격 : {foodCago.회[i].가격}</p>
-                </div>
-              </div>
-            );
-          })}
-      </div> */}
+      <button onClick={handleClickButton}>닫기</button>
 
-      {/* <div style={{ display: "flex", justifyContent: "space-evenly" }}>
-        {foodCago &&
-          foodCago.찜.map((v, i) => {
-            return (
-              <div class="card mb-3 h-100" style={{ maxWidth: 500 }}>
-                <img src="..." class="card-img-top" />
-                <div class="card-body">
-                  <div>
-                    <h5 class="card-title">{foodCago.찜[i].식당}</h5>
-                    <img
-                      src={like ? process.env.PUBLIC_URL + "/assets/heart.png" : process.env.PUBLIC_URL + "/assets/em_heart.png"}
-                      onClick={() => {
-                        toggleLike();
-                      }}
-                      style={{ width: 50, height: 50 }}
-                      id="liveToastBtn"
-                    />
-                  </div>
-                  <p class="card-text">위치 : {foodCago.찜[i].위치}</p>
-                  <p class="card-text">특징 : {foodCago.찜[i].특징}</p>
-                  <p class="card-text">평균가격 : {foodCago.찜[i].가격}</p>
-                </div>
-              </div>
-            );
-          })}
-      </div> */}
+      {/* {modal ? content && selectComponent[content] : <></>} */}
+      {content && selectComponent[content]}
 
       <button className="btn btn-secondary mx-3">
         <Link to="/Main" style={{ textDecoration: "none", color: "white" }}>
-          이전
+          다른 술 고를래요
         </Link>
       </button>
 
