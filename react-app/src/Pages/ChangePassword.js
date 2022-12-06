@@ -109,7 +109,7 @@ function ChangePassword() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link active" to="/ChangeNickname">
+                <Link className="nav-link active" to="/selection">
                   닉네임 변경
                 </Link>
               </li>
@@ -130,47 +130,44 @@ function ChangePassword() {
         </div>
       </nav>
 
-      <div className=" bg-light rounded m-3 p-3 containerBox">
-        <div class="border p-3 container col-8  m-2 bg-light rounded position-absolute top-50 start-50 translate-middle rounded-8">
-          <h3 className="pt-2">비밀번호 변경</h3>
-          <form onSubmit={submitHandler}>
-            <label className="p-3 font-500">PW</label>
-            <input
-              type="password"
-              className="form-control form-control-lg mb-3 rounded-pill"
-              placeholder="현재 사용중인 비밀번호를 입력 해주세요"
-              value={currentPW}
-              onChange={cPWHandler}
-            ></input>
+      <div className="border  rounded m-3 p-3">
+        <form onSubmit={submitHandler}>
+          <label className="p-3 font-500">현재 비밀번호</label>
+          <input
+            type="password"
+            className="form-control form-control-lg mb-3 rounded-pill"
+            placeholder="현재 사용중인 비밀번호를 입력하세요"
+            value={currentPW}
+            onChange={cPWHandler}
+          ></input>
 
-            <label className="p-3 font-500">New PW</label>
-            <input
-              type="password"
-              className="form-control form-control-lg rounded-pill"
-              placeholder="새 비밀번호를 입력해 주세요"
-              value={newPW}
-              onChange={nPWHandler}
-            ></input>
+          <label className="p-3 font-500">비밀번호 변경하기</label>
+          <input
+            type="password"
+            className="form-control form-control-lg rounded-pill"
+            placeholder="새 비밀번호를 입력하세요"
+            value={newPW}
+            onChange={nPWHandler}
+          ></input>
 
-            <input
-              type="password"
-              className="form-control form-control-lg mt-3 rounded-pill"
-              placeholder="다시 입력해 주세요"
-              value={renewPW}
-              onChange={rPWHandler}
-            />
+          <input
+            type="password"
+            className="form-control form-control-lg mt-3 rounded-pill"
+            placeholder="새 비밀번호를 다시 입력하세요"
+            value={renewPW}
+            onChange={rPWHandler}
+          />
 
-            <div className="d-grid gap-2 col-md-11 mx-auto">
-              <button
-                onSubmit={submitHandler}
-                className="btn btn-lg press_btn mt-5 gap-2 "
-                type="submit"
-              >
-                변경사항 저장
-              </button>
-            </div>
-          </form>
-        </div>
+          <div className="d-grid gap-2 col-md-11 mx-auto">
+            <button
+              onSubmit={submitHandler}
+              className="btn btn-lg press_btn mt-5 gap-2 "
+              type="submit"
+            >
+              변경사항 저장
+            </button>
+          </div>
+        </form>
       </div>
     </>
   );

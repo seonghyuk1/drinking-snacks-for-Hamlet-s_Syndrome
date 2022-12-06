@@ -15,6 +15,7 @@ function Signup() {
 
   // 검사완료 확인
   let [ispwconfirm, setIspwconfirm] = useState(true);
+  let [isnameConfirm, setIsnameconfirm] = useState(true);
 
   // 중복 확인 검사
   let [idchk, setIdchk] = useState(false);
@@ -135,7 +136,7 @@ function Signup() {
                   <input
                     type="text"
                     class="form-control form-control-lg mb-3 rounded-pill"
-                    placeholder="사용할 아이디를 입력해 주세요"
+                    placeholder="사용할 아이디를 입력하세요"
                     value={id}
                     onChange={idHandler}
                   ></input>
@@ -153,24 +154,14 @@ function Signup() {
                     </button>
                   </div>
 
-                  {/* 수정추가한것 */}
                   <label class="p-3 font-500">Username</label>
                   <input
                     type="text"
                     class="form-control form-control-lg mb-3 rounded-pill"
-                    placeholder="닉네임을 입력해 주세요 (수정가능합니다)"
+                    placeholder="닉네임을 입력하세요 (수정가능합니다)"
                     value={name}
                     onChange={nameHandler}
                   ></input>
-
-                  {/* 닉네임
-                  <div className="form-group mt-5">
-                    <label>Custom Nickname</label>
-                    <div>
-                      <input type="text" className="form-control" value={name} onChange={nameHandler} placeholder="원하는 닉네임을 입력하세요. (생략가능)"></input>
-                      {name.length < 1 ? <span>닉네임을 입력하여 주세요.</span> : <span>멋진 닉네임입니다. 😎</span>}
-                    </div>
-                  </div> */}
 
                   <label class="p-3 font-500">Password</label>
                   <input
@@ -188,7 +179,7 @@ function Signup() {
                   <input
                     type="password"
                     class="form-control form-control-lg mt-3 rounded-pill"
-                    placeholder="다시 비밀번호를 입력해 주세요"
+                    placeholder="다시 비밀번호를 입력하세요"
                     onChange={pwConfirm}
                   />
                   <div id="alert">
@@ -196,24 +187,6 @@ function Signup() {
                   </div>
                   {/* {pwchk.length > 0 && <span>{pwmessage}</span>} */}
 
-                  {/* 닉네임 */}
-                  <div className="form-group mt-5">
-                    <label>Custom Nickname</label>
-                    <div>
-                      <input
-                        type="text"
-                        className="form-control"
-                        value={name}
-                        onChange={nameHandler}
-                        placeholder="원하는 닉네임을 입력하세요. (생략가능)"
-                      ></input>
-                      {name.length < 1 ? (
-                        <span>닉네임을 입력하여 주세요.</span>
-                      ) : (
-                        <span>멋진 닉네임입니다. 😎</span>
-                      )}
-                    </div>
-                  </div>
                   <div class="d-grid gap-2 col-md-11 mx-auto">
                     <button
                       onSubmit={submitHandler}
@@ -235,3 +208,60 @@ function Signup() {
 }
 
 export default Signup;
+// const submitHandler = (e) => {
+//   e.preventDefault();
+//   let body = {
+//     id: id,
+//     // pw: btoa(pw),
+//     name: name,
+//     pw: pw,
+//   };
+
+//   {
+//     idchk
+//       ? axios.post("api/signup", body).then((res) => {
+//           {
+//             // if (res.data == "존재함요") {
+//             //   alert("아이디가 이미 존재한다니까.");
+//             // } else if (res.data == "닉네임존재함요") {
+//             //   alert("닉네임 존재한다니까");
+//             // } else {
+//             //   navigate("/");
+//             // }
+//             // 존재함요면 안 넣고 존재 안 하면 넣고 페이지 이동
+//             // res.data == "존재함요" ? alert("이미 존재하는 아이디이오니 다른 아이디를 사용하여 주세요.") : navigate("/");
+//             res.data == "존재함요" ? alert("이미 존재하는 아이디이오니 다른 아이디를 사용하여 주세요.") : setTotalChk1(true);
+//             // res.data == "존재함요" && alert("이미 존재하는 아이디이오니 다른 아이디를 사용하여 주세요.");
+//             // name == false ? alert("닉네임 중복검사를 해주세요.") :
+//             // res.data == "닉네임존재함요" && alert("이미 존재하는 닉네임이라니까");
+//           }
+//         })
+//       : alert("반드시 ID 중복 확인을 해주세요");
+//   }
+//   {
+//     nameChk
+//       ? axios.post("api/signup", body).then((res) => {
+//           {
+//             // if (res.data == "존재함요") {
+//             //   alert("아이디가 이미 존재한다니까.");
+//             // } else if (res.data == "닉네임존재함요") {
+//             //   alert("닉네임 존재한다니까");
+//             // } else {
+//             //   navigate("/");
+//             // }
+//             // 존재함요면 안 넣고 존재 안 하면 넣고 페이지 이동
+//             // res.data == "존재함요" ? alert("이미 존재하는 아이디이오니 다른 아이디를 사용하여 주세요.") : navigate("/");
+//             // name == false ? alert("닉네임 중복검사를 해주세요.") :
+//             res.data == "닉네임존재함요" ? alert("이미 존재하는 닉네임이라니까") : setTotalChk2(true);
+//           }
+//         })
+//       : alert("반드시 닉네임 중복 확인을 해주세요");
+//   }
+
+//   console.log("입력한 아이디 " + id);
+//   console.log("입력한 비밀번호 " + pw);
+//   console.log("입력한 닉네임 " + name);
+
+//   (totalChk1 & totalChk2) && navigate("/");
+
+// };

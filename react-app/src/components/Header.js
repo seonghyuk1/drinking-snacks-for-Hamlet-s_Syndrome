@@ -2,13 +2,12 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
-import { faker } from "@faker-js/faker";
+// import { faker } from "@faker-js/faker";
 import logo from "../logo.png";
 import "../styles/Login_Header.css";
 
 function Header() {
-  faker.locale = "ko";
+  // faker.locale = "ko";
 
   const ID = sessionStorage.getItem("ID");
   const NickName = sessionStorage.getItem("Nickname");
@@ -26,7 +25,6 @@ function Header() {
     myJWT == null ? navigate("/") : navigate("/Main");
     const URL =
       "https://geolocation-db.com/json/2725d960-5eef-11ed-9b62-857a2b26943e";
-
     fetch(URL)
       .then((res) => res.json())
       .then((data) => setAddress(data));

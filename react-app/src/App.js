@@ -15,7 +15,8 @@ import ChangeNickname from "./Pages/ChangeNickname";
 function App() {
   return (
     <>
-      <Header />
+      {sessionStorage.getItem("Nickname") && <Header />}
+
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="signup" element={<Signup />} />
@@ -27,7 +28,7 @@ function App() {
         <Route path="/ChangePassword" element={<ChangePassword />} />
         <Route path="/Resign" element={<Resign />} />
       </Routes>
-      <Footer />
+      {sessionStorage.getItem("Nickname") && <Footer />}
     </>
   );
 }
