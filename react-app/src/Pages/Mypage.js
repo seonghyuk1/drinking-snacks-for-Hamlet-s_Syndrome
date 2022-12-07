@@ -11,7 +11,7 @@ function Mypage() {
   let [state, setState] = useState(false);
 
   let 갖고온거 = [];
-
+  let 내거 = views.filter((e) => e.id == sessionStorage.getItem("ID"));
   useEffect(() => {
     axios.get("/selection").then((응답) => {
       갖고온거 = 응답.data;
@@ -37,14 +37,14 @@ function Mypage() {
       //   ]);
 
       // setView(갖고온거.filter((e) => e.id != essionStorage.getItem("ID")));
-      console.log(갖고온거);
+      console.log("A" + 갖고온거);
       setView([...views, ...갖고온거]);
+      // views.filter((e) => e.id == sessionStorage.getItem("ID"));
     });
   }, []);
 
   console.log("뷰", views);
   // let 내거 = views.filter((e) => e.삭제용 == sessionStorage.getItem("ID") + e.식당);
-  let 내거 = views.filter((e) => e.id == sessionStorage.getItem("ID"));
 
   console.log("내거", 내거);
   //DB에서 가져온 찜한 데이터는 반복문을 돌면서 Show에서 렌더링
@@ -92,7 +92,7 @@ function Mypage() {
                 </b>
               </li>
               <li className="nav-item">
-                <Link className="nav-link active" to="/selection">
+                <Link className="nav-link active" to="/ChangeNickname">
                   닉네임 변경
                 </Link>
               </li>
@@ -153,6 +153,11 @@ function Mypage() {
                             console.log(결과);
                             결과.data === "삭제완료" &&
                               alert("삭제가 완료 되었습니다. ");
+
+                            setView(
+                              views.filter((view) => view.id !== 내거[i].삭제용)
+                            );
+
                             내거 = views.filter(
                               (e) => e.id == sessionStorage.getItem("ID")
                             );
