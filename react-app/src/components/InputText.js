@@ -46,25 +46,33 @@ export default function InputText({ addMessage }) {
   };
   return (
     <>
+<<<<<<< HEAD
     {/* 아래라인구성 */}
     <div class="container">
       <div class="row">
         <div class="col-sm-9">
         <input style={styles.textarea} rows={6} placeholder="할 말을 입력하세요..." value={message} onChange={(e) => setMessage(e.target.value)} onKeyPress={handleOnKeyPress}></input>
+=======
+      {/* 아래라인구성 */}
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-9">
+            <input style={styles.textarea} rows={6} placeholder="할 말을 입력하세요..." value={message} onChange={(e) => setMessage(e.target.value)} onKeyPress={handleOnKeyPress}></input>
+          </div>
+          <div class="col-sm-3">
+            <button
+              class="btn btn-lg col-11"
+              onClick={() => {
+                addAMessage();
+              }}
+              style={styles.button}
+            >
+              전송
+            </button>
+          </div>
+>>>>>>> f68bdd87d92bd10905495c49b5e096d3d12d8f95
         </div>
-        <div class="col-sm-3">
-        <button class="btn btn-lg col-11"
-                onClick={() => {
-                  addAMessage();
-                }}
-                style={styles.button}
-              >
-                전송
-              </button>
-        </div>
-        
       </div>
-    </div>
     </>
   );
 }

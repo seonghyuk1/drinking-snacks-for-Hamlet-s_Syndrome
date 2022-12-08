@@ -3,7 +3,7 @@ import "../styles/Footer.css";
 
 function Footer() {
   // eslint-disable-next-line no-restricted-globals
-  
+
   const clickToTop = () => {
     window.scrollTo(0, 0);
   };
@@ -58,7 +58,6 @@ function Footer() {
         <div className="UpBtn" onClick={clickToTop}>
           <IoIosArrowUp className="UpIcon" />
         </div>
-        
       </div>
       <div className="FooterWrap">
         <div className="Content">
@@ -79,6 +78,7 @@ function Footer() {
           })}
         </div>
       </div>
+
       {/* <hr style={{ margin: "0 0 0.3px 0" }} /> */}
 
       <div>

@@ -3,8 +3,12 @@ import socketIOClient from "socket.io-client";
 import ChatBoxReciever, { ChatBoxSender } from "./ChatBox";
 import InputText from "./InputText";
 import UserLogin from "./ChatUserLogin";
+<<<<<<< HEAD
 import "../styles/chat.css"
 
+=======
+import "../styles/chat.css";
+>>>>>>> f68bdd87d92bd10905495c49b5e096d3d12d8f95
 
 export default function ChatContainer() {
   let socketio = socketIOClient("http://localhost:80");
@@ -52,19 +56,24 @@ export default function ChatContainer() {
   return (
     <div>
       {chatOn ? ( // 등록 해놨던 유저라면 상단바와 대화창 다 불러오기
+<<<<<<< HEAD
         <div class="container col-8 m-1 p-3 bg-light rounded shadow-lg mx-auto " >
+=======
+        <div class="container col-8 m-1 p-3 bg-light rounded shadow-lg mx-auto ">
+>>>>>>> f68bdd87d92bd10905495c49b5e096d3d12d8f95
           <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-            
             {/* 윗라인구성 */}
             <div class="container">
               <div class="row">
                 <div class="col-1">
-                  <h3 onClick={() => logout()}><i class="bi bi-arrow-left arrow "></i></h3>
+                  <h3 onClick={() => logout()}>
+                    <i class="bi bi-arrow-left arrow "></i>
+                  </h3>
                 </div>
-                
+
                 <div class="col-6  mx-auto ">
-                <div class="container pt-1 bg-dark rounded-pill">
-                  <h4 class="text-center text-light">닉네임:{user}</h4>
+                  <div class="container pt-1 bg-dark rounded-pill">
+                    <h4 class="text-center text-light">닉네임:{user}</h4>
                   </div>
                 </div>
               </div>
@@ -73,6 +82,7 @@ export default function ChatContainer() {
 
           {/* 채팅내용 */}
           <div class="container  rounded chat_container">
+<<<<<<< HEAD
           <ChatsList />
           </div>
 
@@ -82,6 +92,15 @@ export default function ChatContainer() {
            <InputText addMessage={addMessage} />
           </div>
 
+=======
+            <ChatsList />
+          </div>
+
+          {/* 아래라인 */}
+          <div class="container pt-3">
+            <InputText addMessage={addMessage} />
+          </div>
+>>>>>>> f68bdd87d92bd10905495c49b5e096d3d12d8f95
         </div>
       ) : (
         // 등록돼있던 유저 아니라면 Login창

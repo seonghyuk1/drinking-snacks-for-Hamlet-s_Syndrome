@@ -1,14 +1,17 @@
+/* eslint-disable */
 import React, { useState } from "react";
 import _ from "lodash";
+<<<<<<< HEAD
 import "../styles/chat.css"
+=======
+import "../styles/chat.css";
+>>>>>>> f68bdd87d92bd10905495c49b5e096d3d12d8f95
 
- const button={ 
-    background: "rgb(59, 42, 57)",
-    color: "#fff",
-    fontweight: "bold",
-}
-
- 
+const button = {
+  background: "rgb(59, 42, 57)",
+  color: "#fff",
+  fontweight: "bold",
+};
 
 export default function UserLogin({ setUser, chatOn, setChatOn }) {
   const [user, setAUser] = useState("");
@@ -24,9 +27,18 @@ export default function UserLogin({ setUser, chatOn, setChatOn }) {
   return (
     <div class="container col-8 m-1 p-3 bg-light rounded shadow-lg mx-auto  chat_container_login  ">
       <div class=" container">
+<<<<<<< HEAD
         <h4 class="text-center m-2 p-2"><strong>술덕후 모임</strong></h4>
         <div class="container ">
           <button class=" btn btn-lg press_btn mt-2 d-grid gap-2 col-11 mx-auto"
+=======
+        <h4 class="text-center m-2 p-2">
+          <strong>술덕후 모임</strong>
+        </h4>
+        <div class="container ">
+          <button
+            class=" btn btn-lg press_btn mt-2 d-grid gap-2 col-11 mx-auto"
+>>>>>>> f68bdd87d92bd10905495c49b5e096d3d12d8f95
             onClick={() => {
               handleSetUser();
             }}
@@ -35,7 +47,10 @@ export default function UserLogin({ setUser, chatOn, setChatOn }) {
             채팅하기
           </button>
         </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> f68bdd87d92bd10905495c49b5e096d3d12d8f95
       </div>
     </div>
   );

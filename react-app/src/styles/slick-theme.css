@@ -2,7 +2,11 @@
 /* Slider */
 .slick-loading .slick-list
 {
+<<<<<<< HEAD
+    background: #fff url('./ajax-loader.gif') center center no-repeat;
+=======
     /* background: #fff url('./ajax-loader.gif') center center no-repeat; */
+>>>>>>> d27c97a42f5ea01dc134cdbe6ce96369c63fd9ae
 }
 
 /* Icons */
@@ -12,8 +16,13 @@
     font-weight: normal;
     font-style: normal;
 
+<<<<<<< HEAD
+    src: url('./fonts/slick.eot');
+    src: url('./fonts/slick.eot?#iefix') format('embedded-opentype'), url('./fonts/slick.woff') format('woff'), url('./fonts/slick.ttf') format('truetype'), url('./fonts/slick.svg#slick') format('svg');
+=======
     /* src: url('./fonts/slick.eot');
     src: url('./fonts/slick.eot?#iefix') format('embedded-opentype'), url('./fonts/slick.woff') format('woff'), url('./fonts/slick.ttf') format('truetype'), url('./fonts/slick.svg#slick') format('svg'); */
+>>>>>>> d27c97a42f5ea01dc134cdbe6ce96369c63fd9ae
 }
 /* Arrows */
 .slick-prev,
@@ -201,4 +210,8 @@
 {
     opacity: .75;
     color: black;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> d27c97a42f5ea01dc134cdbe6ce96369c63fd9ae

@@ -1,17 +1,37 @@
+<<<<<<< HEAD
+=======
+/* eslint-disable */
+>>>>>>> f68bdd87d92bd10905495c49b5e096d3d12d8f95
 import { Link } from "react-router-dom";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+<<<<<<< HEAD
 import "../styles/Mypage.css"
 
 function ChangePassword() {
   //찜 목록을 보여주기 위해, views에 DB에 저장된 하나의 객체를 입력
   let [views, setView] = useState([]);
+=======
+
+function ChangePassword() {
+  //찜 목록을 보여주기 위해, views에 DB에 저장된 하나의 객체를 입력
+  const ID = sessionStorage.getItem("ID");
+>>>>>>> f68bdd87d92bd10905495c49b5e096d3d12d8f95
   let [currentPW, setcurrentPW] = useState("");
   let [newPW, setnewPW] = useState("");
   let [renewPW, setrenewPW] = useState("");
 
+<<<<<<< HEAD
   const sessionID = sessionStorage.getItem("ID");
+=======
+  let [views, setView] = useState([]);
+  useEffect(() => {
+    axios.post("/mypage", { data: ID }).then((응답) => {
+      setView([...views, ...응답.data]);
+    });
+  }, []);
+>>>>>>> f68bdd87d92bd10905495c49b5e096d3d12d8f95
 
   // 현재 비밀번호 인식
   const cPWHandler = (e) => {
@@ -33,6 +53,7 @@ function ChangePassword() {
 
   const navigate = useNavigate();
 
+<<<<<<< HEAD
   useEffect(() => {
     axios
       .post("selection", {
@@ -55,6 +76,8 @@ function ChangePassword() {
       });
   }, []);
 
+=======
+>>>>>>> f68bdd87d92bd10905495c49b5e096d3d12d8f95
   //찜목록 옆에 현재 찜한 개수 표현하기
   const count = views.length;
 
@@ -130,6 +153,7 @@ function ChangePassword() {
         </div>
       </nav>
 
+<<<<<<< HEAD
       <div className=" bg-light rounded m-3 p-3 containerBox">
         <div class="border p-3 container col-8  m-2 bg-light rounded position-absolute top-50 start-50 translate-middle rounded-8">
         <h3 className="pt-2">비밀번호 변경</h3>
@@ -166,14 +190,35 @@ function ChangePassword() {
               className="btn btn-lg press_btn mt-5 gap-2 "
               type="submit"
             >
+=======
+      <div className="border  rounded m-3 p-3">
+        <form onSubmit={submitHandler}>
+          <label className="p-3 font-500">현재 비밀번호</label>
+          <input type="password" className="form-control form-control-lg mb-3 rounded-pill" placeholder="현재 사용중인 비밀번호를 입력하세요" value={currentPW} onChange={cPWHandler}></input>
+
+          <label className="p-3 font-500">비밀번호 변경하기</label>
+          <input type="password" className="form-control form-control-lg rounded-pill" placeholder="새 비밀번호를 입력하세요" value={newPW} onChange={nPWHandler}></input>
+
+          <input type="password" className="form-control form-control-lg mt-3 rounded-pill" placeholder="새 비밀번호를 다시 입력하세요" value={renewPW} onChange={rPWHandler} />
+
+          <div className="d-grid gap-2 col-md-11 mx-auto">
+            <button onSubmit={submitHandler} className="btn btn-lg press_btn mt-5 gap-2 " type="submit">
+>>>>>>> f68bdd87d92bd10905495c49b5e096d3d12d8f95
               변경사항 저장
             </button>
           </div>
         </form>
+<<<<<<< HEAD
         </div>
+=======
+>>>>>>> f68bdd87d92bd10905495c49b5e096d3d12d8f95
       </div>
     </>
   );
 }
 
+<<<<<<< HEAD
 export default ChangePassword;
+=======
+export default ChangePassword;
+>>>>>>> f68bdd87d92bd10905495c49b5e096d3d12d8f95
