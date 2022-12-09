@@ -186,7 +186,11 @@ function Main() {
             </div>
           </div>
 
-          <ChatContainer />
+          <div className="col-lg-7 ">
+            <div class="mx-auto">
+              <ChatContainer />
+            </div>
+          </div>
         </div>
       </div>
 
