@@ -7,15 +7,8 @@ import Result from "./Pages/Result";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Mypage from "./Pages/Mypage";
-<<<<<<< HEAD
-import Selection from "./Pages/Selection";
 import ChangePassword from "./Pages/ChangePassword";
 import Resign from "./Pages/Resign";
-
-=======
-import ChangePassword from "./Pages/ChangePassword";
-import Resign from "./Pages/Resign";
->>>>>>> f68bdd87d92bd10905495c49b5e096d3d12d8f95
 import { Routes, Route } from "react-router-dom";
 import ChangeNickname from "./Pages/ChangeNickname";
 
@@ -30,13 +23,8 @@ function App() {
         <Route path="Main" element={<Main />} />
         <Route path="/Detail/:id" element={<Detail />} />
         <Route path="/Result" element={<Result />} />
-<<<<<<< HEAD
-        <Route path="/mypage" element={<Mypage />} />
-        <Route path="/Selection" element={<Selection/>}/>
-=======
         <Route path="/Mypage" element={<Mypage />} />
         <Route path="/ChangeNickname" element={<ChangeNickname />} />
->>>>>>> f68bdd87d92bd10905495c49b5e096d3d12d8f95
         <Route path="/ChangePassword" element={<ChangePassword />} />
         <Route path="/Resign" element={<Resign />} />
       </Routes>

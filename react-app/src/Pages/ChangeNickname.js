@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import "../styles/Mypage.css"
 
 function ChangeNickname() {
   //찜 목록을 보여주기 위해, views에 DB에 저장된 하나의 객체를 입력
@@ -79,15 +80,17 @@ function ChangeNickname() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link active" to="/Mypage">
-                  찜 목록({count})
-                </Link>
+                
+                  <Link className="nav-link active" to="/Mypage">
+                    찜 목록({count})
+                  </Link>
+                
               </li>
               <li className="nav-item">
                 <b>
-                  <Link className="nav-link active" to="/ChangeNickname">
-                    닉네임 변경
-                  </Link>
+                <Link className="nav-link active" to="/ChangeNickname">
+                  닉네임 변경
+                </Link>
                 </b>
               </li>
               <li className="nav-item">
@@ -105,13 +108,15 @@ function ChangeNickname() {
         </div>
       </nav>
 
-      <div className="border  rounded m-3 p-3">
+      <div className=" bg-light rounded m-3 p-3 containerBox">
+      <div class="border p-3 container col-8  m-2 bg-light rounded position-absolute top-50 start-50 translate-middle rounded-8">
+        <h3 className="pt-2">닉네임 변경</h3>
         <form onSubmit={submitHandler}>
-          <label className="p-3 font-500">현재 닉네임</label>
-          <div>{nowNickname}</div>
+          {/* <label className="p-3 font-500">현재 닉네임</label>
+          <div>{nowNickname}</div> */}
 
           <label className="p-3 font-500">닉네임 변경하기</label>
-          <input type="text" className="form-control form-control-lg rounded-pill" placeholder="새 닉네임을 입력하세요" value={Nickname} onChange={Handler}></input>
+          <input type="text" className="form-control form-control-lg rounded-pill" placeholder={nowNickname} value={Nickname} onChange={Handler}></input>
 
           <div className="d-grid gap-2 col-md-11 mx-auto">
             <button onSubmit={submitHandler} className="btn btn-lg press_btn mt-5 gap-2 " type="submit">
@@ -119,6 +124,7 @@ function ChangeNickname() {
             </button>
           </div>
         </form>
+      </div>
       </div>
     </>
   );

@@ -1,15 +1,9 @@
-<<<<<<< HEAD
-=======
 /* eslint-disable */
->>>>>>> f68bdd87d92bd10905495c49b5e096d3d12d8f95
 import { Link } from "react-router-dom";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-<<<<<<< HEAD
 import "../styles/Mypage.css"
-=======
->>>>>>> f68bdd87d92bd10905495c49b5e096d3d12d8f95
 
 function Resign() {
   //찜 목록을 보여주기 위해, views에 DB에 저장된 하나의 객체를 입력
@@ -32,34 +26,10 @@ function Resign() {
   };
 
   useEffect(() => {
-<<<<<<< HEAD
-    axios
-      .post("selection", {
-        params: { id: ID },
-      })
-      .then((res) => {
-        // views에 DB로부터 가져온 json 객체를 저장하고, 밑에서 map 함수를 통해 렌더링
-        for (let i = 0; i < res.data.length; i++) {
-          setView((views) => [
-            ...views,
-            {
-              ID: res.data[i].ID,
-              drink: res.data[i].drink,
-              food: res.data[i].food,
-              place: res.data[i].place,
-              _id: res.data[i]._id,
-            },
-          ]);
-        }
-      });
-  }, []);
-
-=======
     axios.post("/mypage", { data: ID }).then((응답) => {
       setView([...views, ...응답.data]);
     });
   }, []);
->>>>>>> f68bdd87d92bd10905495c49b5e096d3d12d8f95
   //찜목록 옆에 현재 찜한 개수 표현하기
   const count = views.length;
 
@@ -114,12 +84,12 @@ function Resign() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link active" to="/Mypage">
-                  찜 목록({count})
-                </Link>
+                  <Link className="nav-link active" to="/Mypage">
+                    찜 목록({count})
+                  </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link active" to="/selection">
+                <Link className="nav-link active" to="/ChangeNickname">
                   닉네임 변경
                 </Link>
               </li>
@@ -130,19 +100,18 @@ function Resign() {
               </li>
               <li className="nav-item">
                 <b>
-                  <Link className="nav-link active" to="/selection">
-                    회원 탈퇴
-                  </Link>
+                <Link className="nav-link active" to="/Resign">
+                  회원 탈퇴
+                </Link>
                 </b>
               </li>
             </ul>
           </div>
         </div>
       </nav>
-<<<<<<< HEAD
 
-      
-      <div className=" bg-light rounded m-3 p-3 containerBox">
+
+       <div className=" bg-light rounded m-3 p-3 containerBox">
         <div className="border p-3 container col-8  m-2 bg-light rounded position-absolute top-50 start-50 translate-middle rounded-8">
         <h3 className="pt-2">회원 탈퇴</h3>
         <form onSubmit={submitHandler}>
@@ -185,34 +154,8 @@ function Resign() {
         </form>
         </div>
       </div>
-      
-=======
-      <h3>계정 삭제하기</h3>
-      <div className="border  rounded m-3 p-3">
-        <form onSubmit={submitHandler}>
-          <label className="p-3 font-500">현재 비밀번호</label>
-          <input type="password" className="form-control form-control-lg mb-3 rounded-pill" placeholder="계정을 삭제하려면 현재 사용중인 비밀번호를 입력하세요" value={PW} onChange={PWHandler}></input>
-          <label className="p-3 font-500">계정삭제시 모든 게시물이 삭제되며 복구 불가능합니다.</label>
-          <div className="form-check">
-            <input class="form-check-input" type="checkbox" value="" checked={checked} onChange={handleChange} id="flexCheckDefault"></input>
-            <label className="form-check-label" for="flexCheckDefault">
-              동의합니다.
-            </label>
-          </div>
-          <div className="d-grid gap-2 col-md-11 mx-auto">
-            <button onSubmit={submitHandler} onClick={checkAgreement} className="btn btn-lg press_btn mt-5 gap-2 " type="submit">
-              계정 삭제하기
-            </button>
-          </div>
-        </form>
-      </div>
->>>>>>> f68bdd87d92bd10905495c49b5e096d3d12d8f95
     </>
   );
 }
 
-<<<<<<< HEAD
 export default Resign;
-=======
-export default Resign;
->>>>>>> f68bdd87d92bd10905495c49b5e096d3d12d8f95

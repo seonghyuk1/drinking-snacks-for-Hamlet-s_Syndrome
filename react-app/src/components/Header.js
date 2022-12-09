@@ -42,32 +42,10 @@ function Header() {
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-<<<<<<< HEAD
-    
-=======
->>>>>>> f68bdd87d92bd10905495c49b5e096d3d12d8f95
 
           {/* nav-item */}
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             {/* 로그인 시 추가 내용 */}
-<<<<<<< HEAD
-            
-            {myJWT != null &&  (
-            <>
-           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-
-              <li className="nav-item me-4 ms-auto mt-1">  
-                <span className="align-middle">현재위치 :{" "}
-                  <b>
-                    {address?.city}({address?.country_code})
-                  </b>
-                </span>
-              </li>
-
-              <li className="nav-item me-4 ms-auto mt-1">
-                  <Link to="/Mypage" style={{ textDecoration: "none", color: "Black " }}>
-                  {/* {NickName ? (
-=======
             {myJWT != null && (
               <>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -83,7 +61,6 @@ function Header() {
                   <li className="nav-item me-4 ms-auto mt-1">
                     <Link to="/Mypage" style={{ textDecoration: "none", color: "Black " }}>
                       {/* {NickName ? (
->>>>>>> f68bdd87d92bd10905495c49b5e096d3d12d8f95
                     <p className="nav-link disabled  col-12 ">
                       환영합니다💖! <b>{NickName}</b> 님!
                     </p>
@@ -92,45 +69,6 @@ function Header() {
                       환영합니다💖! <b>{ID}</b> 님!
                     </p>
                   )} */}
-<<<<<<< HEAD
-                  {/* NickName && */}
-                  { (
-                    <span className="align-middle ">
-                      환영합니다💖! <b>{NickName}</b> 님!
-                    </span>
-                  )}
-                  {/* <p className="nav-link disabled  col-12 ">
-                    환영합니다💖! <b>{NickName}</b> 고객님
-                  </p> */}
-                </Link>
-              </li>
-
-              <li className="nav-item ms-auto">
-                <button className="btn btn-secondary press_btn me-2 mt-1">
-                  <Link to="/Mypage" style={{ textDecoration: "none", color: "white " }}>
-                    마이페이지
-                  </Link>
-                </button>
-              </li>
-
-              <li className="nav-item ms-auto">
-                <button
-                  className="btn btn-secondary press_btn me-2 mt-1"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    sessionStorage.clear();
-                    navigate("/");
-                  }}
-                >
-                  로그아웃
-                </button>
-
-              </li>
-            </ul>
-          </>
-        )}
-            
-=======
                       {/* NickName && */}
                       {
                         <span className="align-middle ">
@@ -166,7 +104,6 @@ function Header() {
                 </ul>
               </>
             )}
->>>>>>> f68bdd87d92bd10905495c49b5e096d3d12d8f95
           </div>
         </div>
       </nav>

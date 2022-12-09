@@ -2,15 +2,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-<<<<<<< HEAD
-import Header from "../components/Header";
-import "../styles/Login_Header.css"
-import logo from '../logo.png'
-=======
 //import Header from "../components/Header";
 import "../styles/Login_Header.css";
 import logo from "../logo.png";
->>>>>>> f68bdd87d92bd10905495c49b5e096d3d12d8f95
 
 function Login() {
   let [id, setId] = useState("");
@@ -84,7 +78,7 @@ function Login() {
     <>
 
     
-      <div class="container mt-5 bg-white rounded shadow-lg ">
+      <div class="container col-8  m-2 bg-white rounded position-absolute top-50 start-50 translate-middle rounded-8 shadow-lg">
         <div class="row p-5">
           <div class="col-lg-8 col-12 mx-auto bg-white">
             <div class="m-2 text-center">
@@ -105,10 +99,6 @@ function Login() {
                   </button>
                 </form>
                 <div class="text-center pt-4">
-<<<<<<< HEAD
-                  <p class="m-3 text-secondary font-500">아직 계정이 없으신가요? <Link to="/Signup" class="text-dark font-500">회원가입</Link></p>
-                </div>   
-=======
                   <p class="m-3 text-secondary font-500">
                     아직 계정이 없으신가요?{"  "}
                     <Link class="text-dark font-500" to="/Signup">
@@ -116,18 +106,11 @@ function Login() {
                     </Link>
                   </p>
                 </div>
->>>>>>> f68bdd87d92bd10905495c49b5e096d3d12d8f95
               </div>
             </div>
           </div>
         </div>
-<<<<<<< HEAD
-      </div> 
-
-
-=======
       </div>
->>>>>>> f68bdd87d92bd10905495c49b5e096d3d12d8f95
     </>
   );
 }

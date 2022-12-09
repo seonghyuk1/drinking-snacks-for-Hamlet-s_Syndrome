@@ -46,19 +46,11 @@ function Signup() {
     setPwchk(passwordConfirm);
 
     if (pw === passwordConfirm) {
-<<<<<<< HEAD
-      document.getElementById("alert").setAttribute("class","mt-4 alert alert-success alert-dismissible fade show")
-      setPwmessage("비밀번호가 일치합니다. 😊 회원가입 버튼을 눌러주세요.");
-      setIspwconfirm(false);
-    } else {
-      document.getElementById("alert").setAttribute("class","mt-4 alert alert-danger alert-dismissible fade show")
-=======
       document.getElementById("alert").setAttribute("class", "mt-4 alert alert-success alert-dismissible fade show");
       setPwmessage("비밀번호가 일치합니다. 😊 회원가입 버튼을 눌러주세요.");
       setIspwconfirm(false);
     } else {
       document.getElementById("alert").setAttribute("class", "mt-4 alert alert-danger alert-dismissible fade show");
->>>>>>> f68bdd87d92bd10905495c49b5e096d3d12d8f95
       setPwmessage("비밀번호가 일치하지 않습니다. 😢");
       setIspwconfirm(true);
     }
@@ -105,11 +97,7 @@ function Signup() {
   };
   return (
     <>
-<<<<<<< HEAD
-       <div class="container mt-5 bg-white rounded shadow-lg">
-=======
-      <div class="container mt-5 bg-white rounded shadow-lg">
->>>>>>> f68bdd87d92bd10905495c49b5e096d3d12d8f95
+      <div class="container col-8  m-2 bg-white rounded position-absolute top-50 start-50 translate-middle rounded-8 shadow-lg">
         <div class="row p-5">
           <div class="col-lg-8 col-12 mx-auto bg-white">
             {/* <div class="m-2 text-center">
@@ -129,13 +117,8 @@ function Signup() {
 
                 <form onSubmit={submitHandler}>
                   <label class="p-3 font-500">ID</label>
-<<<<<<< HEAD
-                  <input type="text" class="form-control form-control-lg mb-3 rounded-pill"  placeholder="사용할 아이디를 입력해 주세요" value={id} onChange={idHandler}></input>
-                  
-=======
                   <input type="text" class="form-control form-control-lg mb-3 rounded-pill" placeholder="사용할 아이디를 입력하세요" value={id} onChange={idHandler}></input>
 
->>>>>>> f68bdd87d92bd10905495c49b5e096d3d12d8f95
                   <div class="d-grid d-md-flex justify-content-md-end">
                     <button
                       class="btn  mt-2 gap-2 col-md-4 press_btn"
@@ -149,27 +132,6 @@ function Signup() {
                     </button>
                   </div>
 
-<<<<<<< HEAD
-                      {/* 수정추가한것 */}
-                  <label class="p-3 font-500">Username</label>
-                  <input type="text" class="form-control form-control-lg mb-3 rounded-pill"  placeholder="닉네임을 입력해 주세요 (수정가능합니다)" value={name} onChange={nameHandler}></input>
-
-                  {/* 닉네임
-                  <div className="form-group mt-5">
-                    <label>Custom Nickname</label>
-                    <div>
-                      <input type="text" className="form-control" value={name} onChange={nameHandler} placeholder="원하는 닉네임을 입력하세요. (생략가능)"></input>
-                      {name.length < 1 ? <span>닉네임을 입력하여 주세요.</span> : <span>멋진 닉네임입니다. 😎</span>}
-                    </div>
-                  </div> */}
-
-                  <label class="p-3 font-500">Password</label>
-                  <input 
-                    type="password" 
-                    class="form-control form-control-lg rounded-pill" 
-                    placeholder="사용할 비밀번호를 입력해 주세요" 
-                    value={pw} 
-=======
                   <label class="p-3 font-500">Username</label>
                   <input type="text" class="form-control form-control-lg mb-3 rounded-pill" placeholder="닉네임을 입력하세요 (수정가능합니다)" value={name} onChange={nameHandler}></input>
 
@@ -179,7 +141,6 @@ function Signup() {
                     class="form-control form-control-lg rounded-pill"
                     placeholder="사용할 비밀번호를 입력하세요"
                     value={pw}
->>>>>>> f68bdd87d92bd10905495c49b5e096d3d12d8f95
                     onChange={pwHandler}
                     onClick={(e) => {
                       e.preventDefault(e);
