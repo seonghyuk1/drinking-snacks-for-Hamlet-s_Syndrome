@@ -51,7 +51,7 @@ export default function ChatContainer() {
           <ChatBoxSender key={i} message={chat.message} user={chat.user} />
         );
       return (
-        <ChatBoxReciever key={i} message={chat.message} user={chat.user} />
+        <ChatBoxReciever key={i} message={chat.message} user={chat.user} /> 
       );
     });
   }

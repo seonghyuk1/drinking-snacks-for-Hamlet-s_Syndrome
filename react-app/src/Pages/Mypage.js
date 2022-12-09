@@ -4,13 +4,13 @@ import axios from "axios";
 // import Show from "./Show";
 import React, { useState, useEffect } from "react";
 import "../styles/Mypage.css";
+import { Wheel } from "react-custom-roulette";
 
 function Mypage() {
   //찜 목록을 보여주기 위해, views에 DB에 저장된 하나의 객체를 입력
   let [views, setView] = useState([]);
   const ID = sessionStorage.getItem("ID");
   let [state, setState] = useState(false);
-
   let [test, setTest] = useState([]);
 
   let 갖고온거 = [];
@@ -23,6 +23,24 @@ function Mypage() {
 
   console.log("뷰", views);
   const count = views.length;
+
+  // 룰렛 관련
+  const data = [];
+  let num = 1;
+  for (const item of views) {
+    // console.log(item); // 10, 20, 30 출력
+    data.push({ id: num, option: item.식당 });
+    num = num + 1;
+  }
+  const [mustSpin, setMustSpin] = useState(false);
+  const [prizeNumber, setPrizeNumber] = useState(0);
+
+  const handleSpinClick = () => {
+    const newPrizeNumber = Math.floor(Math.random() * data.length);
+    setPrizeNumber(newPrizeNumber);
+    setMustSpin(true);
+    setState(true);
+  };
 
   // async function submitHandler(e) {
   //   e.preventDefault();
@@ -83,10 +101,49 @@ function Mypage() {
         </div>
       </nav>
 
+      {/* 룰렛 추가 */}
+
+      <div align="center">
+        <h1 align="center">Roulette Game</h1>
+        <hr />
+        <Wheel
+          mustStartSpinning={mustSpin}
+          prizeNumber={prizeNumber}
+          data={data}
+          outerBorderColor={["#f2f2f2"]}
+          outerBorderWidth={[25]}
+          innerBorderColor={["#f2f2f2"]}
+          radiusLineColor={["#dedede"]}
+          radiusLineWidth={[10]}
+          textColors={["#ffffff"]}
+          fontSize={[20]}
+          perpendicularText={[true]}
+          backgroundColors={[
+            "#F22B35",
+            "#F99533",
+            "#24CA69",
+            "#514E50",
+            "#46AEFF",
+            "#9145B7",
+          ]}
+          onStopSpinning={() => {
+            setMustSpin(false);
+          }}
+        />
+        <button className="button2" onClick={handleSpinClick}>
+          룰렛 돌리기
+        </button>
+        <br />
+        <div>
+          {!mustSpin && state ? data[prizeNumber].option : "돌려돌려돌림판"}
+        </div>
+        <hr />
+      </div>
+
       <div className=" bg-light rounded m-3 p-3 containerBox2 ">
         <div className="row">
           {views.length == 0 && (
-            <div class="bg-light rounded containerBox col text-center rounded mx-auto">
+            <div className="bg-light rounded containerBox col text-center rounded mx-auto">
               <div className="col-6  m-2 position-absolute top-50 start-50 translate-middle ">
                 <h2 className="pt-2 text-secondary">찜 목록이 비어있습니다.</h2>
                 <h4 className="pt-2 text-secondary">가게를 찾아보아요😋</h4>

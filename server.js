@@ -315,48 +315,6 @@ app.post("/changeNickname", function (req, res) {
   );
 });
 
-//닉네임 변경
-app.post("/changeNickname", function (req, res) {
-  db.collection("login").findOne(
-    { 아이디: req.body.id },
-    function (err, result) {
-      if (result) {
-        db.collection("login").updateOne(
-          { 아이디: req.body.id },
-          { $set: { 닉네임: req.body.nickname } },
-          function (err, result) {
-            console.log("수정완료");
-            res.json(req.body.nickname);
-          }
-        );
-      } else {
-        console.log("찾는 아이디 없음");
-      }
-    }
-  );
-});
-
-//닉네임 변경
-app.post("/changeNickname", function (req, res) {
-  db.collection("login").findOne(
-    { 아이디: req.body.id },
-    function (err, result) {
-      if (result) {
-        db.collection("login").updateOne(
-          { 아이디: req.body.id },
-          { $set: { 닉네임: req.body.nickname } },
-          function (err, result) {
-            console.log("수정완료");
-            res.json(req.body.nickname);
-          }
-        );
-      } else {
-        console.log("찾는 아이디 없음");
-      }
-    }
-  );
-});
-
 app.get("*", function (요청, 응답) {
   응답.sendFile(
     path.join(__dirname, "/react-app/build/index.html"),
