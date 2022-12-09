@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Link } from "react-router-dom";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
@@ -6,12 +7,17 @@ import "../styles/Mypage.css";
 
 function ChangePassword() {
   //찜 목록을 보여주기 위해, views에 DB에 저장된 하나의 객체를 입력
-  let [views, setView] = useState([]);
+  const ID = sessionStorage.getItem("ID");
   let [currentPW, setcurrentPW] = useState("");
   let [newPW, setnewPW] = useState("");
   let [renewPW, setrenewPW] = useState("");
 
-  const sessionID = sessionStorage.getItem("ID");
+  let [views, setView] = useState([]);
+  useEffect(() => {
+    axios.post("/mypage", { data: ID }).then((응답) => {
+      setView([...views, ...응답.data]);
+    });
+  }, []);
 
   // 현재 비밀번호 인식
   const cPWHandler = (e) => {
@@ -32,28 +38,6 @@ function ChangePassword() {
   };
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    axios
-      .post("selection", {
-        params: { id: sessionID },
-      })
-      .then((res) => {
-        // views에 DB로부터 가져온 json 객체를 저장하고, 밑에서 map 함수를 통해 렌더링
-        for (let i = 0; i < res.data.length; i++) {
-          setView((views) => [
-            ...views,
-            {
-              ID: res.data[i].ID,
-              drink: res.data[i].drink,
-              food: res.data[i].food,
-              place: res.data[i].place,
-              _id: res.data[i]._id,
-            },
-          ]);
-        }
-      });
-  }, []);
 
   //찜목록 옆에 현재 찜한 개수 표현하기
   const count = views.length;
@@ -130,44 +114,47 @@ function ChangePassword() {
         </div>
       </nav>
 
-      <div className="border  rounded m-3 p-3">
-        <form onSubmit={submitHandler}>
-          <label className="p-3 font-500">현재 비밀번호</label>
-          <input
-            type="password"
-            className="form-control form-control-lg mb-3 rounded-pill"
-            placeholder="현재 사용중인 비밀번호를 입력하세요"
-            value={currentPW}
-            onChange={cPWHandler}
-          ></input>
+      <div className=" bg-light rounded m-3 p-3 containerBox">
+        <div class="border p-3 container col-8  m-2 bg-light rounded position-absolute top-50 start-50 translate-middle rounded-8">
+          <h3 className="pt-2">비밀번호 변경</h3>
+          <form onSubmit={submitHandler}>
+            <label className="p-3 font-500">현재 비밀번호</label>
+            <input
+              type="password"
+              className="form-control form-control-lg mb-3 rounded-pill"
+              placeholder="현재 사용중인 비밀번호를 입력하세요"
+              value={currentPW}
+              onChange={cPWHandler}
+            ></input>
 
-          <label className="p-3 font-500">비밀번호 변경하기</label>
-          <input
-            type="password"
-            className="form-control form-control-lg rounded-pill"
-            placeholder="새 비밀번호를 입력하세요"
-            value={newPW}
-            onChange={nPWHandler}
-          ></input>
+            <label className="p-3 font-500">비밀번호 변경하기</label>
+            <input
+              type="password"
+              className="form-control form-control-lg rounded-pill"
+              placeholder="새 비밀번호를 입력하세요"
+              value={newPW}
+              onChange={nPWHandler}
+            ></input>
 
-          <input
-            type="password"
-            className="form-control form-control-lg mt-3 rounded-pill"
-            placeholder="새 비밀번호를 다시 입력하세요"
-            value={renewPW}
-            onChange={rPWHandler}
-          />
+            <input
+              type="password"
+              className="form-control form-control-lg mt-3 rounded-pill"
+              placeholder="새 비밀번호를 다시 입력하세요"
+              value={renewPW}
+              onChange={rPWHandler}
+            />
 
-          <div className="d-grid gap-2 col-md-11 mx-auto">
-            <button
-              onSubmit={submitHandler}
-              className="btn btn-lg press_btn mt-5 gap-2 "
-              type="submit"
-            >
-              변경사항 저장
-            </button>
-          </div>
-        </form>
+            <div className="d-grid gap-2 col-md-11 mx-auto">
+              <button
+                onSubmit={submitHandler}
+                className="btn btn-lg press_btn mt-5 gap-2 "
+                type="submit"
+              >
+                변경사항 저장
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </>
   );

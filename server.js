@@ -42,10 +42,6 @@ app.use(express.static(path.join(__dirname, "react-app/build")));
 // 환경변수
 require("dotenv").config();
 
-// // 추후 PUT을 위한 메소드 오버라이드
-// const methodOverride = require("method-override");
-// app.use(methodOverride("_method"));
-
 // JWT
 const jwt = require("jsonwebtoken");
 
@@ -204,37 +200,26 @@ app.post("/selection", function (요청, 응답) {
       console.log("요청", 요청.body);
     }
   );
-
-  // // 저장한 거 전달
-  // db.collection("selection")
-  //   .find()
-  //   .toArray(function (에러, 결과) {
-  //     // console.log(결과);
-  //     응답.json(결과);
-  //   });
 });
 
-//마이페이지용 꺼내오기
-app.get("/selection", function (요청, 응답) {
+app.post("/mypage", function (요청, 응답) {
+  console.log(요청.body);
   db.collection("selection")
-    .find()
+    .find({ id: 요청.body.data })
     .toArray(function (에러, 결과) {
       // console.log("아래", 결과);
-
+      console.log(결과);
       응답.json(결과);
     });
 });
 
 //마이페이지 찜 목록에서 삭제
 app.post("/delete", function (요청, 응답) {
-  //서버 통신간 delete
-
   db.collection("selection").deleteOne(
     { 삭제용: 요청.body.data },
     function (err, result) {
       console.log(result);
       응답.json("삭제완료");
-      // 응답.redirect("/mypage");
     }
   );
 });
@@ -302,6 +287,48 @@ app.post("/resign", function (req, res) {
             res.json("현재 패스워드 안맞음");
           }
         });
+      } else {
+        console.log("찾는 아이디 없음");
+      }
+    }
+  );
+});
+
+//닉네임 변경
+app.post("/changeNickname", function (req, res) {
+  db.collection("login").findOne(
+    { 아이디: req.body.id },
+    function (err, result) {
+      if (result) {
+        db.collection("login").updateOne(
+          { 아이디: req.body.id },
+          { $set: { 닉네임: req.body.nickname } },
+          function (err, result) {
+            console.log("수정완료");
+            res.json(req.body.nickname);
+          }
+        );
+      } else {
+        console.log("찾는 아이디 없음");
+      }
+    }
+  );
+});
+
+//닉네임 변경
+app.post("/changeNickname", function (req, res) {
+  db.collection("login").findOne(
+    { 아이디: req.body.id },
+    function (err, result) {
+      if (result) {
+        db.collection("login").updateOne(
+          { 아이디: req.body.id },
+          { $set: { 닉네임: req.body.nickname } },
+          function (err, result) {
+            console.log("수정완료");
+            res.json(req.body.nickname);
+          }
+        );
       } else {
         console.log("찾는 아이디 없음");
       }

@@ -42,7 +42,7 @@ function Main() {
         </h2>
       </div>
 
-      <div class="col-11 mx-auto">
+      <div class="col-8 mx-auto">
         <Slider {...settings} className="slider_center" dotsClass="test-css">
           <div className="card-wrapper">
             <div className="card">
@@ -165,31 +165,31 @@ function Main() {
           </div>
         </Slider>
       </div>
-
-      {/* test2 */}
-      <div className="mt-5 row mx-auto ">
-        <div className="col-lg-6  mx-auto">
-          <div class="container mt-2 p-1 rounded shadow-lg">
-            <h2 class="m-3 text-center text-light">
-              <strong>✨Weekly✨ 안주</strong>
-            </h2>
+      <div class="container  mt-5 p-1 rounded ">
+        <div className="mt-5 row mx-auto ">
+          <div className="col-lg-5  mx-auto">
+            <div class="container mt-2 p-1 rounded shadow-lg">
+              <h2 class="m-3 text-center text-light">
+                <strong>✨Weekly✨ 안주</strong>
+              </h2>
+            </div>
+            <div class="pt-3 mx-auto testBOX ">
+              <SimpleImageSlider
+                width={500}
+                height={350}
+                images={images}
+                showBullets={true}
+                showNavs={true}
+                autoPlay={true}
+                autoPlayDelay={2.0}
+              />
+            </div>
           </div>
-          <div class="pt-3 mx-auto testBOX ">
-            <SimpleImageSlider
-              width={500}
-              height={350}
-              images={images}
-              showBullets={true}
-              showNavs={true}
-              autoPlay={true}
-              autoPlayDelay={2.0}
-            />
-          </div>
-        </div>
 
-        <div className="col-lg-6 ">
-          <div class="mx-auto">
-            <ChatContainer />
+          <div className="col-lg-7 ">
+            <div class="mx-auto">
+              <ChatContainer />
+            </div>
           </div>
         </div>
       </div>

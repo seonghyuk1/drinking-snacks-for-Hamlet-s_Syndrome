@@ -36,14 +36,14 @@ function Header() {
     <>
       <nav className="navbar navbar-expand-lg bg-light navbar-light ">
         <div className="container-fluid">
-          <a href="/main" class="navbar-brand">
+          <Link to="/main" class="navbar-brand">
             <img
               src={logo}
               class="d-inline-block align-middle rounded p-1"
               alt="내일 지구가 끝나더라도 나는 오늘 밤 최고의 술자리를 가지겠어"
               width="150"
             />
-          </a>
+          </Link>
 
           <button
             class="navbar-toggler"
@@ -60,7 +60,6 @@ function Header() {
           {/* nav-item */}
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             {/* 로그인 시 추가 내용 */}
-
             {myJWT != null && (
               <>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">

@@ -1,0 +1,9 @@
+
+.storeOpacity{
+    --bs-bg-opacity: .6;
+}
+
+.cardSize{
+    width: 18rem;
+    height: 20rem;
+  }

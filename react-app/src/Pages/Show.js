@@ -57,11 +57,42 @@
 //   );
 // };
 
+<<<<<<< HEAD
+  return (
+    <>
+      <form onSubmit={submitHandler}>
+        {/* style={state ? hidden : active} */}
+        <div className="col">
+          <div className="card">
+            <img
+              src={"/assets/3/3.jpg"}
+              className="card-img-top"
+              alt="..."
+            ></img>
+            <div className="card-body">
+              <h5 className="card-title">{props.obj.place}</h5>
+              <p className="card-text">주류 : {props.obj.drink}</p>
+              <p className="card-text">안주 : {props.obj.food}</p>
+              <button
+                className="btn btn-dark mt-4 mb-2 d-grid gap-2 col-6 mx-auto"
+                type="submit"
+              >
+                삭제하기
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </>
+  );
+};
+=======
 // //fadeout을 구현하기 위해 active와 hidden을 구현
 // const active = {
 //   opacity: "1",
 //   transition: "opacity 500ms",
 // };
+>>>>>>> f68bdd87d92bd10905495c49b5e096d3d12d8f95
 
 // const hidden = {
 //   opacity: "0",

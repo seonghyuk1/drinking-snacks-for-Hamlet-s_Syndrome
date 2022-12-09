@@ -17,6 +17,11 @@ export default function ChatContainer() {
     socketio.on("chat", (senderCharts) => {
       setChats(senderCharts);
     });
+    //채팅 스크롤 하단으로 이동
+    if (document.getElementById("box")) {
+      const chatDiv = document.getElementById("box");
+      chatDiv.scrollTop = chatDiv.scrollHeight;
+    }
   });
 
   // chat에다가 한 말 써서 내보내기
@@ -54,7 +59,7 @@ export default function ChatContainer() {
   return (
     <div>
       {chatOn ? ( // 등록 해놨던 유저라면 상단바와 대화창 다 불러오기
-        <div class="container col-8 m-1 p-3 bg-light rounded shadow-lg mx-auto ">
+        <div class="container col-9 m-1 p-3 bg-light rounded shadow-lg mx-auto ">
           <div
             style={{
               display: "flex",
@@ -81,7 +86,7 @@ export default function ChatContainer() {
           </div>
 
           {/* 채팅내용 */}
-          <div class="container  rounded chat_container">
+          <div id="box" class="container  rounded chat_container">
             <ChatsList />
           </div>
 

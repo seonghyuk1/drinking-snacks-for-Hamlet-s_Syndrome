@@ -1,5 +1,4 @@
 /* eslint-disable */
-
 import { Link } from "react-router-dom";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
@@ -27,27 +26,10 @@ function Resign() {
   };
 
   useEffect(() => {
-    axios
-      .post("selection", {
-        params: { id: ID },
-      })
-      .then((res) => {
-        // views에 DB로부터 가져온 json 객체를 저장하고, 밑에서 map 함수를 통해 렌더링
-        for (let i = 0; i < res.data.length; i++) {
-          setView((views) => [
-            ...views,
-            {
-              ID: res.data[i].ID,
-              drink: res.data[i].drink,
-              food: res.data[i].food,
-              place: res.data[i].place,
-              _id: res.data[i]._id,
-            },
-          ]);
-        }
-      });
+    axios.post("/mypage", { data: ID }).then((응답) => {
+      setView([...views, ...응답.data]);
+    });
   }, []);
-
   //찜목록 옆에 현재 찜한 개수 표현하기
   const count = views.length;
 
@@ -127,44 +109,47 @@ function Resign() {
           </div>
         </div>
       </nav>
-      <h3>계정 삭제하기</h3>
-      <div className="border  rounded m-3 p-3">
-        <form onSubmit={submitHandler}>
-          <label className="p-3 font-500">현재 비밀번호</label>
-          <input
-            type="password"
-            className="form-control form-control-lg mb-3 rounded-pill"
-            placeholder="계정을 삭제하려면 현재 사용중인 비밀번호를 입력하세요"
-            value={PW}
-            onChange={PWHandler}
-          ></input>
-          <label className="p-3 font-500">
-            계정삭제시 모든 게시물이 삭제되며 복구 불가능합니다.
-          </label>
-          <div className="form-check">
+
+      <div className=" bg-light rounded m-3 p-3 containerBox">
+        <div className="border p-3 container col-8  m-2 bg-light rounded position-absolute top-50 start-50 translate-middle rounded-8">
+          <h3 className="pt-2">회원 탈퇴</h3>
+          <form onSubmit={submitHandler}>
+            <label className="p-3 font-500">현재 비밀번호</label>
             <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              checked={checked}
-              onChange={handleChange}
-              id="flexCheckDefault"
+              type="password"
+              className="form-control form-control-lg mb-3 rounded-pill"
+              placeholder="계정을 삭제하려면 현재 사용중인 비밀번호를 입력하세요"
+              value={PW}
+              onChange={PWHandler}
             ></input>
-            <label className="form-check-label" for="flexCheckDefault">
-              동의합니다.
+            <label className="p-3 font-500">
+              계정삭제시 모든 게시물이 삭제되며 복구 불가능합니다.
             </label>
-          </div>
-          <div className="d-grid gap-2 col-md-11 mx-auto">
-            <button
-              onSubmit={submitHandler}
-              onClick={checkAgreement}
-              className="btn btn-lg press_btn mt-5 gap-2 "
-              type="submit"
-            >
-              계정 삭제하기
-            </button>
-          </div>
-        </form>
+            <div className="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                checked={checked}
+                onChange={handleChange}
+                id="flexCheckDefault"
+              ></input>
+              <label className="form-check-label" for="flexCheckDefault">
+                동의합니다.
+              </label>
+            </div>
+            <div className="d-grid gap-2 col-md-11 mx-auto">
+              <button
+                onSubmit={submitHandler}
+                onClick={checkAgreement}
+                className="btn btn-lg press_btn mt-5 gap-2 "
+                type="submit"
+              >
+                탈 퇴 하 기
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </>
   );

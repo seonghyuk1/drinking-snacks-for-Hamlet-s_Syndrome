@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 // import Show from "./Show";
 import React, { useState, useEffect } from "react";
+import "../styles/Mypage.css";
 
 function Mypage() {
   //찜 목록을 보여주기 위해, views에 DB에 저장된 하나의 객체를 입력
@@ -10,47 +11,18 @@ function Mypage() {
   const ID = sessionStorage.getItem("ID");
   let [state, setState] = useState(false);
 
+  let [test, setTest] = useState([]);
+
   let 갖고온거 = [];
   let 내거 = views.filter((e) => e.id == sessionStorage.getItem("ID"));
   useEffect(() => {
-    axios.get("/selection").then((응답) => {
-      갖고온거 = 응답.data;
-      console.log("갖고온거", 갖고온거);
-      // views에 DB로부터 가져온 json 객체를 저장하고, 밑에서 map 함수를 통해 렌더링
-      // console.log(요청);
-      // console.log(요청.data);
-      // let test = 요청.data.pop();
-      // console.log(test);
-      // test.id != null &&
-      //   setView((views) => [
-      //     ...views,
-      //     {
-      //       ID: 요청.data.ID,
-      //       drink: 요청.data.drink,
-      //       식당: 요청.data.식당,
-      //       위치: 요청.data.위치,
-      //       특징: 요청.data.특징,
-      //       평균가격: 요청.data.평균가격,
-      //       좋아요: 요청.data.좋아요,
-      //       id: 요청.data.id,
-      //     },
-      //   ]);
-
-      // setView(갖고온거.filter((e) => e.id != essionStorage.getItem("ID")));
-      console.log("A" + 갖고온거);
-      setView([...views, ...갖고온거]);
-      // views.filter((e) => e.id == sessionStorage.getItem("ID"));
+    axios.post("/mypage", { data: ID }).then((응답) => {
+      setView([...views, ...응답.data]);
     });
   }, []);
 
   console.log("뷰", views);
-  // let 내거 = views.filter((e) => e.삭제용 == sessionStorage.getItem("ID") + e.식당);
-
-  console.log("내거", 내거);
-  //DB에서 가져온 찜한 데이터는 반복문을 돌면서 Show에서 렌더링
-  // const viewList = views.map((obj) => <Show obj={obj} views={views} setView={setView} />);
-  //찜목록 옆에 현재 찜한 개수 표현하기
-  const count = 내거.length;
+  const count = views.length;
 
   // async function submitHandler(e) {
   //   e.preventDefault();
@@ -111,72 +83,93 @@ function Mypage() {
         </div>
       </nav>
 
-      {내거.length == 0 && <h1>텅</h1>}
-      {내거 &&
-        내거.map((v, i) => {
-          return (
-            <div
-              className="row row-cols-1 row-cols-md-3 g-4 mx-auto"
-              style={{ display: "inline" }}
-              key={i}
-            >
-              {/* style={state ? hidden : active} */}
-              <div className="col">
-                <div className="card h-100">
-                  <h5 className="card-title">{내거[i].drink}</h5>
+      <div className=" bg-light rounded m-3 p-3 containerBox2 ">
+        <div className="row">
+          {views.length == 0 && (
+            <div class="bg-light rounded containerBox col text-center rounded mx-auto">
+              <div className="col-6  m-2 position-absolute top-50 start-50 translate-middle ">
+                <h2 className="pt-2 text-secondary">찜 목록이 비어있습니다.</h2>
+                <h4 className="pt-2 text-secondary">가게를 찾아보아요😋</h4>
+              </div>
+            </div>
+          )}
+          {views &&
+            views.map((v, i) => {
+              return (
+                <div className="col-6 col-lg-3 pt-3" key={i}>
+                  {/* style={state ? hidden : active} */}
+                  <div className="d-flex justify-content-center">
+                    <div className="card h-100" style={{ width: "18rem;" }}>
+                      <h5 className="text-center card-title p-1">
+                        {views[i].drink}
+                      </h5>
 
-                  <img
-                    src={"/assets/3/3.jpg"}
-                    className="card-img-top"
-                    alt="..."
-                    style={{ height: "100px", width: "100px" }}
-                  />
-                  <div className="card-body">
-                    <p className="card-text">식당 : {내거[i].식당}</p>
-                    <p className="card-text">종류 : {내거[i].종류}</p>
-                    <p className="card-text">위치 : {내거[i].위치}</p>
-                    <p className="card-text">평균가격 : {내거[i].평균가격}</p>
-                    <p className="card-text">특징 : {내거[i].특징}</p>
-                    <button
-                      className="btn btn-dark mt-5 d-grid gap-2 col-6 mx-auto"
-                      onClick={() => {
-                        axios
-                          .post(
-                            "/delete",
-                            {
-                              data: 내거[i].삭제용,
-                            },
-                            { withCredentials: true }
-                          )
-                          .then((결과) => {
-                            // setState(!state);
-                            console.log(결과);
-                            결과.data === "삭제완료" &&
-                              alert("삭제가 완료 되었습니다. ");
-
-                            setView(
-                              views.filter((view) => view.id !== 내거[i].삭제용)
-                            );
-
-                            내거 = views.filter(
-                              (e) => e.id == sessionStorage.getItem("ID")
-                            );
-                            console.log(내거);
-                            // 새로고침 함수 - 안먹음
-                            // location.replace("/");
-                            // history.go(0);
-                          });
-                      }}
-                    >
-                      삭제하기
-                    </button>
+                      <img
+                        src={"/assets/3/3.jpg"}
+                        className="card-img-top p-1"
+                        alt="..."
+                        style={{ height: "10rem;" }}
+                      />
+                      <div className="card-body">
+                        <p className="card-text">
+                          <strong>식당</strong> : {views[i].식당}
+                        </p>
+                        <p className="card-text">
+                          <strong>종류</strong> : {views[i].종류}
+                        </p>
+                        <p className="card-text">
+                          <strong>위치</strong> : {views[i].위치}
+                        </p>
+                        <p className="card-text">
+                          <strong>평균가격</strong> : {views[i].평균가격}
+                        </p>
+                        <p className="card-text">
+                          <strong>특징</strong> : {views[i].특징}
+                        </p>
+                        <button
+                          className="btn btn-dark mt-3 d-grid gap-2 col-6 mx-auto"
+                          onClick={() => {
+                            axios
+                              .post(
+                                "/delete",
+                                {
+                                  data: views[i].삭제용,
+                                },
+                                { withCredentials: true }
+                              )
+                              .then((결과) => {
+                                // setState(!state);
+                                console.log(결과);
+                                결과.data === "삭제완료" &&
+                                  alert("삭제가 완료 되었습니다. ");
+                                // views = views.filter((e) => e.id == sessionStorage.getItem("ID"));
+                                // console.log(views);
+                                // setView([...결과]);
+                                // 새로고침 함수 - 안먹음
+                                // location.replace("/");
+                                // history.go(0);
+                              })
+                              .then(
+                                axios
+                                  .post("/mypage", { data: ID })
+                                  .then((응답) => {
+                                    갖고온거 = 응답.data;
+                                    console.log("갖고온거", 갖고온거);
+                                    setView([...갖고온거]);
+                                  })
+                              );
+                          }}
+                        >
+                          삭제하기
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              {/* {console.log(내거[i].삭제용)} */}
-            </div>
-          );
-        })}
+              );
+            })}
+        </div>
+      </div>
     </>
   );
 }
