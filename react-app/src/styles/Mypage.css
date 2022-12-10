@@ -8,3 +8,9 @@
 .containerBox2{
   --bs-bg-opacity: .8
 }
+
+.press_btn { 
+  background: rgb(59, 42, 57) !important;
+  color: #fff !important;
+  font-weight: bold;
+}
