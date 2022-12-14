@@ -152,6 +152,7 @@ function Mypage() {
             views.map((v, i) => {
               return (
                 <div className="col-6 col-md-4 col-lg-3 col-xl-2 pt-3" key={i}>
+                  
                   {/* style={state ? hidden : active} */}
                   <div className="d-flex justify-content-center">
                     <div className="card h-100" style={{ width: "18rem;" }}>

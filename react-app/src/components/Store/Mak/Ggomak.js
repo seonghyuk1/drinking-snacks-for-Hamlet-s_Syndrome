@@ -18,7 +18,7 @@ function Ggomak({ foodCago, 내거, Mine }) {
               return (
                 <div class="col-6 col-xl-3 mx-auto">
                   <div class="card mb-3 cardSize" key={i}>
-                    <img class="card-img" src={"/assets/4/4.jpg"} alt="..." height="1000" />
+                    <img class="card-img" src={`/assets/snacks/4/Ggomak/${i}.jpg`} alt="..." height="600px" />
                     <div class="bg-dark card-img-overlay text-white d-flex flex-column justify-content-center storeOpacity">
                       <div className="text-center p-3">
                         <img

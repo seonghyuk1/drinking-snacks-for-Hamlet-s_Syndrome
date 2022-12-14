@@ -1,18 +1,18 @@
-/* 
-
-.font-500{
-	font-weight:500;	
+/* .font-500 {
+  font-weight: 500;
 }
 
-
-.press_btn { 
-    background: rgb(59, 42, 57) !important;
-    color: #fff !important;
-    font-weight: bold;
+.press_btn {
+  background: rgb(59, 42, 57) !important;
+  color: #fff !important;
+  font-weight: bold;
 }
 
-.arrow{
-    color:gray;
-    font-weight: bold;
+.arrow {
+  color: gray;
+  font-weight: bold;
 }
- */
+
+.box {
+  height: 100vh;
+} */

@@ -108,8 +108,8 @@ function ChangeNickname() {
         </div>
       </nav>
 
-      <div className=" bg-light rounded m-3 p-3 containerBox">
-      <div class="border p-3 container col-8  m-2 bg-light rounded position-absolute top-50 start-50 translate-middle rounded-8">
+      <div className=" bg-light rounded m-3 p-3 containerBox  d-flex align-items-center">
+      <div className=" border bg-light p-3 container col-8 m-2 rounded col rounded mx-auto ">
         <h3 className="pt-2">닉네임 변경</h3>
         <form onSubmit={submitHandler}>
           {/* <label className="p-3 font-500">현재 닉네임</label>
