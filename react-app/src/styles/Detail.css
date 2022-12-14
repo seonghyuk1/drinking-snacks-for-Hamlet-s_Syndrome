@@ -1,7 +1,7 @@
 .test {
 
     align-items: center;
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
     justify-content: center;
     text-align: center;
     display: flex;
@@ -15,3 +15,21 @@
     background-color: blue;
   } */
 
+  .storeOpacity{
+    --bs-bg-opacity: .6;
+}
+
+.storeOpacity2{
+  --bs-bg-opacity: .8;
+}
+
+.cardSize{
+  width: 18rem;
+  height: 20rem;
+}
+
+.press_btn { 
+  background: rgb(59, 42, 57) !important;
+  color: #fff !important;
+  font-weight: bold;
+}

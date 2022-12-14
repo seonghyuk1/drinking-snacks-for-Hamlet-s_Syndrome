@@ -1,6 +1,7 @@
 /* eslint-disable*/
 import axios from "axios";
 import { useState } from "react";
+import "../../../styles/Store.css"
 
 function Jock({ foodCago, 내거, Mine }) {
   const [like, setLike] = useState([false, false, false, false]);
@@ -10,15 +11,16 @@ function Jock({ foodCago, 내거, Mine }) {
 
   return (
     <>
-      <div style={{ display: "flex", justifyContent: "space-evenly" }}>
+      <div className="container">
+        <div className="row mx-auto pt-4">
         {foodCago &&
           foodCago.족발.map((v, i) => {
             return (
-              <div class="card mb-3 h-100" style={{ maxWidth: 500 }} key={i}>
-                <img src="..." class="card-img-top" />
-                <div class="card-body">
-                  <div>
-                    <h5 class="card-title">{foodCago.족발[i].식당}</h5>
+              <div class="col-6 col-xl-3 mx-auto">
+              <div class="card mb-3 cardSize" key={i} >
+                <img  class="card-img" src={"/assets/3/3.jpg"} alt="..." height="1000" />
+                <div class="bg-dark card-img-overlay text-white d-flex flex-column justify-content-center storeOpacity">
+                  <div className="text-center p-3">  
                     <img
                       // src={내거[i].좋아요 ? process.env.PUBLIC_URL + "/assets/heart.png" : process.env.PUBLIC_URL + "/assets/em_heart.png"}
                       src={like[i] ? process.env.PUBLIC_URL + "/assets/heart.png" : process.env.PUBLIC_URL + "/assets/em_heart.png"}
@@ -46,15 +48,18 @@ function Jock({ foodCago, 내거, Mine }) {
                       style={{ width: 50, height: 50 }}
                     />
                   </div>
-                  <p class="card-text">위치 : {foodCago.족발[i].위치}</p>
-                  <p class="card-text">특징 : {foodCago.족발[i].특징}</p>
-                  <p class="card-text">평균가격 : {foodCago.족발[i].가격}</p>
+                  
+                  <h5 class="card-title">{foodCago.족발[i].식당}</h5>
+                  <p class="card-text"><strong>위치</strong> : {foodCago.족발[i].위치}</p>
+                  <p class="card-text"><strong>특징</strong> : {foodCago.족발[i].특징}</p>
+                  <p class="card-text"><strong>평균가격</strong> : {foodCago.족발[i].가격}</p>
                 </div>
+              </div>
               </div>
             );
           })}
+        </div>
 
-        <Mine />
       </div>
     </>
   );

@@ -1,6 +1,6 @@
 .chat_container {
     /* width: 250px; */
-    height: 35vh;
+    height: 33vh;
     overflow: auto;
   }
 
@@ -21,7 +21,7 @@ border-radius: 10px;
 }
 
 .chat_container_login{
-  height: 50vh;
+  height: 47vh;
   display:flex;
   align-items:center;
 

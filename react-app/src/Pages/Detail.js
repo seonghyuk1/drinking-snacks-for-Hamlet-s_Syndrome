@@ -78,20 +78,32 @@ function Detail() {
   let Mine = () => {
     return (
       <>
-        <div class="btn btn-light">
-          <div class="btn btn-danger m-2">내 찜목록</div>
-          <br />
-          {내거.length != 0 ? (
-            내거.map((v, i) => {
-              return (
-                <h1 class="btn btn-dark mx-3">
-                  {내거[i].drink}-{내거[i].식당}-{내거[i].종류}-{내거[i].평균가격}
-                </h1>
-              );
-            })
-          ) : (
-            <h1>텅~</h1>
-          )}
+        <div className="test2">
+          <div class=" col-6 bg-light rounded p-1 mx-auto shadow-lg">
+            <div className="pt-2">
+              <Link to="/Mypage">
+                <div class="btn col-lg-4 btn-lg  press_btn rounded mx-auto ">
+                  <h4 className="text-center text-light ">찜 목록</h4>
+                </div>
+              </Link>
+            </div>
+            <div className="p-2">
+              {내거.length != 0 ? (
+                내거.map((v, i) => {
+                  return (
+                    <p class="bg-dark mx-3 p-2 text-light rounded storeOpacity">
+                      {/* {내거[i].drink}-{내거[i].식당}-{내거[i].종류}-{내거[i].평균가격} */}
+                      {내거[i].식당}-{내거[i].평균가격}
+                    </p>
+                  );
+                })
+              ) : (
+                <div className="p-1">
+                  <h4 className="text-secondary">가게를 찜해보세요😋</h4>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </>
     );
@@ -133,57 +145,105 @@ function Detail() {
     돼지고기김치찜: <Pig foodCago={foodCago} 내거={내거} Mine={Mine} />,
     두부김치: <PopuKim foodCago={foodCago} 내거={내거} Mine={Mine} />,
   };
-  const images = [{ url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }];
+  const images = [
+    { url: "/assets/soju.jpg" },
+    { url: "/assets/soju.jpg" },
+    { url: "/assets/soju.jpg" },
+    { url: "/assets/soju.jpg" },
+    { url: "/assets/soju.jpg" },
+    { url: "/assets/soju.jpg" },
+    { url: "/assets/soju.jpg" },
+  ];
   return (
-    <div className="test2">
-      <div class="container mt-2 p-1 rounded shadow-lg col-1 ">
+    <div className="">
+      <div class="container mt-5 p-1 rounded shadow-lg">
         <h2 class="m-3 text-center text-light">
-          <h1>{category.drink}</h1>
+          <strong>어떤 안주를 먹을까요?🍟</strong>
         </h2>
       </div>
-      <img class="border border-dark" src={`/assets/${id}/${id}.jpg`} id="liveToastBtn"></img>
+
+      {/* 윗라인(술+추천) */}
+      <div className="container pt-4">
+        <div class="row mx-auto">
+          <div className="col-lg-3 mx-auto test2">
+            <div class="mt-2 p-1 ">
+              <h2 class="m-3 text-center text-light">음료 Pick✔</h2>
+            </div>
+            <img
+              class="border border-secondary rounded img-fluid shadow-lg"
+              src={`/assets/${id}/${id}.jpg`}
+              id="liveToastBtn"
+              width="250"
+              height="250"
+            ></img>
+            <div class="mt-2 p-1 ">
+              <h2 class="m-3 text-center text-light">{category.drink}</h2>
+            </div>
+          </div>
+
+          <div className="col-lg-9 bg-light rounded storeOpacity">
+            <div class="container m-2 p-1 rounded shadow-lg">
+              <h2 class="m-3 text-center text-light">
+                <strong>어울리는 안주들 💯</strong>
+              </h2>
+            </div>
+            {/* <div class="mt-2 p-1">
+            <h2 class="m-3 text-center text-light">
+              <strong>어울리는 안주들 💯</strong>
+            </h2>
+          </div> */}
+            <div className="test p-3">
+              <SimpleImageSlider
+                width={600}
+                height={400}
+                images={images}
+                showBullets={true}
+                showNavs={true}
+                autoPlay={true}
+                autoPlayDelay={3.5}
+                onClick={(idx) => {
+                  idx == 1 && console.log("hi");
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* detail에서 Mine은 한발짝 느립니다. 안 쪽 프랍스로 준 거는 바로 저기서 해결하기떄문 */}
-      <Mine />
-      <div class="container mt-2 p-1 rounded shadow-lg col-4">
-        <h2 class="m-3 text-center text-light">
-          <strong>어울리는 안주들 💯 </strong>
-        </h2>
+      <div className="test2">
+        <div className="container bg-light rounded shadow-lg storeOpacity">
+          {category.안주개수 &&
+            category.안주개수.map((v, i) => {
+              return (
+                <button
+                  type="button"
+                  class="btn btn-lg press_btn g-2 m-3 rounded-pill shadow-sm"
+                  key={i}
+                  name={v}
+                  onClick={handleClickButton}
+                >
+                  {v}
+                </button>
+              );
+            })}
+        </div>
       </div>
-      <div className="test">
-        <SimpleImageSlider
-          width={896}
-          height={504}
-          images={images}
-          showBullets={true}
-          showNavs={true}
-          autoPlay={true}
-          autoPlayDelay={2.0}
-          onClick={(idx) => {
-            idx == 1 && console.log("hi");
-          }}
-        />
-      </div>
-      <div>
-        {category.안주개수 &&
-          category.안주개수.map((v, i) => {
-            return (
-              <button type="button" class="btn btn-light" key={i} name={v} onClick={handleClickButton}>
-                {v}
-              </button>
-            );
-          })}
-      </div>
-      <button onClick={handleClickButton}>닫기</button>
+      {/* <button onClick={handleClickButton}>닫기</button> */}
 
       {/* 화면보여주기 */}
-      {content && selectComponent[content]}
+      <div className="container bg-light rounded shadow-lg storeOpacity2">
+        {content && selectComponent[content]}
+        <Mine />
+      </div>
 
-      <button className="btn btn-secondary mx-3">
-        <Link to="/Main" style={{ textDecoration: "none", color: "white" }}>
-          다른 술 고를래요
-        </Link>
-      </button>
+      <div className="text-center">
+        <button class="col-xl-2 btn btn-lg press_btn g-2 m-3">
+          <Link to="/Main" style={{ textDecoration: "none", color: "white" }}>
+            다른 술 고를래요
+          </Link>
+        </button>
+      </div>
     </div>
   );
 }

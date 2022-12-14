@@ -21,7 +21,7 @@ export default function UserLogin({ setUser, chatOn, setChatOn }) {
   }
 
   return (
-    <div class="container col-8 m-1 p-3 bg-light rounded shadow-lg mx-auto  chat_container_login  ">
+    <div class="container col-9 m-1 p-3 bg-light rounded shadow-lg mx-auto  chat_container_login  ">
       <div class=" container">
         <h4 class="text-center m-2 p-2">
           <strong>술덕후 모임</strong>
