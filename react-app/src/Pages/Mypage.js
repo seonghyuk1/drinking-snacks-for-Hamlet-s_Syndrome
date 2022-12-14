@@ -69,7 +69,6 @@ function Mypage() {
   return (
     <>
       {/* 메뉴바를 만들어서 해당 기능으로 이동 */}
-
       <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -100,53 +99,45 @@ function Mypage() {
           </div>
         </div>
       </nav>
-
       {/* 룰렛 추가(찜이 0개 시, 보이지 않게) */}
-      {data.length!=0 && (
-      <div align="center" className="container pt-3 rounded">
-        <div class="container mt-5 p-1 rounded shadow-lg col-lg-8">
-          <h2 class="m-3 text-center text-light">
-            <strong>골라요! 룰렛</strong>
-          </h2>
-        </div>
-        <div className="pt-3 pb-3 ">
-          <Wheel
-            mustStartSpinning={mustSpin}
-            prizeNumber={prizeNumber}
-            data={data}
-            outerBorderColor={["#f2f2f2"]}
-            outerBorderWidth={[7]}
-            innerBorderColor={["#f2f2f2"]}
-            radiusLineColor={["#f2f2f2"]}
-            radiusLineWidth={[6]}
-            textColors={["#ffffff"]}
-            fontSize={[17]}
-            perpendicularText={[false]}
-            backgroundColors={[
-              "#2d3230",
-              "#605655",
-              "#be4d4a",
-              "#f5c4c2",
-              "#cea69e",
-              "#583028",
-            ]}
-            onStopSpinning={() => {
-              setMustSpin(false);
-            }}
-          />
-        </div>
-        <div className="bg-light rounded col-lg-6 shadow-lg">
-          <h4 className="p-4">{!mustSpin && state ? data[prizeNumber].option : "찜한 가게 중 하나를 골라드려요"}</h4>
-        </div>
-        
-        <div className="pt-2">
-          <button className="btn press_btn btn-lg " onClick={handleSpinClick}>
-            룰렛 돌리기
-          </button>
-        </div>
-        
-      </div>)};
+      {data.length != 0 && (
+        <div align="center" className="container pt-3 rounded">
+          <div class="container mt-5 p-1 rounded shadow-lg col-lg-8">
+            <h2 class="m-3 text-center text-light">
+              <strong>골라요! 룰렛</strong>
+            </h2>
+          </div>
+          <div className="pt-3 pb-3 ">
+            <Wheel
+              mustStartSpinning={mustSpin}
+              prizeNumber={prizeNumber}
+              data={data}
+              outerBorderColor={["#f2f2f2"]}
+              outerBorderWidth={[7]}
+              innerBorderColor={["#f2f2f2"]}
+              radiusLineColor={["#f2f2f2"]}
+              radiusLineWidth={[6]}
+              textColors={["#ffffff"]}
+              fontSize={[17]}
+              perpendicularText={[false]}
+              backgroundColors={["#2d3230", "#605655", "#be4d4a", "#f5c4c2", "#cea69e", "#583028"]}
+              onStopSpinning={() => {
+                setMustSpin(false);
+              }}
+            />
+          </div>
+          <div className="bg-light rounded col-lg-6 shadow-lg">
+            <h4 className="p-4">{!mustSpin && state ? data[prizeNumber].option : "찜한 가게 중 하나를 골라드려요"}</h4>
+          </div>
 
+          <div className="pt-2">
+            <button className="btn press_btn btn-lg " onClick={handleSpinClick}>
+              룰렛 돌리기
+            </button>
+          </div>
+        </div>
+      )}
+      ;
       <div className=" bg-light rounded m-3 p-3 containerBox2 ">
         <div className="row">
           {views.length == 0 && (
@@ -161,19 +152,13 @@ function Mypage() {
             views.map((v, i) => {
               return (
                 <div className="col-6 col-md-4 col-lg-3 col-xl-2 pt-3" key={i}>
+                  
                   {/* style={state ? hidden : active} */}
                   <div className="d-flex justify-content-center">
                     <div className="card h-100" style={{ width: "18rem;" }}>
-                      <h5 className="text-center card-title p-1">
-                        {views[i].drink}
-                      </h5>
-
-                      <img
-                        src={"/assets/3/3.jpg"}
-                        className="card-img-top p-1"
-                        alt="..."
-                        style={{ height: "10rem;" }}
-                      />
+                      <h5 className="text-center card-title p-1">{views[i].drink}</h5>
+                      <img src={views[i].사진} className="card-img-top p-1" alt="..." style={{ height: "10rem;" }} />
+                      {/* <img src={"/assets/3/3.jpg"} className="card-img-top p-1" alt="..." style={{ height: "10rem;" }} /> */}
                       <div className="card-body">
                         <p className="card-text">
                           <strong>식당</strong> : {views[i].식당}
@@ -204,8 +189,7 @@ function Mypage() {
                               .then((결과) => {
                                 // setState(!state);
                                 console.log(결과);
-                                결과.data === "삭제완료" &&
-                                  alert("삭제가 완료 되었습니다. ");
+                                결과.data === "삭제완료" && alert("삭제가 완료 되었습니다. ");
                                 // views = views.filter((e) => e.id == sessionStorage.getItem("ID"));
                                 // console.log(views);
                                 // setView([...결과]);
@@ -214,13 +198,11 @@ function Mypage() {
                                 // history.go(0);
                               })
                               .then(
-                                axios
-                                  .post("/mypage", { data: ID })
-                                  .then((응답) => {
-                                    갖고온거 = 응답.data;
-                                    console.log("갖고온거", 갖고온거);
-                                    setView([...갖고온거]);
-                                  })
+                                axios.post("/mypage", { data: ID }).then((응답) => {
+                                  갖고온거 = 응답.data;
+                                  console.log("갖고온거", 갖고온거);
+                                  setView([...갖고온거]);
+                                })
                               );
                           }}
                         >

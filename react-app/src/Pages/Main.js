@@ -188,6 +188,11 @@ function Main() {
 
           <div className="col-lg-7 ">
             <div class="mx-auto">
+            {/* <div class="container col-10 mt-2 p-1 rounded shadow-lg">
+              <h2 class="m-3 text-center text-light">
+                <strong>✨Weekly✨ 안주</strong>
+              </h2>
+            </div> */}
               <ChatContainer />
             </div>
           </div>

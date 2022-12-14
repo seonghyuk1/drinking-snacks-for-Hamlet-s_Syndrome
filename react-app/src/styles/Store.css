@@ -4,6 +4,8 @@
 }
 
 .cardSize{
-    width: 18rem;
+    width: fit-content;
+    /* width: 18rem; */
     height: 20rem;
+    
   }
