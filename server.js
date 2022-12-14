@@ -55,7 +55,7 @@ MongoClient.connect(process.env.DB_URL, function (에러, client) {
   db = client.db("kwic");
 
   server.listen(process.env.PORT, function () {
-    // console.log("80에서 돌아가는 중");
+    console.log("80에서 돌아가는 중");
   });
 });
 
@@ -83,7 +83,7 @@ app.post("/api/Signup", function (요청, 응답) {
 app.post("/api/Signup/checkID", function (요청, 응답) {
   db.collection("login").findOne({ 아이디: 요청.body.id }, function (에러, 결과) {
     // if (에러) return console.log(에러);
-    console.log(결과);
+    // console.log(결과);
     if (결과) {
       응답.json("존재");
     } else {
@@ -114,11 +114,11 @@ app.get("/food", function (요청, 응답) {
 
 // 데이터베이스 암호화 비밀번호 전달 API
 app.get("/api/pw", function (요청, 응답) {
-  console.log(응답);
+  // console.log(응답);
   db.collection("login")
     .find()
     .toArray(function (에러, 결과) {
-      console.log(결과);
+      // console.log(결과);
       응답.json(결과);
     });
 });
@@ -130,8 +130,8 @@ app.post("/api/login", function (요청, 응답) {
 
     if (아이디결과) {
       db.collection("login").findOne({ 패스워드: 요청.body.pw }, function (에러, 비번결과) {
-        console.log("폼 입력 비번", 요청.body.form_pw);
-        console.log("암호화 비번", 요청.body.pw);
+        // console.log("폼 입력 비번", 요청.body.form_pw);
+        // console.log("암호화 비번", 요청.body.pw);
 
         if (비번결과) {
           // 폼 입력 비번을 암호화 된 비밀번호와 Compare
@@ -139,7 +139,7 @@ app.post("/api/login", function (요청, 응답) {
             if (result) {
               jwt.sign({ foo: "bar" }, "secret-key", { expiresIn: "1d" }, (err, token) => {
                 if (err) res.status(400).json({ error: "에러요" });
-                console.log(token);
+                // console.log(token);
                 // 생성된 토큰 전송
                 응답.json(token);
               });
@@ -181,7 +181,7 @@ app.post("/mypage", function (요청, 응답) {
   db.collection("selection")
     .find({ id: 요청.body.data })
     .toArray(function (에러, 결과) {
-      console.log("아래", 결과);
+      // console.log("아래", 결과);
       // console.log(결과);
       응답.json(결과);
     });
@@ -233,7 +233,7 @@ app.post("/changePW", function (req, res) {
 //회원탈퇴
 app.post("/resign", function (req, res) {
   db.collection("selection").deleteMany({ id: req.body.id }, function (err, result) {
-    console.log(result);
+    // console.log(result);
     // 응답.json("삭제완료");
   });
   db.collection("login").findOne({ 아이디: req.body.id }, function (err, result) {

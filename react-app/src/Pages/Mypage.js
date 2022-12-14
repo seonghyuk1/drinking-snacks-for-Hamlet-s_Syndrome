@@ -11,10 +11,8 @@ function Mypage() {
   let [views, setView] = useState([]);
   const ID = sessionStorage.getItem("ID");
   let [state, setState] = useState(false);
-  let [test, setTest] = useState([]);
 
   let 갖고온거 = [];
-  let 내거 = views.filter((e) => e.id == sessionStorage.getItem("ID"));
   useEffect(() => {
     axios.post("/mypage", { data: ID }).then((응답) => {
       setView([...views, ...응답.data]);
@@ -96,7 +94,7 @@ function Mypage() {
               textColors={["#ffffff"]}
               fontSize={[17]}
               perpendicularText={[false]}
-              backgroundColors={["#474073", "#4F4D8C", "#8F8EBF", "#EE4159", "#262626"]}
+              backgroundColors={["#474073", "#4F4D8C", "#8F8EBF", "#2E4159", "#262626"]}
               onStopSpinning={() => {
                 setMustSpin(false);
               }}
