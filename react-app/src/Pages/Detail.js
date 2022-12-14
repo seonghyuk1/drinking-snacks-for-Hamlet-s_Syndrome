@@ -71,9 +71,9 @@ function Detail() {
     });
   }, []);
 
-  console.log("디비갖고온 정보", category);
-  console.log("디비갖고온 정보22", foodCago);
-  console.log("내거", 내거);
+  // console.log("디비갖고온 정보", category);
+  // console.log("디비갖고온 정보22", foodCago);
+  // console.log("내거", 내거);
 
   let Mine = () => {
     return (
@@ -145,7 +145,7 @@ function Detail() {
     돼지고기김치찜: <Pig foodCago={foodCago} 내거={내거} Mine={Mine} />,
     두부김치: <PopuKim foodCago={foodCago} 내거={내거} Mine={Mine} />,
   };
-  const images = [{ url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }];
+  const images = [{ url: `/assets/snacks/${id}/0.jpg` }, { url: `/assets/snacks/${id}/1.jpg` }, { url: `/assets/snacks/${id}/2.jpg` }];
   return (
     <div className="">
       <div class="container mt-5 p-1 rounded shadow-lg">
@@ -179,18 +179,7 @@ function Detail() {
             </h2>
           </div> */}
             <div className="test p-3">
-              <SimpleImageSlider
-                width={600}
-                height={400}
-                images={images}
-                showBullets={true}
-                showNavs={true}
-                autoPlay={true}
-                autoPlayDelay={3.5}
-                onClick={(idx) => {
-                  idx == 1 && console.log("hi");
-                }}
-              />
+              <SimpleImageSlider width={600} height={400} images={images} showBullets={true} showNavs={true} autoPlay={true} autoPlayDelay={3.5} />
             </div>
           </div>
         </div>

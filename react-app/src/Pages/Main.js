@@ -31,7 +31,15 @@ function Main() {
       myJWT == null && navigate("/");
     }
   }, []);
-  const images = [{ url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }];
+  const images = [
+    { url: "/assets/snacks/0/Jock/0.jpg" },
+    { url: "/assets/snacks/3/Chicken/0.jpg" },
+    { url: "/assets/snacks/2/Gambas/0.jpg" },
+    { url: "/assets/snacks/3/Pizza/0.jpg" },
+    { url: "/assets/snacks/3/Sausage/0.jpg" },
+    { url: "/assets/snacks/4/Bossam/0.jpg" },
+    { url: "/assets/snacks/4/Pig/2.jpg" },
+  ];
   return (
     <>
       <div class="container mt-5 p-1 rounded shadow-lg col-7">
@@ -49,7 +57,7 @@ function Main() {
               </div>
               <ul className="social-icons">
                 <li>
-                  <Link to={"/detail/0"} onClick={() => {}}>
+                  <Link to={"/detail/0"}>
                     <p className=" fa fa-facebook">마시는 것이 힘이다</p>
                   </Link>
                 </li>
@@ -160,11 +168,6 @@ function Main() {
 
           <div className="col-lg-7 ">
             <div class="mx-auto">
-              {/* <div class="container col-10 mt-2 p-1 rounded shadow-lg">
-              <h2 class="m-3 text-center text-light">
-                <strong>✨Weekly✨ 안주</strong>
-              </h2>
-            </div> */}
               <div class="container mt-2 p-1 rounded shadow-lg my-3 col-9">
                 <h2 class="m-3 text-center text-light">
                   <strong>술덕후 모임소 🥂</strong>
