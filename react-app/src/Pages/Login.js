@@ -81,7 +81,7 @@ function Login() {
 
   return (
     <>
-      <div class="container col-8  m-2 bg-white rounded position-absolute top-50 start-50 translate-middle rounded-8 shadow-lg">
+      <div class="container col-8 m-2 bg-white rounded position-absolute top-50 start-50 translate-middle rounded-8 shadow-lg">
         <div class="row p-5 col-12">
           <div class="col-lg-8 col-4 mx-auto bg-white">
             <div class="m-2 text-center">
@@ -93,9 +93,9 @@ function Login() {
               <div class="border rounded m-3 p-3">
                 <form onSubmit={submitHandler}>
                   <label class="p-3 font-500">ID</label>
-                  <input type="text" class="form-control form-control-lg mb-3 rounded-pill" placeholder="Input your ID" value={id} onChange={idHandler}></input>
+                  <input type="text" class="form-control form-control-lg mb-3 rounded-pill" placeholder="아이디를 입력하세요." value={id} onChange={idHandler}></input>
                   <label class="p-3 font-500">Password</label>
-                  <input type="password" class="form-control form-control-lg rounded-pill" placeholder="Input your PW" value={pw} onChange={pwHandler}></input>
+                  <input type="password" class="form-control form-control-lg rounded-pill" placeholder="비밀번호를 입력하세요." value={pw} onChange={pwHandler}></input>
 
                   <button class="btn btn-lg press_btn mt-5 d-grid gap-2 col-11 mx-auto" type="submit">
                     LOGIN

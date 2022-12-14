@@ -34,9 +34,9 @@ function Main() {
   const images = [{ url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }];
   return (
     <>
-      <div class="container mt-5 p-1 rounded shadow-lg">
+      <div class="container mt-5 p-1 rounded shadow-lg col-7">
         <h2 class="m-3 text-center text-light">
-          <strong>무슨 술을 마실까요?🍻</strong>
+          <strong>어떤 술을 마실까요? 🍻</strong>
         </h2>
       </div>
 
@@ -148,9 +148,9 @@ function Main() {
       <div class="container  mt-5 p-1 rounded ">
         <div className="mt-5 row mx-auto ">
           <div className="col-lg-5  mx-auto">
-            <div class="container mt-2 p-1 rounded shadow-lg">
+            <div class="container mt-2 p-1 rounded shadow-lg col-12">
               <h2 class="m-3 text-center text-light">
-                <strong>✨Weekly✨ 안주</strong>
+                <strong>주간베스트 안주 🍽</strong>
               </h2>
             </div>
             <div class="pt-3 mx-auto testBOX ">
@@ -160,11 +160,17 @@ function Main() {
 
           <div className="col-lg-7 ">
             <div class="mx-auto">
-            {/* <div class="container col-10 mt-2 p-1 rounded shadow-lg">
+              {/* <div class="container col-10 mt-2 p-1 rounded shadow-lg">
               <h2 class="m-3 text-center text-light">
                 <strong>✨Weekly✨ 안주</strong>
               </h2>
             </div> */}
+              <div class="container mt-2 p-1 rounded shadow-lg my-3 col-9">
+                <h2 class="m-3 text-center text-light">
+                  <strong>술덕후 모임소 🥂</strong>
+                </h2>
+              </div>
+
               <ChatContainer />
             </div>
           </div>
@@ -177,65 +183,5 @@ function Main() {
     </>
   );
 }
-
-// const content = [
-//   {
-//       cate : {
-//           sentence: "문구창",
-//           drink : "소주",
-//           price_info : "평균가격 4,500원 | 평균도수 16"
-//       }
-//   },
-//   {
-//       cate : {
-//           sentence: "문구창",
-//           drink : "양주",
-//           price_info : "평균가격 90,000원 | 평균도수 35"
-//       }
-//   },
-//   {
-//       cate : {
-//           sentence: "문구창",
-//           drink : "와인",
-//           price_info : "평균가격 40,000원 | 평균도수 9"
-//       }
-//   },
-//   {
-//       cate : {
-//           sentence: "문구창",
-//           drink : "맥주",
-//           price_info : "평균가격 5,000원 | 평균도수 5"
-//       }
-//   },
-//   {
-//       cate : {
-//           sentence: "문구창",
-//           drink : "막걸리",
-//           price_info : "평균가격 4,000원 | 평균도수 5"
-//       }
-//   }
-// ]
-
-// {content.map((v, i)=>{
-//   <div className="card-wrapper">
-//   <div className="card">
-//     <div className="card-image">
-//       <img src={`/assets/${i}/${i}.jpg`} />
-//     </div>
-//     <ul className="social-icons">
-//       <li>
-//         <Link to={`/detail/${i}`} onClick={() => {}}>
-//           <p className="fa fa-facebook">{v.cate.sentence}</p>
-//         </Link>
-//       </li>
-//     </ul>
-//     <div className="details">
-//       <h2>
-//         {v.cate.drink} <span className="job-title">{v.price_info}</span>
-//       </h2>
-//     </div>
-//   </div>
-// </div>
-// })}
 
 export default Main;

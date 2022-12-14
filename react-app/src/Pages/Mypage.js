@@ -42,30 +42,6 @@ function Mypage() {
     setState(true);
   };
 
-  // async function submitHandler(e) {
-  //   e.preventDefault();
-  //   try {
-  //     await axios
-  //       .delete("/delete", {
-  //         data: {
-  //           // 서버에서 req.body.{} 로 확인할 수 있다.
-  //           deleteId: 내거._id,
-  //         },
-  //         withCredentials: true,
-  //       })
-  //       .then((res) => {
-  //         setState(!state);
-  //         //fadeout 시키면서 view에 있는 해당 내용 삭제
-  //         // setUsers(users.filter(user => user.id !== id));
-  //       })
-  //       .then((res) => {
-  //         setView(views.filter((view) => view.삭제용 !== 내거.삭제용));
-  //       });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
-
   return (
     <>
       {/* 메뉴바를 만들어서 해당 기능으로 이동 */}
@@ -120,7 +96,7 @@ function Mypage() {
               textColors={["#ffffff"]}
               fontSize={[17]}
               perpendicularText={[false]}
-              backgroundColors={["#2d3230", "#605655", "#be4d4a", "#cea69e", "#583028"]}
+              backgroundColors={["#474073", "#4F4D8C", "#8F8EBF", "#EE4159", "#262626"]}
               onStopSpinning={() => {
                 setMustSpin(false);
               }}
@@ -152,7 +128,6 @@ function Mypage() {
             views.map((v, i) => {
               return (
                 <div className="col-6 col-md-4 col-lg-3 col-xl-2 pt-3" key={i}>
-                  
                   {/* style={state ? hidden : active} */}
                   <div className="d-flex justify-content-center">
                     <div className="card h-100" style={{ width: "18rem;" }}>

@@ -65,6 +65,7 @@ function Jock({ foodCago, 내거, Mine }) {
                 </div>
               );
             })}
+          <Mine />
         </div>
       </div>
     </>

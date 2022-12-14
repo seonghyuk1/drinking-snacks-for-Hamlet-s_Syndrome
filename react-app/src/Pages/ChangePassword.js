@@ -50,13 +50,13 @@ function ChangePassword() {
       await axios.get("api/pw").then((응답) => {
         for (let i = 0; i < 응답.data.length; i++) {
           // 암호화된 비밀번호를 변수에 저장
-          if (응답.data[i].아이디 === sessionID) {
+          if (응답.data[i].아이디 === ID) {
             saltPw = 응답.data[i].패스워드;
           }
         }
         // console.log(saltPw);
         let body = {
-          id: sessionID, // 현재 로그인된 아이디 정보 가져와야함
+          id: ID, // 현재 로그인된 아이디 정보 가져와야함
           current: currentPW,
           hash: saltPw,
           new: newPW,
@@ -71,6 +71,7 @@ function ChangePassword() {
             alert("기존 비밀번호와 새로운 비밀번호가 동일합니다.");
           } else {
             navigate("/Main");
+            alert("비밀번호 변경이 완료되었습니다.");
           }
         });
       });
@@ -119,37 +120,15 @@ function ChangePassword() {
           <h3 className="pt-2">비밀번호 변경</h3>
           <form onSubmit={submitHandler}>
             <label className="p-3 font-500">현재 비밀번호</label>
-            <input
-              type="password"
-              className="form-control form-control-lg mb-3 rounded-pill"
-              placeholder="현재 사용중인 비밀번호를 입력하세요"
-              value={currentPW}
-              onChange={cPWHandler}
-            ></input>
+            <input type="password" className="form-control form-control-lg mb-3 rounded-pill" placeholder="현재 사용중인 비밀번호를 입력하세요" value={currentPW} onChange={cPWHandler}></input>
 
             <label className="p-3 font-500">비밀번호 변경하기</label>
-            <input
-              type="password"
-              className="form-control form-control-lg rounded-pill"
-              placeholder="새 비밀번호를 입력하세요"
-              value={newPW}
-              onChange={nPWHandler}
-            ></input>
+            <input type="password" className="form-control form-control-lg rounded-pill" placeholder="새 비밀번호를 입력하세요" value={newPW} onChange={nPWHandler}></input>
 
-            <input
-              type="password"
-              className="form-control form-control-lg mt-3 rounded-pill"
-              placeholder="새 비밀번호를 다시 입력하세요"
-              value={renewPW}
-              onChange={rPWHandler}
-            />
+            <input type="password" className="form-control form-control-lg mt-3 rounded-pill" placeholder="새 비밀번호를 다시 입력하세요" value={renewPW} onChange={rPWHandler} />
 
             <div className="d-grid gap-2 col-md-11 mx-auto">
-              <button
-                onSubmit={submitHandler}
-                className="btn btn-lg press_btn mt-5 gap-2 "
-                type="submit"
-              >
+              <button onSubmit={submitHandler} className="btn btn-lg press_btn mt-5 gap-2 " type="submit">
                 변경사항 저장
               </button>
             </div>

@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 import "../../../styles/Store.css";
 
-function BeefStew({ foodCago, 내거, Mine, id }) {
+function BeefStew({ foodCago, 내거, Mine }) {
   const [like, setLike] = useState([false, false, false, false]);
 
   console.log("해당 음식종류", foodCago);
@@ -65,6 +65,7 @@ function BeefStew({ foodCago, 내거, Mine, id }) {
                 </div>
               );
             })}
+          <Mine />
         </div>
       </div>
     </>

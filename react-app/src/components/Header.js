@@ -60,21 +60,21 @@ function Header() {
 
                   <li className="nav-item me-4 ms-auto mt-1">
                     <Link to="/Mypage" style={{ textDecoration: "none", color: "Black " }}>
-                      {/* {NickName ? (
-                    <p className="nav-link disabled  col-12 ">
-                      환영합니다💖! <b>{NickName}</b> 님!
-                    </p>
-                  ) : (
-                    <p className="nav-link disabled  col-12 ">
-                      환영합니다💖! <b>{ID}</b> 님!
-                    </p>
-                  )} */}
-                      {/* NickName && */}
-                      {
+                      {NickName ? (
                         <span className="align-middle ">
-                          환영합니다💖! <b>{NickName}</b> 님!
+                          환영합니다💖! <b>{NickName}</b>님!
                         </span>
-                      }
+                      ) : (
+                        <span className="align-middle ">
+                          환영합니다💖! <b>{ID}</b>님!
+                        </span>
+                      )}
+                      {/* NickName && */}
+                      {/* {
+                        <span className="align-middle ">
+                          환영합니다💖! <b>{NickName}</b>님!
+                        </span>
+                      } */}
                       {/* <p className="nav-link disabled  col-12 ">
                     환영합니다💖! <b>{NickName}</b> 고객님
                   </p> */}

@@ -124,12 +124,12 @@ function Detail() {
     스모어딥: <Smore foodCago={foodCago} 내거={내거} Mine={Mine} />,
     프레첼: <Prechel foodCago={foodCago} 내거={내거} Mine={Mine} />,
     // ===================================================
-    감바스: <Gambas foodCago={foodCago} 내거={내거} Mine={Mine} id={id} />,
-    치즈플래터: <Cheese foodCago={foodCago} 내거={내거} Mine={Mine} id={id} />,
-    하몽: <Hamong foodCago={foodCago} 내거={내거} Mine={Mine} id={id} />,
-    포르치니: <Porchini foodCago={foodCago} 내거={내거} Mine={Mine} id={id} />,
-    비프스튜: <BeefStew foodCago={foodCago} 내거={내거} Mine={Mine} id={id} />,
-    카프레제: <Caf foodCago={foodCago} 내거={내거} Mine={Mine} id={id} />,
+    감바스: <Gambas foodCago={foodCago} 내거={내거} Mine={Mine} />,
+    치즈플래터: <Cheese foodCago={foodCago} 내거={내거} Mine={Mine} />,
+    하몽: <Hamong foodCago={foodCago} 내거={내거} Mine={Mine} />,
+    포르치니: <Porchini foodCago={foodCago} 내거={내거} Mine={Mine} />,
+    비프스튜: <BeefStew foodCago={foodCago} 내거={내거} Mine={Mine} />,
+    카프레제: <Caf foodCago={foodCago} 내거={내거} Mine={Mine} />,
     // ===================================================
     치킨: <Chicken foodCago={foodCago} 내거={내거} Mine={Mine} />,
     피자: <Pizza foodCago={foodCago} 내거={내거} Mine={Mine} />,
@@ -145,8 +145,6 @@ function Detail() {
     돼지고기김치찜: <Pig foodCago={foodCago} 내거={내거} Mine={Mine} />,
     두부김치: <PopuKim foodCago={foodCago} 내거={내거} Mine={Mine} />,
   };
-  console.log("파람스", id);
-
   const images = [{ url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }];
   return (
     <div className="">
@@ -190,7 +188,7 @@ function Detail() {
                 autoPlay={true}
                 autoPlayDelay={3.5}
                 onClick={(idx) => {
-                  idx == 1 && setContent("포르치니");
+                  idx == 1 && console.log("hi");
                 }}
               />
             </div>
@@ -216,7 +214,7 @@ function Detail() {
       {/* 화면보여주기 */}
       <div className="container bg-light rounded shadow-lg storeOpacity2">
         {content && selectComponent[content]}
-        <Mine />
+        {/* <Mine /> */}
       </div>
 
       <div className="text-center">
