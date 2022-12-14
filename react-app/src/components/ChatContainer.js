@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import socketIOClient from "socket.io-client";
+// import io from "socket.io-client";
 import ChatBoxReciever, { ChatBoxSender } from "./ChatBox";
 import InputText from "./InputText";
 import UserLogin from "./ChatUserLogin";
 import "../styles/chat.css";
 
 export default function ChatContainer() {
+  // const socketio = io.connect("http://34.231.209.142/");
+  // 이 부분 추후 서버 배포 주소를 넣어 소켓 열기
   let socketio = socketIOClient("http://localhost:80");
   const [chats, setChats] = useState([]);
   const [user, setUser] = useState(sessionStorage.getItem("Nickname"));

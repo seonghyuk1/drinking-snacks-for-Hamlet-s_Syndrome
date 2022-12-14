@@ -1,7 +1,7 @@
 /* eslint-disable */
 import SimpleImageSlider from "react-simple-image-slider";
 import "../styles/Detail.css";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Fish from "../components/Store/Soju/Fish";
@@ -10,6 +10,34 @@ import Gob from "../components/Store/Soju/Gob";
 import Jock from "../components/Store/Soju/Jock";
 import Sam from "../components/Store/Soju/Sam";
 import Tang from "../components/Store/Soju/Tang";
+// ============================================
+import Ham from "../components/Store/Yang/Ham";
+import Gga from "../components/Store/Yang/Gga";
+import Green from "../components/Store/Yang/Green";
+import Smore from "../components/Store/Yang/Smore";
+import Nacho from "../components/Store/Yang/Nacho";
+import Prechel from "../components/Store/Yang/Prechel";
+// ============================================
+import Caf from "../components/Store/Wine/Caf";
+import BeefStew from "../components/Store/Wine/BeefStew";
+import Cheese from "../components/Store/Wine/Cheese";
+import Gambas from "../components/Store/Wine/Gambas";
+import Hamong from "../components/Store/Wine/Hamong";
+import Porchini from "../components/Store/Wine/Porchini";
+// ============================================
+import Chicken from "../components/Store/Beer/Chicken";
+import Fried from "../components/Store/Beer/Fried";
+import Pizza from "../components/Store/Beer/Pizza";
+import Sausage from "../components/Store/Beer/Sausage";
+import Skewers from "../components/Store/Beer/Skewers";
+import Sheep from "../components/Store/Beer/Sheep";
+// ============================================
+import Bossam from "../components/Store/Mak/Bossam";
+import Ggomak from "../components/Store/Mak/Ggomak";
+import Jeon from "../components/Store/Mak/Jeon";
+import Memil from "../components/Store/Mak/Memil";
+import Pig from "../components/Store/Mak/Pig";
+import PopuKim from "../components/Store/Mak/PopuKim";
 
 function Detail() {
   const ID = sessionStorage.getItem("ID");
@@ -24,7 +52,6 @@ function Detail() {
     setContent(name);
   };
 
-  let navigate = useNavigate();
   let [category, setCategory] = useState([]);
   let [foodCago, setfoodCago] = useState();
   // 들어온 페이지의 id 받아오기
@@ -77,6 +104,34 @@ function Detail() {
     족발: <Jock foodCago={foodCago} 내거={내거} Mine={Mine} />,
     삼겹살: <Sam foodCago={foodCago} 내거={내거} Mine={Mine} />,
     탕: <Tang foodCago={foodCago} 내거={내거} Mine={Mine} />,
+    // ===================================================
+    함박스테이크: <Ham foodCago={foodCago} 내거={내거} Mine={Mine} />,
+    까나페: <Gga foodCago={foodCago} 내거={내거} Mine={Mine} />,
+    그린올리브: <Green foodCago={foodCago} 내거={내거} Mine={Mine} />,
+    나쵸: <Nacho foodCago={foodCago} 내거={내거} Mine={Mine} />,
+    스모어딥: <Smore foodCago={foodCago} 내거={내거} Mine={Mine} />,
+    프레첼: <Prechel foodCago={foodCago} 내거={내거} Mine={Mine} />,
+    // ===================================================
+    감바스: <Gambas foodCago={foodCago} 내거={내거} Mine={Mine} />,
+    치즈플래터: <Cheese foodCago={foodCago} 내거={내거} Mine={Mine} />,
+    하몽: <Hamong foodCago={foodCago} 내거={내거} Mine={Mine} />,
+    포르치니: <Porchini foodCago={foodCago} 내거={내거} Mine={Mine} />,
+    비프스튜: <BeefStew foodCago={foodCago} 내거={내거} Mine={Mine} />,
+    카프레제: <Caf foodCago={foodCago} 내거={내거} Mine={Mine} />,
+    // ===================================================
+    치킨: <Chicken foodCago={foodCago} 내거={내거} Mine={Mine} />,
+    피자: <Pizza foodCago={foodCago} 내거={내거} Mine={Mine} />,
+    소세지: <Sausage foodCago={foodCago} 내거={내거} Mine={Mine} />,
+    양꼬치: <Sheep foodCago={foodCago} 내거={내거} Mine={Mine} />,
+    튀김: <Fried foodCago={foodCago} 내거={내거} Mine={Mine} />,
+    닭꼬치: <Skewers foodCago={foodCago} 내거={내거} Mine={Mine} />,
+    // ===================================================
+    보쌈: <Bossam foodCago={foodCago} 내거={내거} Mine={Mine} />,
+    꼬막찜: <Ggomak foodCago={foodCago} 내거={내거} Mine={Mine} />,
+    모듬전: <Jeon foodCago={foodCago} 내거={내거} Mine={Mine} />,
+    메밀전병: <Memil foodCago={foodCago} 내거={내거} Mine={Mine} />,
+    돼지고기김치찜: <Pig foodCago={foodCago} 내거={내거} Mine={Mine} />,
+    두부김치: <PopuKim foodCago={foodCago} 내거={내거} Mine={Mine} />,
   };
   const images = [{ url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }];
   return (
