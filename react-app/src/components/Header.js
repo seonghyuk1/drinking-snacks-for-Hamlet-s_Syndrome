@@ -23,8 +23,7 @@ function Header() {
 
   useEffect(() => {
     myJWT == null ? navigate("/") : navigate("/Main");
-    const URL =
-      "https://geolocation-db.com/json/2725d960-5eef-11ed-9b62-857a2b26943e";
+    const URL = "https://geolocation-db.com/json/2725d960-5eef-11ed-9b62-857a2b26943e";
     fetch(URL)
       .then((res) => res.json())
       .then((data) => setAddress(data));
@@ -37,23 +36,10 @@ function Header() {
       <nav className="navbar navbar-expand-lg bg-light navbar-light ">
         <div className="container-fluid">
           <Link to="/main" class="navbar-brand">
-            <img
-              src={logo}
-              class="d-inline-block align-middle rounded p-1"
-              alt="내일 지구가 끝나더라도 나는 오늘 밤 최고의 술자리를 가지겠어"
-              width="150"
-            />
+            <img src={logo} class="d-inline-block align-middle rounded p-1" alt="내일 지구가 끝나더라도 나는 오늘 밤 최고의 술자리를 가지겠어" width="150" />
           </Link>
 
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
 
@@ -73,10 +59,7 @@ function Header() {
                   </li>
 
                   <li className="nav-item me-4 ms-auto mt-1">
-                    <Link
-                      to="/Mypage"
-                      style={{ textDecoration: "none", color: "Black " }}
-                    >
+                    <Link to="/Mypage" style={{ textDecoration: "none", color: "Black " }}>
                       {/* {NickName ? (
                     <p className="nav-link disabled  col-12 ">
                       환영합니다💖! <b>{NickName}</b> 님!
@@ -100,10 +83,7 @@ function Header() {
 
                   <li className="nav-item ms-auto">
                     <button className="btn btn-secondary press_btn me-2 mt-1">
-                      <Link
-                        to="/Mypage"
-                        style={{ textDecoration: "none", color: "white " }}
-                      >
+                      <Link to="/Mypage" style={{ textDecoration: "none", color: "white " }}>
                         마이페이지
                       </Link>
                     </button>
@@ -116,6 +96,7 @@ function Header() {
                         e.preventDefault();
                         sessionStorage.clear();
                         navigate("/");
+                        location.reload();
                       }}
                     >
                       로그아웃

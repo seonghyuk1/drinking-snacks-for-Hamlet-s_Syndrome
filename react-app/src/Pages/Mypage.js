@@ -120,7 +120,7 @@ function Mypage() {
               textColors={["#ffffff"]}
               fontSize={[17]}
               perpendicularText={[false]}
-              backgroundColors={["#2d3230", "#605655", "#be4d4a", "#f5c4c2", "#cea69e", "#583028"]}
+              backgroundColors={["#2d3230", "#605655", "#be4d4a", "#cea69e", "#583028"]}
               onStopSpinning={() => {
                 setMustSpin(false);
               }}

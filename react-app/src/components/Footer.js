@@ -9,47 +9,27 @@ function Footer() {
   };
 
   const content = [
-    {
-      title: "Get to Know Us",
-      lists: {
-        text1: "About",
-        text2: "Career",
-        text3: "Press",
-        text4: "Amazon Cares",
-        text5: "Gift a smile",
-      },
-    },
-    {
-      title: "Connect with us",
-      lists: {
-        text1: "Facebook",
-        text2: "Twitter",
-        text3: "Instagram",
-      },
-    },
-
-    {
-      title: "Make Money with Us",
-      lists: {
-        text1: "Sell on fake Amazon",
-        text2: "Sell under fake Amazon",
-        text3: "Become an Affiliate",
-        text4: "Fulfilment by Amazon",
-        text5: "Amazon Pay",
-      },
-    },
-    {
-      title: "Connect with us",
-      lists: {
-        text1: "COVID-19 and Amazon",
-        text2: "Your Account",
-        text3: "Returns Centre",
-        text4: "100% Purchase Protection",
-        text5: "Amazon App Download",
-        text6: "Amazon Assistant Download",
-        text7: "Help",
-      },
-    },
+    // {
+    //   title: "홍성혁",
+    //   lists: {
+    //     text1: "2017204061",
+    //     text2: "Careerㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ  ",
+    //   },
+    // },
+    // {
+    //   title: "김대현",
+    //   lists: {
+    //     text1: "Facebook",
+    //     text2: "Twitter",
+    //   },
+    // },
+    // {
+    //   title: "김태연",
+    //   lists: {
+    //     text1: "Sell on fake Amazon",
+    //     text2: "Sell under fake Amazon",
+    //   },
+    // },
   ];
 
   return (
@@ -63,7 +43,7 @@ function Footer() {
         <div className="Content">
           {content.map((a, i) => {
             return (
-              <div key={i}>
+              <div key={i} class="col-2">
                 <div className="TextWrap">
                   <div className="Title">
                     <b>{a.title}</b>
@@ -71,7 +51,6 @@ function Footer() {
 
                   <div>{a.lists.text1}</div>
                   <div>{a.lists.text2}</div>
-                  
                 </div>
               </div>
             );
@@ -82,6 +61,8 @@ function Footer() {
       {/* <hr style={{ margin: "0 0 0.3px 0" }} /> */}
 
       <div>
+        <span className="FooterText"></span>
+        <span className="FooterText">경기도 성남시 분당구 대왕판교로 644번길 12 (우)13494 12, Daewangpangyo-ro 644beon-gil, Bundang-gu, Seongnam-si, Gyeonggi-do, Korea (13494). </span>
         <span className="FooterText">KWIC_웹 설계 및 구현 6조 &copy; </span>
       </div>
     </>

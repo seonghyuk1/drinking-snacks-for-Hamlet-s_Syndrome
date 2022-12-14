@@ -11,6 +11,7 @@ import ChatContainer from "../components/ChatContainer";
 // 소켓
 
 function Main() {
+  const myJWT = sessionStorage.getItem("JWT");
   let settings = {
     dots: true,
     infinite: true,
@@ -25,15 +26,12 @@ function Main() {
   // useEffect(() => {
   //   sessionStorage.getItem("ID") && location.replace("/");
   // }, []);
-  const images = [
-    { url: "/assets/soju.jpg" },
-    { url: "/assets/soju.jpg" },
-    { url: "/assets/soju.jpg" },
-    { url: "/assets/soju.jpg" },
-    { url: "/assets/soju.jpg" },
-    { url: "/assets/soju.jpg" },
-    { url: "/assets/soju.jpg" },
-  ];
+  useEffect(() => {
+    {
+      myJWT == null && navigate("/");
+    }
+  }, []);
+  const images = [{ url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }];
   return (
     <>
       <div class="container mt-5 p-1 rounded shadow-lg">
@@ -58,8 +56,7 @@ function Main() {
               </ul>
               <div className="details">
                 <h2>
-                  소주{" "}
-                  <span className="job-title">평균가격 4,500원 | 도수 16</span>
+                  소주 <span className="job-title">평균가격 4,500원 | 도수 16</span>
                 </h2>
               </div>
             </div>
@@ -80,11 +77,7 @@ function Main() {
               </ul>
               <div className="details">
                 <h2>
-                  양주{" "}
-                  <span className="job-title">
-                    {" "}
-                    평균가격 90,000원 | 평균도수 30
-                  </span>
+                  양주 <span className="job-title"> 평균가격 90,000원 | 평균도수 30</span>
                 </h2>
               </div>
             </div>
@@ -105,11 +98,7 @@ function Main() {
               </ul>
               <div className="details">
                 <h2>
-                  와인{" "}
-                  <span className="job-title">
-                    {" "}
-                    평균가격 50,000원 | 평균도수 13
-                  </span>
+                  와인 <span className="job-title"> 평균가격 50,000원 | 평균도수 13</span>
                 </h2>
               </div>
             </div>
@@ -123,18 +112,14 @@ function Main() {
                 <li>
                   <Link to={"/detail/3"} onClick={() => {}}>
                     <p className="fa fa-facebook">
-                      내일 지구의 종말이 온다고 해도<br></br> 나는 오늘 한 잔의
-                      술을 들겠다
+                      내일 지구의 종말이 온다고 해도<br></br> 나는 오늘 한 잔의 술을 들겠다
                     </p>
                   </Link>
                 </li>
               </ul>
               <div className="details">
                 <h2>
-                  맥주{" "}
-                  <span className="job-title">
-                    평균 가격 5,000원 | 평균도수 5
-                  </span>
+                  맥주 <span className="job-title">평균 가격 5,000원 | 평균도수 5</span>
                 </h2>
               </div>
             </div>
@@ -147,18 +132,13 @@ function Main() {
               <ul className="social-icons">
                 <li>
                   <Link to={"/detail/4"}>
-                    <p className="fa fa-facebook">
-                      신은 음주하는 자를 결코 버리지 않는다
-                    </p>
+                    <p className="fa fa-facebook">신은 음주하는 자를 결코 버리지 않는다</p>
                   </Link>
                 </li>
               </ul>
               <div className="details">
                 <h2>
-                  막걸리{" "}
-                  <span className="job-title">
-                    평균가격 4,000원 | 평균도수 5
-                  </span>
+                  막걸리 <span className="job-title">평균가격 4,000원 | 평균도수 5</span>
                 </h2>
               </div>
             </div>
@@ -174,15 +154,7 @@ function Main() {
               </h2>
             </div>
             <div class="pt-3 mx-auto testBOX ">
-              <SimpleImageSlider
-                width={500}
-                height={350}
-                images={images}
-                showBullets={true}
-                showNavs={true}
-                autoPlay={true}
-                autoPlayDelay={2.0}
-              />
+              <SimpleImageSlider width={500} height={350} images={images} showBullets={true} showNavs={true} autoPlay={true} autoPlayDelay={2.0} />
             </div>
           </div>
 
