@@ -11,7 +11,6 @@ function Mypage() {
   let [views, setView] = useState([]);
   const ID = sessionStorage.getItem("ID");
   let [state, setState] = useState(false);
-
   let [test, setTest] = useState([]);
 
   let 갖고온거 = [];
@@ -24,6 +23,24 @@ function Mypage() {
 
   console.log("뷰", views);
   const count = views.length;
+
+  // 룰렛 관련
+  const data = [];
+  let num = 1;
+  for (const item of views) {
+    // console.log(item); // 10, 20, 30 출력
+    data.push({ id: num, option: item.식당 });
+    num = num + 1;
+  }
+  const [mustSpin, setMustSpin] = useState(false);
+  const [prizeNumber, setPrizeNumber] = useState(0);
+
+  const handleSpinClick = () => {
+    const newPrizeNumber = Math.floor(Math.random() * data.length);
+    setPrizeNumber(newPrizeNumber);
+    setMustSpin(true);
+    setState(true);
+  };
 
   // async function submitHandler(e) {
   //   e.preventDefault();
@@ -82,53 +99,45 @@ function Mypage() {
           </div>
         </div>
       </nav>
-
       {/* 룰렛 추가(찜이 0개 시, 보이지 않게) */}
-      {data.length!=0 && (
-      <div align="center" className="container pt-3 rounded">
-        <div class="container mt-5 p-1 rounded shadow-lg col-lg-8">
-          <h2 class="m-3 text-center text-light">
-            <strong>골라요! 룰렛</strong>
-          </h2>
-        </div>
-        <div className="pt-3 pb-3 ">
-          <Wheel
-            mustStartSpinning={mustSpin}
-            prizeNumber={prizeNumber}
-            data={data}
-            outerBorderColor={["#f2f2f2"]}
-            outerBorderWidth={[7]}
-            innerBorderColor={["#f2f2f2"]}
-            radiusLineColor={["#f2f2f2"]}
-            radiusLineWidth={[6]}
-            textColors={["#ffffff"]}
-            fontSize={[17]}
-            perpendicularText={[false]}
-            backgroundColors={[
-              "#2d3230",
-              "#605655",
-              "#be4d4a",
-              "#f5c4c2",
-              "#cea69e",
-              "#583028",
-            ]}
-            onStopSpinning={() => {
-              setMustSpin(false);
-            }}
-          />
-        </div>
-        <div className="bg-light rounded col-lg-6 shadow-lg">
-          <h4 className="p-4">{!mustSpin && state ? data[prizeNumber].option : "찜한 가게 중 하나를 골라드려요"}</h4>
-        </div>
-        
-        <div className="pt-2">
-          <button className="btn press_btn btn-lg " onClick={handleSpinClick}>
-            룰렛 돌리기
-          </button>
-        </div>
-        
-      </div>)};
+      {data.length != 0 && (
+        <div align="center" className="container pt-3 rounded">
+          <div class="container mt-5 p-1 rounded shadow-lg col-lg-8">
+            <h2 class="m-3 text-center text-light">
+              <strong>골라요! 룰렛</strong>
+            </h2>
+          </div>
+          <div className="pt-3 pb-3 ">
+            <Wheel
+              mustStartSpinning={mustSpin}
+              prizeNumber={prizeNumber}
+              data={data}
+              outerBorderColor={["#f2f2f2"]}
+              outerBorderWidth={[7]}
+              innerBorderColor={["#f2f2f2"]}
+              radiusLineColor={["#f2f2f2"]}
+              radiusLineWidth={[6]}
+              textColors={["#ffffff"]}
+              fontSize={[17]}
+              perpendicularText={[false]}
+              backgroundColors={["#2d3230", "#605655", "#be4d4a", "#f5c4c2", "#cea69e", "#583028"]}
+              onStopSpinning={() => {
+                setMustSpin(false);
+              }}
+            />
+          </div>
+          <div className="bg-light rounded col-lg-6 shadow-lg">
+            <h4 className="p-4">{!mustSpin && state ? data[prizeNumber].option : "찜한 가게 중 하나를 골라드려요"}</h4>
+          </div>
 
+          <div className="pt-2">
+            <button className="btn press_btn btn-lg " onClick={handleSpinClick}>
+              룰렛 돌리기
+            </button>
+          </div>
+        </div>
+      )}
+      ;
       <div className=" bg-light rounded m-3 p-3 containerBox2 ">
         <div className="row">
           {views.length == 0 && (
@@ -146,50 +155,60 @@ function Mypage() {
                   {/* style={state ? hidden : active} */}
                   <div className="d-flex justify-content-center">
                     <div className="card h-100" style={{ width: "18rem;" }}>
-                      <h5 className="text-center card-title p-1">
-                        {views[i].drink}
-                      </h5>
-
-                  <img src={"/assets/3/3.jpg"} className="card-img-top" alt="..." style={{ height: "100px", width: "100px" }} />
-                  <div className="card-body">
-                    <p className="card-text">식당 : {views[i].식당}</p>
-                    <p className="card-text">종류 : {views[i].종류}</p>
-                    <p className="card-text">위치 : {views[i].위치}</p>
-                    <p className="card-text">평균가격 : {views[i].평균가격}</p>
-                    <p className="card-text">특징 : {views[i].특징}</p>
-                    <button
-                      className="btn btn-dark mt-5 d-grid gap-2 col-6 mx-auto"
-                      onClick={() => {
-                        axios
-                          .post(
-                            "/delete",
-                            {
-                              data: views[i].삭제용,
-                            },
-                            { withCredentials: true }
-                          )
-                          .then((결과) => {
-                            // setState(!state);
-                            console.log(결과);
-                            결과.data === "삭제완료" && alert("삭제가 완료 되었습니다. ");
-                            // views = views.filter((e) => e.id == sessionStorage.getItem("ID"));
-                            // console.log(views);
-                            // setView([...결과]);
-                            // 새로고침 함수 - 안먹음
-                            // location.replace("/");
-                            // history.go(0);
-                          })
-                          .then(
-                            axios.post("/mypage", { data: ID }).then((응답) => {
-                              갖고온거 = 응답.data;
-                              console.log("갖고온거", 갖고온거);
-                              setView([...갖고온거]);
-                            })
-                          );
-                      }}
-                    >
-                      삭제하기
-                    </button>
+                      <h5 className="text-center card-title p-1">{views[i].drink}</h5>
+                      <img src={views[i].사진} className="card-img-top p-1" alt="..." style={{ height: "10rem;" }} />
+                      {/* <img src={"/assets/3/3.jpg"} className="card-img-top p-1" alt="..." style={{ height: "10rem;" }} /> */}
+                      <div className="card-body">
+                        <p className="card-text">
+                          <strong>식당</strong> : {views[i].식당}
+                        </p>
+                        <p className="card-text">
+                          <strong>종류</strong> : {views[i].종류}
+                        </p>
+                        <p className="card-text">
+                          <strong>위치</strong> : {views[i].위치}
+                        </p>
+                        <p className="card-text">
+                          <strong>평균가격</strong> : {views[i].평균가격}
+                        </p>
+                        <p className="card-text">
+                          <strong>특징</strong> : {views[i].특징}
+                        </p>
+                        <button
+                          className="btn btn-dark mt-3 d-grid gap-2 mx-auto"
+                          onClick={() => {
+                            axios
+                              .post(
+                                "/delete",
+                                {
+                                  data: views[i].삭제용,
+                                },
+                                { withCredentials: true }
+                              )
+                              .then((결과) => {
+                                // setState(!state);
+                                console.log(결과);
+                                결과.data === "삭제완료" && alert("삭제가 완료 되었습니다. ");
+                                // views = views.filter((e) => e.id == sessionStorage.getItem("ID"));
+                                // console.log(views);
+                                // setView([...결과]);
+                                // 새로고침 함수 - 안먹음
+                                // location.replace("/");
+                                // history.go(0);
+                              })
+                              .then(
+                                axios.post("/mypage", { data: ID }).then((응답) => {
+                                  갖고온거 = 응답.data;
+                                  console.log("갖고온거", 갖고온거);
+                                  setView([...갖고온거]);
+                                })
+                              );
+                          }}
+                        >
+                          삭제하기
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               );

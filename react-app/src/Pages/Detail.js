@@ -124,12 +124,12 @@ function Detail() {
     스모어딥: <Smore foodCago={foodCago} 내거={내거} Mine={Mine} />,
     프레첼: <Prechel foodCago={foodCago} 내거={내거} Mine={Mine} />,
     // ===================================================
-    감바스: <Gambas foodCago={foodCago} 내거={내거} Mine={Mine} />,
-    치즈플래터: <Cheese foodCago={foodCago} 내거={내거} Mine={Mine} />,
-    하몽: <Hamong foodCago={foodCago} 내거={내거} Mine={Mine} />,
-    포르치니: <Porchini foodCago={foodCago} 내거={내거} Mine={Mine} />,
-    비프스튜: <BeefStew foodCago={foodCago} 내거={내거} Mine={Mine} />,
-    카프레제: <Caf foodCago={foodCago} 내거={내거} Mine={Mine} />,
+    감바스: <Gambas foodCago={foodCago} 내거={내거} Mine={Mine} id={id} />,
+    치즈플래터: <Cheese foodCago={foodCago} 내거={내거} Mine={Mine} id={id} />,
+    하몽: <Hamong foodCago={foodCago} 내거={내거} Mine={Mine} id={id} />,
+    포르치니: <Porchini foodCago={foodCago} 내거={내거} Mine={Mine} id={id} />,
+    비프스튜: <BeefStew foodCago={foodCago} 내거={내거} Mine={Mine} id={id} />,
+    카프레제: <Caf foodCago={foodCago} 내거={내거} Mine={Mine} id={id} />,
     // ===================================================
     치킨: <Chicken foodCago={foodCago} 내거={내거} Mine={Mine} />,
     피자: <Pizza foodCago={foodCago} 내거={내거} Mine={Mine} />,
@@ -145,15 +145,9 @@ function Detail() {
     돼지고기김치찜: <Pig foodCago={foodCago} 내거={내거} Mine={Mine} />,
     두부김치: <PopuKim foodCago={foodCago} 내거={내거} Mine={Mine} />,
   };
-  const images = [
-    { url: "/assets/soju.jpg" },
-    { url: "/assets/soju.jpg" },
-    { url: "/assets/soju.jpg" },
-    { url: "/assets/soju.jpg" },
-    { url: "/assets/soju.jpg" },
-    { url: "/assets/soju.jpg" },
-    { url: "/assets/soju.jpg" },
-  ];
+  console.log("파람스", id);
+
+  const images = [{ url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }, { url: "/assets/soju.jpg" }];
   return (
     <div className="">
       <div class="container mt-5 p-1 rounded shadow-lg">
@@ -169,13 +163,7 @@ function Detail() {
             <div class="mt-2 p-1 ">
               <h2 class="m-3 text-center text-light">음료 Pick✔</h2>
             </div>
-            <img
-              class="border border-secondary rounded img-fluid shadow-lg"
-              src={`/assets/${id}/${id}.jpg`}
-              id="liveToastBtn"
-              width="250"
-              height="250"
-            ></img>
+            <img class="border border-secondary rounded img-fluid shadow-lg" src={`/assets/${id}/${id}.jpg`} id="liveToastBtn" width="250" height="250"></img>
             <div class="mt-2 p-1 ">
               <h2 class="m-3 text-center text-light">{category.drink}</h2>
             </div>
@@ -202,7 +190,7 @@ function Detail() {
                 autoPlay={true}
                 autoPlayDelay={3.5}
                 onClick={(idx) => {
-                  idx == 1 && console.log("hi");
+                  idx == 1 && setContent("포르치니");
                 }}
               />
             </div>
@@ -216,13 +204,7 @@ function Detail() {
           {category.안주개수 &&
             category.안주개수.map((v, i) => {
               return (
-                <button
-                  type="button"
-                  class="btn btn-lg press_btn g-2 m-3 rounded-pill shadow-sm"
-                  key={i}
-                  name={v}
-                  onClick={handleClickButton}
-                >
+                <button type="button" class="btn btn-lg press_btn g-2 m-3 rounded-pill shadow-sm" key={i} name={v} onClick={handleClickButton}>
                   {v}
                 </button>
               );
