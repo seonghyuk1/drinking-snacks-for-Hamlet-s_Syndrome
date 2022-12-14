@@ -18,7 +18,7 @@ function Pizza({ foodCago, 내거, Mine }) {
               return (
                 <div class="col-6 col-xl-3 mx-auto">
                   <div class="card mb-3 cardSize" key={i}>
-                    <img class="card-img" src={"/assets/3/3.jpg"} alt="..." height="1000" />
+                    <img class="card-img" src={`/assets/snacks/3/Pizza/${i}.jpg`} alt="..." height="1000" />
                     <div class="bg-dark card-img-overlay text-white d-flex flex-column justify-content-center storeOpacity">
                       <div className="text-center p-3">
                         <img
