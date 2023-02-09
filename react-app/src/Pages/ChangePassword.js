@@ -8,9 +8,9 @@ import "../styles/Mypage.css";
 function ChangePassword() {
   //찜 목록을 보여주기 위해, views에 DB에 저장된 하나의 객체를 입력
   const ID = sessionStorage.getItem("ID");
-  let [currentPW, setcurrentPW] = useState("");
-  let [newPW, setnewPW] = useState("");
-  let [renewPW, setrenewPW] = useState("");
+  const [currentPW, setcurrentPW] = useState("");
+  const [newPW, setnewPW] = useState("");
+  const [renewPW, setrenewPW] = useState("");
 
   let [views, setView] = useState([]);
   useEffect(() => {
@@ -54,7 +54,6 @@ function ChangePassword() {
             saltPw = 응답.data[i].패스워드;
           }
         }
-        // console.log(saltPw);
         let body = {
           id: ID, // 현재 로그인된 아이디 정보 가져와야함
           current: currentPW,

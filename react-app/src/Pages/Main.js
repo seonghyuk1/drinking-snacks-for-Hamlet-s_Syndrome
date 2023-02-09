@@ -12,20 +12,18 @@ import ChatContainer from "../components/ChatContainer";
 
 function Main() {
   const myJWT = sessionStorage.getItem("JWT");
+
   let settings = {
     dots: true,
     infinite: true,
     speed: 400,
     slidesToShow: 3,
     slidesToScroll: 1,
-    // autoPlay: true,
     arrows: true,
     cssEase: "linear",
   };
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   sessionStorage.getItem("ID") && location.replace("/");
-  // }, []);
+
   useEffect(() => {
     {
       myJWT == null && navigate("/");
@@ -173,14 +171,11 @@ function Main() {
                   <strong>술덕후 모임소 🥂</strong>
                 </h2>
               </div>
-
               <ChatContainer />
             </div>
           </div>
         </div>
       </div>
-
-      {/* <h1>주간 베스트 안주 & 식당의 이미지와 정보 | </h1> */}
 
       <div style={{ clear: "both" }}></div>
     </>

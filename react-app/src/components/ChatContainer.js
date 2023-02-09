@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import socketIOClient from "socket.io-client";
 import io from "socket.io-client";
 import ChatBoxReciever, { ChatBoxSender } from "./ChatBox";
 import InputText from "./InputText";
@@ -7,15 +6,18 @@ import UserLogin from "./ChatUserLogin";
 import "../styles/chat.css";
 
 export default function ChatContainer() {
-  const socketio = io.connect("http://34.231.209.142/");
+  // const socketio = io.connect("http://34.231.209.142/");
+  const socketio = io.connect("http://localhost:80");
+
   // 이 부분 추후 서버 배포 주소를 넣어 소켓 열기
   // let socketio = socketIOClient("http://localhost:80");
+
   const [chats, setChats] = useState([]);
   const [user, setUser] = useState(sessionStorage.getItem("Nickname"));
 
   const [chatOn, setChatOn] = useState(false);
 
-  // 재렌더링시마다 chat 요청을 받아서 보낸 말들을 chats에 저장
+  // 채팅을 보내어 재렌더링시마다 chat 요청을 받아서 보낸 말들을 chats에 저장
   useEffect(() => {
     socketio.on("chat", (senderCharts) => {
       setChats(senderCharts);
@@ -34,23 +36,24 @@ export default function ChatContainer() {
 
   function addMessage(chat) {
     const newChat = { ...chat, user };
-    // 안에 있었던 모든 것들 다 갖고 와서 붙임
+    // 원래 있던 채팅의 내용들과 새로운 채팅 내용들을 합침
     setChats([...chats, newChat]);
-    // 서버에 보내줌
+    // 합친 내용들을 서버에 전달
     sendChatToSocket([...chats, newChat]);
   }
 
   // 로그아웃시 다른 유저가 판별하려고 storage비우기
   function logout() {
-    // localStorage.clear();
-    setUser("");
     setChatOn(false);
   }
 
   function ChatsList() {
     return chats.map((chat, i) => {
-      if (chat.user === user) return <ChatBoxSender key={i} message={chat.message} user={chat.user} />;
-      return <ChatBoxReciever key={i} message={chat.message} user={chat.user} />;
+      if (chat.user === user) {
+        return <ChatBoxSender key={i} message={chat.message} user={chat.user} />;
+      } else {
+        return <ChatBoxReciever key={i} message={chat.message} user={chat.user} />;
+      }
     });
   }
 
@@ -84,9 +87,9 @@ export default function ChatContainer() {
           </div>
 
           {/* 채팅내용 */}
-          <div id="box" class="container  rounded chat_container">
-            <ChatsList />
-          </div>
+            <div id="box" class="container  rounded chat_container">
+              <ChatsList />
+            </div>
 
           {/* 아래라인 */}
           <div class="container pt-3">
@@ -95,7 +98,8 @@ export default function ChatContainer() {
         </div>
       ) : (
         // 등록돼있던 유저 아니라면 Login창
-        <UserLogin setUser={setUser} chatOn={chatOn} setChatOn={setChatOn} />
+
+        <UserLogin setUser={setUser} setChatOn={setChatOn} />
       )}
     </div>
   );

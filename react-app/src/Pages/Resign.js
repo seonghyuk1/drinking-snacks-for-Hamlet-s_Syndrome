@@ -7,10 +7,10 @@ import "../styles/Mypage.css";
 
 function Resign() {
   //찜 목록을 보여주기 위해, views에 DB에 저장된 하나의 객체를 입력
-  let [views, setView] = useState([]);
-  let [PW, setPW] = useState("");
-  const [checked, setChecked] = React.useState(false);
   const ID = sessionStorage.getItem("ID");
+
+  let [PW, setPW] = useState("");
+  const [checked, setChecked] = useState(false);
 
   // 현재 비밀번호 인식
   const PWHandler = (e) => {
@@ -25,6 +25,7 @@ function Resign() {
     setChecked(!checked);
   };
 
+  let [views, setView] = useState([]);
   useEffect(() => {
     axios.post("/mypage", { data: ID }).then((응답) => {
       setView([...views, ...응답.data]);
@@ -45,7 +46,6 @@ function Resign() {
             saltPw = 응답.data[i].패스워드;
           }
         }
-        // console.log(saltPw);
         let body = {
           id: ID, // 현재 로그인된 아이디 정보 가져와야함
           current: PW,
@@ -57,6 +57,7 @@ function Resign() {
           } else {
             //DB에서 회원정보 지우기
             //로그인 정보 날리기
+            alert("회원탈퇴가 완료되었습니다.");
             sessionStorage.clear();
             navigate("/");
             location.reload();
@@ -68,13 +69,13 @@ function Resign() {
     }
   }
 
-  //버튼 눌렀을 때 동의하기 체크 안하면 안됨
-  function checkAgreement(e) {
-    if (checked === false) {
-      e.preventDefault();
-      alert("동의하기 버튼을 누르십시오.");
-    }
-  }
+  // //버튼 눌렀을 때 동의하기 체크 안하면 안됨
+  // function checkAgreement(e) {
+  //   if (!checked) {
+  //     e.preventDefault();
+  //     alert("동의하기 버튼을 누르십시오.");
+  //   }
+  // }
 
   return (
     <>
@@ -124,8 +125,9 @@ function Resign() {
                 동의합니다.
               </label>
             </div>
+
             <div className="d-grid gap-2 col-md-11 mx-auto">
-              <button onSubmit={submitHandler} onClick={checkAgreement} className="btn btn-lg press_btn mt-5 gap-2 " type="submit">
+              <button onSubmit={submitHandler} className="btn btn-lg press_btn mt-5 gap-2 " type="submit" disabled={!checked}>
                 탈 퇴 하 기
               </button>
             </div>

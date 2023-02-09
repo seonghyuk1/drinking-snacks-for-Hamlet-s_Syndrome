@@ -9,7 +9,7 @@ const button = {
   fontweight: "bold",
 };
 
-export default function UserLogin({ setUser, chatOn, setChatOn }) {
+export default function UserLogin({ setUser, setChatOn }) {
   // 로그인 버튼 클릭시
   function handleSetUser() {
     setUser(sessionStorage.getItem("Nickname"));

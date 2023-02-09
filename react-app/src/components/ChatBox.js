@@ -1,7 +1,7 @@
 import React from "react";
 
 // 리시버 화면
-export default function ChatBoxReciever({ avatar, user, message }) {
+export default function ChatBoxReciever({ user, message }) {
   return (
     <div
       style={{
@@ -26,7 +26,7 @@ export default function ChatBoxReciever({ avatar, user, message }) {
 }
 
 // 센더 화면
-export function ChatBoxSender({ avatar, user, message }) {
+export function ChatBoxSender({ user, message }) {
   return (
     <div
       style={{

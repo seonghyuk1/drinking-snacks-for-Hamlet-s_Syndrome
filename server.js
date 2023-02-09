@@ -107,7 +107,6 @@ app.get("/food", function (요청, 응답) {
   db.collection("food")
     .find()
     .toArray(function (에러, 결과) {
-      // console.log("아래", 결과);
       응답.json(결과);
     });
 });
@@ -177,12 +176,9 @@ app.post("/selection", function (요청, 응답) {
 });
 
 app.post("/mypage", function (요청, 응답) {
-  // console.log(요청.body);
   db.collection("selection")
     .find({ id: 요청.body.data })
     .toArray(function (에러, 결과) {
-      // console.log("아래", 결과);
-      // console.log(결과);
       응답.json(결과);
     });
 });
@@ -224,18 +220,12 @@ app.post("/changePW", function (req, res) {
           res.json("현재 패스워드 안맞음");
         }
       });
-    } else {
-      // console.log("찾는 아이디 없음");
     }
   });
 });
 
 //회원탈퇴
 app.post("/resign", function (req, res) {
-  db.collection("selection").deleteMany({ id: req.body.id }, function (err, result) {
-    // console.log(result);
-    // 응답.json("삭제완료");
-  });
   db.collection("login").findOne({ 아이디: req.body.id }, function (err, result) {
     if (result) {
       bcrypt.compare(req.body.current, req.body.hash).then((result) => {
@@ -251,7 +241,7 @@ app.post("/resign", function (req, res) {
         }
       });
     } else {
-      // console.log("찾는 아이디 없음");
+      db.collection("selection").deleteMany({ id: req.body.id });
     }
   });
 });
@@ -261,11 +251,10 @@ app.post("/changeNickname", function (req, res) {
   db.collection("login").findOne({ 아이디: req.body.id }, function (err, result) {
     if (result) {
       db.collection("login").updateOne({ 아이디: req.body.id }, { $set: { 닉네임: req.body.nickname } }, function (err, result) {
-        // console.log("수정완료");
         res.json(req.body.nickname);
       });
     } else {
-      // console.log("찾는 아이디 없음");
+      console.log("찾는 아이디 없음");
     }
   });
 });

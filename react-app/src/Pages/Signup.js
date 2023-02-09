@@ -85,15 +85,11 @@ function Signup() {
       idchk
         ? axios.post("api/signup", body).then((res) => {
             {
-              res.data == "존재함요." ? alert("이미 존재하는 아이디이오니 다른 아이디를 사용하여 주세요.") : navigate("/");
+              res.data == "존재함요" ? alert("이미 존재하는 아이디이오니 다른 아이디를 사용하여 주세요.") : navigate("/");
             }
           })
         : alert("반드시 ID 중복 확인을 해주세요.");
     }
-
-    console.log("입력한 아이디 " + id);
-    console.log("입력한 비밀번호 " + pw);
-    console.log("입력한 닉네임 " + name);
   };
   return (
     <>
@@ -141,12 +137,11 @@ function Signup() {
                     }}
                   ></input>
 
-                  {/* <label class="p-3 font-500">Password 확인</label> */}
                   <input type="password" class="form-control form-control-lg mt-3 rounded-pill" placeholder="다시 비밀번호를 입력하세요." onChange={pwConfirm} />
+
                   <div id="alert">
                     <h6 id="errormessage">{pwmessage}</h6>
                   </div>
-                  {/* {pwchk.length > 0 && <span>{pwmessage}</span>} */}
 
                   <div class="d-grid gap-2 col-md-11 mx-auto">
                     <button onSubmit={submitHandler} class="btn btn-lg press_btn mt-5 gap-2 " type="submit" disabled={ispwconfirm}>

@@ -75,7 +75,7 @@ function Detail() {
   // console.log("디비갖고온 정보22", foodCago);
   // console.log("내거", 내거);
 
-  let Mine = () => {
+  const Mine = () => {
     return (
       <>
         <div className="test2">
@@ -92,7 +92,6 @@ function Detail() {
                 내거.map((v, i) => {
                   return (
                     <p class="bg-dark mx-3 p-2 text-light rounded storeOpacity">
-                      {/* {내거[i].drink}-{내거[i].식당}-{내거[i].종류}-{내거[i].평균가격} */}
                       {내거[i].식당}-{내거[i].평균가격}
                     </p>
                   );
@@ -145,7 +144,9 @@ function Detail() {
     돼지고기김치찜: <Pig foodCago={foodCago} 내거={내거} Mine={Mine} />,
     두부김치: <PopuKim foodCago={foodCago} 내거={내거} Mine={Mine} />,
   };
+
   const images = [{ url: `/assets/snacks/${id}/0.jpg` }, { url: `/assets/snacks/${id}/1.jpg` }, { url: `/assets/snacks/${id}/2.jpg` }];
+
   return (
     <div className="">
       <div class="container mt-5 p-1 rounded shadow-lg">
@@ -173,11 +174,7 @@ function Detail() {
                 <strong>어울리는 안주들 💯</strong>
               </h2>
             </div>
-            {/* <div class="mt-2 p-1">
-            <h2 class="m-3 text-center text-light">
-              <strong>어울리는 안주들 💯</strong>
-            </h2>
-          </div> */}
+
             <div className="test p-3">
               <SimpleImageSlider width={600} height={400} images={images} showBullets={true} showNavs={true} autoPlay={true} autoPlayDelay={3.5} />
             </div>
@@ -198,13 +195,9 @@ function Detail() {
             })}
         </div>
       </div>
-      {/* <button onClick={handleClickButton}>닫기</button> */}
 
       {/* 화면보여주기 */}
-      <div className="container bg-light rounded shadow-lg storeOpacity2">
-        {content && selectComponent[content]}
-        {/* <Mine /> */}
-      </div>
+      <div className="container bg-light rounded shadow-lg storeOpacity2">{content && selectComponent[content]}</div>
 
       <div className="text-center">
         <button class="col-xl-2 btn btn-lg press_btn g-2 m-3">

@@ -13,9 +13,10 @@ function Mypage() {
   let [state, setState] = useState(false);
 
   let 갖고온거 = [];
+
   useEffect(() => {
     axios.post("/mypage", { data: ID }).then((응답) => {
-      setView([...views, ...응답.data]);
+      setView([...응답.data]);
     });
   }, []);
 
@@ -24,11 +25,12 @@ function Mypage() {
 
   // 룰렛 관련
   const data = [];
+
   let num = 1;
+  // views안에 있는 값들을 item에 넣어주세요
   for (const item of views) {
-    // console.log(item); // 10, 20, 30 출력
     data.push({ id: num, option: item.식당 });
-    num = num + 1;
+    num++;
   }
   const [mustSpin, setMustSpin] = useState(false);
   const [prizeNumber, setPrizeNumber] = useState(0);
@@ -73,6 +75,7 @@ function Mypage() {
           </div>
         </div>
       </nav>
+
       {/* 룰렛 추가(찜이 0개 시, 보이지 않게) */}
       {data.length != 0 && (
         <div align="center" className="container pt-3 rounded">
@@ -111,32 +114,29 @@ function Mypage() {
           </div>
         </div>
       )}
-      ;
+
       <div className=" bg-light rounded m-3 p-3 containerBox2 ">
         <div className="row">
-          {views.length == 0 && (
+          {views.length == 0 ? (
             <div className="bg-light rounded containerBox col rounded mx-auto d-flex align-items-center">
               <div className="col-6  m-2 text-center mx-auto">
                 <h2 className="pt-2 text-secondary">찜 목록이 비어있습니다.</h2>
                 <h4 className="pt-2 text-secondary">가게를 찾아보아요😋</h4>
               </div>
             </div>
-          )}
-          {views &&
+          ) : (
             views.map((v, i) => {
               return (
                 <div className="col-6 col-md-4 col-lg-3 col-xl-2 pt-3" key={i}>
-                  {/* style={state ? hidden : active} */}
                   <div className="d-flex justify-content-center">
                     <div className="card h-100" style={{ width: "18rem;" }}>
                       <h5 className="text-center card-title p-1">{views[i].drink}</h5>
                       <img src={views[i].사진} className="card-img-top p-1" alt="..." style={{ height: "10rem;" }} />
-                      {/* <img src={"/assets/3/3.jpg"} className="card-img-top p-1" alt="..." style={{ height: "10rem;" }} /> */}
                       <div className="card-body">
                         <p className="card-text">
                           <strong>식당</strong> : {views[i].식당}
                         </p>
-                        <p className="card-text">
+                        <p className="car d-text">
                           <strong>종류</strong> : {views[i].종류}
                         </p>
                         <p className="card-text">
@@ -160,15 +160,8 @@ function Mypage() {
                                 { withCredentials: true }
                               )
                               .then((결과) => {
-                                // setState(!state);
                                 console.log(결과);
                                 결과.data === "삭제완료" && alert("삭제가 완료 되었습니다. ");
-                                // views = views.filter((e) => e.id == sessionStorage.getItem("ID"));
-                                // console.log(views);
-                                // setView([...결과]);
-                                // 새로고침 함수 - 안먹음
-                                // location.replace("/");
-                                // history.go(0);
                               })
                               .then(
                                 axios.post("/mypage", { data: ID }).then((응답) => {
@@ -186,7 +179,8 @@ function Mypage() {
                   </div>
                 </div>
               );
-            })}
+            })
+          )}
         </div>
       </div>
     </>
