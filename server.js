@@ -69,10 +69,8 @@ app.post("/api/Signup", function (요청, 응답) {
       bcrypt.hash(요청.body.pw, saltRounds, (err, hash) => {
         // console.log(`생성 hash\t${hash}`);
         db.collection("login").insertOne({ 아이디: 요청.body.id, 패스워드: hash, 닉네임: 요청.body.name }, function (에러, 결과) {
-          // if (에러) return console.log(에러);
-          // console.log("저장완료");
+          if (에러) return console.log(에러);
           응답.redirect("/");
-          // console.log("아이디 : ", 요청.body.id, " 비밀번호 : ", hash, "닉네임 : ", 요청.body.name);
         });
       });
     }

@@ -71,10 +71,6 @@ function Detail() {
     });
   }, []);
 
-  // console.log("디비갖고온 정보", category);
-  // console.log("디비갖고온 정보22", foodCago);
-  // console.log("내거", 내거);
-
   const Mine = () => {
     return (
       <>
