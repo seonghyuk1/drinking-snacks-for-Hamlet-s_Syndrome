@@ -60,17 +60,19 @@ MongoClient.connect(process.env.DB_URL, function (에러, client) {
 });
 
 // 회원가입 정보 기입
-app.post("/api/Signup", function (요청, 응답) {
-  db.collection("login").findOne({ 아이디: 요청.body.id }, function (에러, 결과) {
-    if (결과) {
-      응답.json("존재함요");
+app.post("/api/Signup", function (req, res) {
+  db.collection("login").findOne({ 아이디: req.body.id }, function (err, result) {
+    if (err) return console.log(err);
+
+    if (result) {
+      res.json("Exist");
     } else {
-      // 소금 + 해시값 동시 생성 및 DB 적재
-      bcrypt.hash(요청.body.pw, saltRounds, (err, hash) => {
+      // pw는 소금 + 해시값 동시 생성 및 DB 적재
+      bcrypt.hash(req.body.pw, saltRounds, (err, hash) => {
         // console.log(`생성 hash\t${hash}`);
-        db.collection("login").insertOne({ 아이디: 요청.body.id, 패스워드: hash, 닉네임: 요청.body.name }, function (에러, 결과) {
-          if (에러) return console.log(에러);
-          응답.redirect("/");
+        db.collection("login").insertOne({ 아이디: req.body.id, 패스워드: hash, 닉네임: req.body.name }, function (err, result) {
+          if (err) return console.log(err);
+          res.json({ redirectUrl: "/" });
         });
       });
     }
@@ -78,14 +80,14 @@ app.post("/api/Signup", function (요청, 응답) {
 });
 
 // 중복 ID 체크
-app.post("/api/Signup/checkID", function (요청, 응답) {
-  db.collection("login").findOne({ 아이디: 요청.body.id }, function (에러, 결과) {
-    // if (에러) return console.log(에러);
-    // console.log(결과);
-    if (결과) {
-      응답.json("존재");
+app.post("/api/Signup/checkID", function (req, res) {
+  db.collection("login").findOne({ 아이디: req.body.id }, function (err, result) {
+    if (err) return console.log(err);
+    // console.log(result);
+    if (result) {
+      res.json("Exist");
     } else {
-      응답.json("미존재");
+      res.json("notExist");
     }
   });
 });
