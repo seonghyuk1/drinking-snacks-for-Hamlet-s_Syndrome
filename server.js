@@ -60,7 +60,7 @@ MongoClient.connect(process.env.DB_URL, function (에러, client) {
 });
 
 // 회원가입 정보 기입
-app.post("/api/Signup", function (req, res) {
+app.post("/api/submitSignUp", function (req, res) {
   db.collection("login").findOne({ 아이디: req.body.id }, function (err, result) {
     if (err) return console.log(err);
 
@@ -80,7 +80,7 @@ app.post("/api/Signup", function (req, res) {
 });
 
 // 중복 ID 체크
-app.post("/api/Signup/checkID", function (req, res) {
+app.post("/api/Signup/checkDuplicateID", function (req, res) {
   db.collection("login").findOne({ 아이디: req.body.id }, function (err, result) {
     if (err) return console.log(err);
     // console.log(result);
