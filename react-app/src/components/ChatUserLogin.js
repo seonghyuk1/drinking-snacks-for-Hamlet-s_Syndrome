@@ -17,11 +17,11 @@ export default function UserLogin({ setUser, setChatOn }) {
   }
 
   return (
-    <div class="container col-9 m-1 p-3 bg-light rounded shadow-lg mx-auto  chat_container_login  ">
-      <div class=" container">
-        <div class="container ">
+    <div className="container col-9 m-1 p-3 bg-light rounded shadow-lg mx-auto  chat_container_login  ">
+      <div className=" container">
+        <div className="container ">
           <button
-            class=" btn btn-lg press_btn mt-2 d-grid gap-2 col-11 mx-auto"
+            className=" btn btn-lg press_btn mt-2 d-grid gap-2 col-11 mx-auto"
             onClick={() => {
               handleSetUser();
             }}

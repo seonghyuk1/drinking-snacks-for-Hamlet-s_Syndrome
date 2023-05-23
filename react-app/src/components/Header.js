@@ -1,7 +1,6 @@
 /* eslint-disable*/
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import axios from "axios";
 // import { faker } from "@faker-js/faker";
 import logo from "../logo.png";
 import "../styles/Login_Header.css";
@@ -35,20 +34,20 @@ function Header() {
     <>
       <nav className="navbar navbar-expand-lg bg-light navbar-light ">
         <div className="container-fluid">
-          <Link to="/main" class="navbar-brand">
-            <img src={logo} class="d-inline-block align-middle rounded p-1" alt="내일 지구가 끝나더라도 나는 오늘 밤 최고의 술자리를 가지겠어" width="150" />
+          <Link to="/main" className="navbar-brand">
+            <img src={logo} className="d-inline-block align-middle rounded p-1" alt="내일 지구가 끝나더라도 나는 오늘 밤 최고의 술자리를 가지겠어" width="150" />
           </Link>
 
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
           </button>
 
           {/* nav-item */}
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
             {/* 로그인 시 추가 내용 */}
             {myJWT != null && (
               <>
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                   <li className="nav-item me-4 ms-auto mt-1">
                     <span className="align-middle">
                       현재위치 :{" "}

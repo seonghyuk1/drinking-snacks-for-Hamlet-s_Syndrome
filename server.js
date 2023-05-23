@@ -44,14 +44,15 @@ require("dotenv").config();
 
 // JWT
 const jwt = require("jsonwebtoken");
+const secretKey = process.env.SECRET_KEY;
 
 // bcrypt Salt
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
 const MongoClient = require("mongodb").MongoClient;
-MongoClient.connect(process.env.DB_URL, function (에러, client) {
-  // if (에러) return console.log(에러);
+MongoClient.connect(process.env.DB_URL, function (err, client) {
+  // if (err) return console.log(err);
   db = client.db("kwic");
 
   server.listen(process.env.PORT, function () {
@@ -63,8 +64,7 @@ MongoClient.connect(process.env.DB_URL, function (에러, client) {
 app.post("/api/submitSignUp", function (req, res) {
   db.collection("login").findOne({ 아이디: req.body.id }, function (err, result) {
     if (err) return console.log(err);
-
-    if (result) {
+    else if (result) {
       res.json("Exist");
     } else {
       // pw는 소금 + 해시값 동시 생성 및 DB 적재
@@ -93,101 +93,116 @@ app.post("/api/Signup/checkDuplicateID", function (req, res) {
 });
 
 // 큰틀용 detail : 주류마다 detail에 다른 정보 제공
-app.get("/detail/:id", function (요청, 응답) {
+app.get("/detail/:id", function (req, res) {
   db.collection("detail")
     .find()
-    .toArray(function (에러, 결과) {
-      // console.log(결과);
-      응답.json(결과);
+    .toArray(function (err, result) {
+      // console.log(result);
+      res.json(result);
     });
 });
 
 // 음식정보 : 소주 음식 정보 관련은 0번~
-app.get("/food", function (요청, 응답) {
+app.get("/food", function (req, res) {
   db.collection("food")
     .find()
-    .toArray(function (에러, 결과) {
-      응답.json(결과);
+    .toArray(function (err, result) {
+      res.json(result);
     });
 });
 
 // 데이터베이스 암호화 비밀번호 전달 API
-app.get("/api/pw", function (요청, 응답) {
-  // console.log(응답);
+app.get("/api/pw", function (req, res) {
+  // 배열로 전달 login 데이터베이스 정보 전달
   db.collection("login")
     .find()
-    .toArray(function (에러, 결과) {
-      // console.log(결과);
-      응답.json(결과);
+    .toArray(function (err, result) {
+      if (err) {
+        console.log(err);
+        res.status(500).json({ error: "서버 에러 발생" });
+      } else {
+        res.json(result);
+        // console.log(result);
+      }
     });
 });
 
 // 로그인
-app.post("/api/login", function (요청, 응답) {
-  db.collection("login").findOne({ 아이디: 요청.body.id }, function (에러, 아이디결과) {
-    // if (에러) return console.log(에러);
+app.post("/api/login", async function (req, res) {
+  try {
+    // 입력한 아이디 조회
+    const resultId = await db.collection("login").findOne({ 아이디: req.body.id });
 
-    if (아이디결과) {
-      db.collection("login").findOne({ 패스워드: 요청.body.pw }, function (에러, 비번결과) {
-        // console.log("폼 입력 비번", 요청.body.form_pw);
-        // console.log("암호화 비번", 요청.body.pw);
+    if (resultId) {
+      // 입력한 패스워드로 사용자의 패스워드 조회
+      const resultPw = await db.collection("login").findOne({ 패스워드: req.body.pw });
 
-        if (비번결과) {
-          // 폼 입력 비번을 암호화 된 비밀번호와 Compare
-          bcrypt.compare(요청.body.form_pw, 요청.body.pw).then((result) => {
-            if (result) {
-              jwt.sign({ foo: "bar" }, "secret-key", { expiresIn: "1d" }, (err, token) => {
-                if (err) res.status(400).json({ error: "에러요" });
-                // console.log(token);
-                // 생성된 토큰 전송
-                응답.json(token);
-              });
-            } else 응답.json("비번미존재");
+      if (resultPw) {
+        // 입력한 폼 비밀번호와 저장된 암호화 비밀번호 비교
+        const result = await bcrypt.compare(req.body.form_pw, req.body.pw);
+
+        if (result) {
+          // 인증 성공시 JWT 토큰 생성
+          jwt.sign({ id: resultId._id, nickname: resultId.nickname }, secretKey, { expiresIn: "1d" }, (err, token) => {
+            if (err) {
+              console.log(err);
+              res.status(500).json({ error: "서버 에러 발생" });
+            } else {
+              // 토큰 전달
+              res.json(token);
+            }
           });
+        } else {
+          // 비밀번호 미일치
+          res.json("Not_Exist_Pw");
         }
-      });
+      }
     } else {
-      응답.json("아이디미존재");
+      // 아이디 미존재
+      res.json("Not_Exist_Id");
     }
-  });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "서버 에러 발생" });
+  }
 });
 
 //마이페이지 구현 - 저장 (각 음식 페이지에서 활용)
-app.post("/selection", function (요청, 응답) {
+app.post("/selection", function (req, res) {
   db.collection("selection").insertOne(
     {
-      drink: 요청.body.drink,
-      식당: 요청.body.식당,
-      위치: 요청.body.위치,
-      특징: 요청.body.특징,
-      평균가격: 요청.body.평균가격,
-      좋아요: 요청.body.좋아요,
-      id: 요청.body.id,
-      종류: 요청.body.종류,
-      삭제용: 요청.body.삭제용,
-      사진: 요청.body.사진,
+      drink: req.body.drink,
+      식당: req.body.식당,
+      위치: req.body.위치,
+      특징: req.body.특징,
+      평균가격: req.body.평균가격,
+      좋아요: req.body.좋아요,
+      id: req.body.id,
+      종류: req.body.종류,
+      삭제용: req.body.삭제용,
+      사진: req.body.사진,
     },
-    function (에러, 결과) {
-      // if (에러) return console.log(에러);
+    function (err, result) {
+      // if (err) return console.log(err);
       // console.log("저장완료");
-      // console.log("요청", 요청.body);
+      // console.log("req", req.body);
     }
   );
 });
 
-app.post("/mypage", function (요청, 응답) {
+app.post("/mypage", function (req, res) {
   db.collection("selection")
-    .find({ id: 요청.body.data })
-    .toArray(function (에러, 결과) {
-      응답.json(결과);
+    .find({ id: req.body.data })
+    .toArray(function (err, result) {
+      res.json(result);
     });
 });
 
 //마이페이지 찜 목록에서 삭제
-app.post("/delete", function (요청, 응답) {
-  db.collection("selection").deleteOne({ 삭제용: 요청.body.data }, function (err, result) {
+app.post("/delete", function (req, res) {
+  db.collection("selection").deleteOne({ 삭제용: req.body.data }, function (err, result) {
     // console.log(result);
-    응답.json("삭제완료");
+    res.json("삭제완료");
   });
 });
 
@@ -259,10 +274,10 @@ app.post("/changeNickname", function (req, res) {
   });
 });
 
-app.get("*", function (요청, 응답) {
-  응답.sendFile(path.join(__dirname, "/react-app/build/index.html"), function (에러) {
-    if (에러) {
-      요청.status(500).send(에러);
+app.get("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "/react-app/build/index.html"), function (err) {
+    if (err) {
+      req.status(500).send(err);
     }
   });
 });

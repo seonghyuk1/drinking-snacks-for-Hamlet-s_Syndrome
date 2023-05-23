@@ -75,10 +75,10 @@ function Detail() {
     return (
       <>
         <div className="test2">
-          <div class=" col-6 bg-light rounded p-1 mx-auto shadow-lg">
+          <div className=" col-6 bg-light rounded p-1 mx-auto shadow-lg">
             <div className="pt-2">
               <Link to="/Mypage">
-                <div class="btn col-lg-4 btn-lg  press_btn rounded mx-auto ">
+                <div className="btn col-lg-4 btn-lg  press_btn rounded mx-auto ">
                   <h4 className="text-center text-light ">찜 목록</h4>
                 </div>
               </Link>
@@ -87,7 +87,7 @@ function Detail() {
               {내거.length != 0 ? (
                 내거.map((v, i) => {
                   return (
-                    <p class="bg-dark mx-3 p-2 text-light rounded storeOpacity">
+                    <p className="bg-dark mx-3 p-2 text-light rounded storeOpacity">
                       {내거[i].식당}-{내거[i].평균가격}
                     </p>
                   );
@@ -145,28 +145,28 @@ function Detail() {
 
   return (
     <div className="">
-      <div class="container mt-5 p-1 rounded shadow-lg">
-        <h2 class="m-3 text-center text-light">
+      <div className="container mt-5 p-1 rounded shadow-lg">
+        <h2 className="m-3 text-center text-light">
           <strong>어떤 안주를 먹을까요?🍟</strong>
         </h2>
       </div>
 
       {/* 윗라인(술+추천) */}
       <div className="container pt-4">
-        <div class="row mx-auto">
+        <div className="row mx-auto">
           <div className="col-lg-3 mx-auto test2">
-            <div class="mt-2 p-1 ">
-              <h2 class="m-3 text-center text-light">음료 Pick✔</h2>
+            <div className="mt-2 p-1 ">
+              <h2 className="m-3 text-center text-light">음료 Pick✔</h2>
             </div>
-            <img class="border border-secondary rounded img-fluid shadow-lg" src={`/assets/${id}/${id}.jpg`} id="liveToastBtn" width="250" height="250"></img>
-            <div class="mt-2 p-1 ">
-              <h2 class="m-3 text-center text-light">{category.drink}</h2>
+            <img className="border border-secondary rounded img-fluid shadow-lg" src={`/assets/${id}/${id}.jpg`} id="liveToastBtn" width="250" height="250"></img>
+            <div className="mt-2 p-1 ">
+              <h2 className="m-3 text-center text-light">{category.drink}</h2>
             </div>
           </div>
 
           <div className="col-lg-9 bg-light rounded storeOpacity">
-            <div class="container m-2 p-1 rounded shadow-lg">
-              <h2 class="m-3 text-center text-light">
+            <div className="container m-2 p-1 rounded shadow-lg">
+              <h2 className="m-3 text-center text-light">
                 <strong>어울리는 안주들 💯</strong>
               </h2>
             </div>
@@ -184,7 +184,7 @@ function Detail() {
           {category.안주개수 &&
             category.안주개수.map((v, i) => {
               return (
-                <button type="button" class="btn btn-lg press_btn g-2 m-3 rounded-pill shadow-sm" key={i} name={v} onClick={handleClickButton}>
+                <button type="button" className="btn btn-lg press_btn g-2 m-3 rounded-pill shadow-sm" key={i} name={v} onClick={handleClickButton}>
                   {v}
                 </button>
               );
@@ -196,7 +196,7 @@ function Detail() {
       <div className="container bg-light rounded shadow-lg storeOpacity2">{content && selectComponent[content]}</div>
 
       <div className="text-center">
-        <button class="col-xl-2 btn btn-lg press_btn g-2 m-3">
+        <button className="col-xl-2 btn btn-lg press_btn g-2 m-3">
           <Link to="/Main" style={{ textDecoration: "none", color: "white" }}>
             다른 술 고를래요
           </Link>
@@ -220,25 +220,25 @@ export default Detail;
 // }
 
 // {like ? (
-//   <div class="toast-container position-fixed bottom-0 end-0 p-3">
-//     <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-//       <div class="toast-header">
-//         <img src={process.env.PUBLIC_URL + "/assets/heart.png"} class="rounded me-2" alt="..." style={{ width: 30, height: 30 }} />
-//         <strong class="me-auto">찜 성공!</strong>
-//         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+//   <div className="toast-container position-fixed bottom-0 end-0 p-3">
+//     <div id="liveToast" className="toast" role="alert" aria-live="assertive" aria-atomic="true">
+//       <div className="toast-header">
+//         <img src={process.env.PUBLIC_URL + "/assets/heart.png"} className="rounded me-2" alt="..." style={{ width: 30, height: 30 }} />
+//         <strong className="me-auto">찜 성공!</strong>
+//         <button type="button" className="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
 //       </div>
-//       <div class="toast-body">찜 안주에 등록하기 성공! 마이페이지에서 확인하세요</div>
+//       <div className="toast-body">찜 안주에 등록하기 성공! 마이페이지에서 확인하세요</div>
 //     </div>
 //   </div>
 // ) : (
-//   <div class="toast-container position-fixed bottom-0 end-0 p-3">
-//     <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-//       <div class="toast-header">
-//         <img src={process.env.PUBLIC_URL + "/assets/em_heart.png"} class="rounded me-2" alt="..." style={{ width: 30, height: 30 }} />
-//         <strong class="me-auto">찜 해제!</strong>
-//         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+//   <div className="toast-container position-fixed bottom-0 end-0 p-3">
+//     <div id="liveToast" className="toast" role="alert" aria-live="assertive" aria-atomic="true">
+//       <div className="toast-header">
+//         <img src={process.env.PUBLIC_URL + "/assets/em_heart.png"} className="rounded me-2" alt="..." style={{ width: 30, height: 30 }} />
+//         <strong className="me-auto">찜 해제!</strong>
+//         <button type="button" className="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
 //       </div>
-//       <div class="toast-body">찜 안주 등록이 해제 되었습니다! </div>
+//       <div className="toast-body">찜 안주 등록이 해제 되었습니다! </div>
 //     </div>
 //   </div>
 // )}

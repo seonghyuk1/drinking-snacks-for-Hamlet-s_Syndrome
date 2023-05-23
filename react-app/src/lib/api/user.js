@@ -1,6 +1,6 @@
 import axios from "axios";
 
-// 아이디 중복확인
+// 회원가입 아이디 중복확인
 export const checkDuplicateID = async (id) => {
   const body = {
     id: id,

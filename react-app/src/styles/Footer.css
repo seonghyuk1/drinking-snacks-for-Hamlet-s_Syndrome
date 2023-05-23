@@ -4,27 +4,23 @@
 }
 
 .UpBtn {
-  background-color: #37475a;
+  background-color: #ffffff;
   text-align: center;
   font-size: 2em;
   padding-bottom: 1%;
 }
 
-.UpBtn:hover {
-  background-color: #485769;
-}
-
 .FooterWrap {
-  background-color: #232f3e;
+  background-color: #242020;
   height: 100%;
 }
 
 .UpIcon:hover {
-  font-size: 45px;
+  font-size: 30px;
 }
 
 .UpIcon {
-  color: white;
+  color: rgb(0, 0, 0);
   vertical-align: bottom;
 }
 
@@ -46,8 +42,6 @@
 
 .TextWrap {
   padding: 0 2% 1.5% 2%;
-
-  margin-bottom: 1%;
   /* float: left; */
   text-align: center;
   vertical-align: super;
@@ -60,10 +54,10 @@
   } */
 
 .FooterText {
-  color: rgb(255, 254, 254);
+  color: rgb(0, 0, 0);
   height: 50px;
   display: flex;
   justify-content: center;
-  background-color: #232f3e;
+  background-color: #ffffff;
   align-items: center;
 }

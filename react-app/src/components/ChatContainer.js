@@ -60,7 +60,7 @@ export default function ChatContainer() {
   return (
     <div>
       {chatOn ? ( // 등록 해놨던 유저라면 상단바와 대화창 다 불러오기
-        <div class="container col-9 m-1 p-3 bg-light rounded shadow-lg mx-auto ">
+        <div className="container col-9 m-1 p-3 bg-light rounded shadow-lg mx-auto ">
           <div
             style={{
               display: "flex",
@@ -69,17 +69,17 @@ export default function ChatContainer() {
             }}
           >
             {/* 윗라인구성 */}
-            <div class="container">
-              <div class="row">
-                <div class="col-1">
+            <div className="container">
+              <div className="row">
+                <div className="col-1">
                   <h3 onClick={() => logout()}>
-                    <i class="bi bi-arrow-left arrow "></i>
+                    <i className="bi bi-arrow-left arrow "></i>
                   </h3>
                 </div>
 
-                <div class="col-6  mx-auto ">
-                  <div class="container bg-secondary rounded-pill">
-                    <h5 class="text-center text-light ">닉네임 : {user}</h5>
+                <div className="col-6  mx-auto ">
+                  <div className="container bg-secondary rounded-pill">
+                    <h5 className="text-center text-light ">닉네임 : {user}</h5>
                   </div>
                 </div>
               </div>
@@ -87,12 +87,12 @@ export default function ChatContainer() {
           </div>
 
           {/* 채팅내용 */}
-            <div id="box" class="container  rounded chat_container">
-              <ChatsList />
-            </div>
+          <div id="box" className="container  rounded chat_container">
+            <ChatsList />
+          </div>
 
           {/* 아래라인 */}
-          <div class="container pt-3">
+          <div className="container pt-3">
             <InputText addMessage={addMessage} />
           </div>
         </div>
