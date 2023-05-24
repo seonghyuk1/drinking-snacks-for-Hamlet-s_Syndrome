@@ -1,14 +1,13 @@
 /* eslint-disable */
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
-import axios from "axios";
 import logo from "../logo.png";
 
 import { loginSubmit } from "../lib/api/auth";
 
 function Login() {
-  let [id, setId] = useState("");
-  let [pw, setPw] = useState("");
+  const [id, setId] = useState("");
+  const [pw, setPw] = useState("");
   const navigate = useNavigate();
 
   const idHandler = (e) => {

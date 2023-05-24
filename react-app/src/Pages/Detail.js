@@ -3,7 +3,8 @@ import SimpleImageSlider from "react-simple-image-slider";
 import "../styles/Detail.css";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { getDetailData, getFoodData, getMyPageData } from "../lib/api/food";
+
 import Fish from "../components/Store/Soju/Fish";
 import Boil from "../components/Store/Soju/Boil";
 import Gob from "../components/Store/Soju/Gob";
@@ -41,33 +42,35 @@ import PopuKim from "../components/Store/Mak/PopuKim";
 
 function Detail() {
   const ID = sessionStorage.getItem("ID");
-  let { id } = useParams();
+  const { id } = useParams();
 
   const [content, setContent] = useState();
 
-  let [내거, 내거변경] = useState([]);
+  const [내거, 내거변경] = useState([]);
 
   const handleClickButton = (e) => {
     const { name } = e.target;
     setContent(name);
   };
 
-  let [category, setCategory] = useState([]);
-  let [foodCago, setfoodCago] = useState();
+  const [category, setCategory] = useState([]);
+  const [foodCago, setfoodCago] = useState();
+
+  console.log("카", category);
+  console.log("푸", foodCago);
   // 들어온 페이지의 id 받아오기
 
   useEffect(() => {
-    // 내가 들어간 페이지의 번호와 일치하는 배열의 인덱스
-    axios.get("detail").then((주류응답) => {
-      setCategory(주류응답.data[id]);
+    getDetailData(id).then((res) => {
+      setCategory(res.data);
     });
 
-    axios.get("/food").then((음식응답) => {
-      setfoodCago(음식응답.data[id]);
+    getFoodData(id).then((res) => {
+      setfoodCago(res.data);
     });
 
-    axios.post("/mypage", { data: ID }).then((응답) => {
-      내거변경([...응답.data]);
+    getMyPageData(ID).then((res) => {
+      내거변경([...res.data]);
     });
   }, []);
 
@@ -147,7 +150,7 @@ function Detail() {
     <div className="">
       <div className="container mt-5 p-1 rounded shadow-lg">
         <h2 className="m-3 text-center text-light">
-          <strong>어떤 안주를 먹을까요?🍟</strong>
+          <strong>어떤 안주를 먹을까요?</strong>
         </h2>
       </div>
 
@@ -167,7 +170,7 @@ function Detail() {
           <div className="col-lg-9 bg-light rounded storeOpacity">
             <div className="container m-2 p-1 rounded shadow-lg">
               <h2 className="m-3 text-center text-light">
-                <strong>어울리는 안주들 💯</strong>
+                <strong>어울리는 안주들</strong>
               </h2>
             </div>
 
@@ -179,6 +182,9 @@ function Detail() {
       </div>
 
       {/* detail에서 Mine은 한발짝 느립니다. 안 쪽 프랍스로 준 거는 바로 저기서 해결하기떄문 */}
+
+      {/* button에 함수로 axios를 통해 서버로부터 회에 대한 정보들을 가져오도록 설정 */}
+
       <div className="test2">
         <div className="container bg-light rounded shadow-lg storeOpacity">
           {category.안주개수 &&
@@ -207,38 +213,3 @@ function Detail() {
 }
 
 export default Detail;
-
-// // 토스트 알림
-// const toastTrigger = document.getElementById("liveToastBtn");
-// const toastLiveExample = document.getElementById("liveToast");
-// if (toastTrigger) {
-//   toastTrigger.addEventListener("click", () => {
-//     const toast = new bootstrap.Toast(toastLiveExample);
-
-//     toast.show();
-//   });
-// }
-
-// {like ? (
-//   <div className="toast-container position-fixed bottom-0 end-0 p-3">
-//     <div id="liveToast" className="toast" role="alert" aria-live="assertive" aria-atomic="true">
-//       <div className="toast-header">
-//         <img src={process.env.PUBLIC_URL + "/assets/heart.png"} className="rounded me-2" alt="..." style={{ width: 30, height: 30 }} />
-//         <strong className="me-auto">찜 성공!</strong>
-//         <button type="button" className="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-//       </div>
-//       <div className="toast-body">찜 안주에 등록하기 성공! 마이페이지에서 확인하세요</div>
-//     </div>
-//   </div>
-// ) : (
-//   <div className="toast-container position-fixed bottom-0 end-0 p-3">
-//     <div id="liveToast" className="toast" role="alert" aria-live="assertive" aria-atomic="true">
-//       <div className="toast-header">
-//         <img src={process.env.PUBLIC_URL + "/assets/em_heart.png"} className="rounded me-2" alt="..." style={{ width: 30, height: 30 }} />
-//         <strong className="me-auto">찜 해제!</strong>
-//         <button type="button" className="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-//       </div>
-//       <div className="toast-body">찜 안주 등록이 해제 되었습니다! </div>
-//     </div>
-//   </div>
-// )}

@@ -6,11 +6,9 @@ import UserLogin from "./ChatUserLogin";
 import "../styles/chat.css";
 
 export default function ChatContainer() {
+  // 이 부분 추후 서버 배포 주소를 넣어 소켓 열기
   // const socketio = io.connect("http://34.231.209.142/");
   const socketio = io.connect("http://localhost:80");
-
-  // 이 부분 추후 서버 배포 주소를 넣어 소켓 열기
-  // let socketio = socketIOClient("http://localhost:80");
 
   const [chats, setChats] = useState([]);
   const [user, setUser] = useState(sessionStorage.getItem("Nickname"));

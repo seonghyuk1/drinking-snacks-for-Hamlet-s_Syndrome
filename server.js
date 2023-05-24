@@ -28,7 +28,7 @@ io.on("connection", (socket) => {
   });
 });
 
-let cors = require("cors");
+const cors = require("cors");
 
 //Socket 사용하는 코드
 // const http = require("http").createServer(app);
@@ -60,6 +60,8 @@ MongoClient.connect(process.env.DB_URL, function (err, client) {
   });
 });
 
+// ----------------------------------------------------------------------------
+
 // 회원가입 정보 기입
 app.post("/api/submitSignUp", function (req, res) {
   db.collection("login").findOne({ 아이디: req.body.id }, function (err, result) {
@@ -90,25 +92,6 @@ app.post("/api/Signup/checkDuplicateID", function (req, res) {
       res.json("notExist");
     }
   });
-});
-
-// 큰틀용 detail : 주류마다 detail에 다른 정보 제공
-app.get("/detail/:id", function (req, res) {
-  db.collection("detail")
-    .find()
-    .toArray(function (err, result) {
-      // console.log(result);
-      res.json(result);
-    });
-});
-
-// 음식정보 : 소주 음식 정보 관련은 0번~
-app.get("/food", function (req, res) {
-  db.collection("food")
-    .find()
-    .toArray(function (err, result) {
-      res.json(result);
-    });
 });
 
 // 데이터베이스 암호화 비밀번호 전달 API
@@ -165,6 +148,36 @@ app.post("/api/login", async function (req, res) {
     console.log(err);
     res.status(500).json({ error: "서버 에러 발생" });
   }
+});
+
+//  해당 주류 id값에 해당하는 값을 데이터베이스 인덱스에서 가져옴
+app.get("/detail/:id", function (req, res) {
+  const detailId = req.params.id;
+  db.collection("detail")
+    .findOne({ id: detailId })
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).json({ error: "서버 에러 발생" });
+    });
+});
+
+// 음식정보 : 소주 음식 정보 관련은 0번~
+app.get("/food/:id", function (req, res) {
+  const foodId = req.params.id;
+  console.log(foodId);
+  db.collection("detail")
+    .findOne({ id: foodId })
+    .then((result) => {
+      res.json(result);
+      console.log(result);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).json({ error: "서버 에러 발생" });
+    });
 });
 
 //마이페이지 구현 - 저장 (각 음식 페이지에서 활용)

@@ -28,17 +28,6 @@ function Main() {
     cssEase: "linear",
   };
 
-  // 슬라이더에 들어갈 이미지
-  const images = [
-    { url: "/assets/snacks/0/Jock/0.jpg" },
-    { url: "/assets/snacks/3/Chicken/0.jpg" },
-    { url: "/assets/snacks/2/Gambas/0.jpg" },
-    { url: "/assets/snacks/3/Pizza/0.jpg" },
-    { url: "/assets/snacks/3/Sausage/0.jpg" },
-    { url: "/assets/snacks/4/Bossam/0.jpg" },
-    { url: "/assets/snacks/4/Pig/2.jpg" },
-  ];
-
   return (
     <>
       <div className="container mt-5 p-1 rounded shadow-lg">
@@ -115,6 +104,18 @@ function Main() {
 
 export default Main;
 
+// 슬라이더에 들어갈 이미지
+const images = [
+  { url: "/assets/snacks/0/Jock/0.jpg" },
+  { url: "/assets/snacks/3/Chicken/0.jpg" },
+  { url: "/assets/snacks/2/Gambas/0.jpg" },
+  { url: "/assets/snacks/3/Pizza/0.jpg" },
+  { url: "/assets/snacks/3/Sausage/0.jpg" },
+  { url: "/assets/snacks/4/Bossam/0.jpg" },
+  { url: "/assets/snacks/4/Pig/2.jpg" },
+];
+
+// 카드에 그릴 정보들
 const cards = [
   {
     id: 0,
