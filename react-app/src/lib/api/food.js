@@ -1,13 +1,13 @@
 import axios from "axios";
 
-export const getDetailData = (id) => {
-  return axios.get(`/detail/${id}`);
+export const getDetailData = (drink_id) => {
+  return axios.get(`/detail/${drink_id}`);
 };
 
-export const getFoodData = (id) => {
-  return axios.get(`/food/${id}`);
+export const getMyPageData = () => {
+  return axios.post("/mySelected");
 };
 
-export const getMyPageData = (ID) => {
-  return axios.post("/mypage", { data: ID });
+export const getFoodsData = (name) => {
+  return axios.post("/food", { data: name });
 };

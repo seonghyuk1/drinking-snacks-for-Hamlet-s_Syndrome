@@ -164,15 +164,28 @@ app.get("/detail/:id", function (req, res) {
     });
 });
 
-// 음식정보 : 소주 음식 정보 관련은 0번~
-app.get("/food/:id", function (req, res) {
-  const foodId = req.params.id;
-  console.log(foodId);
-  db.collection("detail")
-    .findOne({ id: foodId })
+// // // 안주 이ㅇㅁㄴㅇㅁㅇ
+// app.get("/wish", function (req, res) {
+//   db.collection("food")
+//     .find()
+//     .toArray(function (err, result) {
+//       if (err) {
+//         console.log(err);
+//         res.status(500).json({ error: "서버 에러 발생" });
+//       } else {
+//         res.json(result);
+//         // console.log(result);
+//       }
+//     });
+// });
+
+// 안주 이름에 해당하는 식당 정보들 가지고 오기
+app.post("/food", function (req, res) {
+  db.collection("food")
+    .findOne({ name: req.body.data })
     .then((result) => {
       res.json(result);
-      console.log(result);
+      // console.log(result);
     })
     .catch((error) => {
       console.error(error);
@@ -203,11 +216,13 @@ app.post("/selection", function (req, res) {
   );
 });
 
-app.post("/mypage", function (req, res) {
+// 모든 찜목록 데이터 - 추후에 내 id를 통해 가져올 것
+app.post("/mySelected", function (req, res) {
   db.collection("selection")
     .find({ id: req.body.data })
     .toArray(function (err, result) {
       res.json(result);
+      // console.log(result);
     });
 });
 
