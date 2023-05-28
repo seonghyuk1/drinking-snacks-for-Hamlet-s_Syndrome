@@ -1,35 +1,33 @@
 .test {
-
-    align-items: center;
-    /* background-color: aquamarine; */
-    justify-content: center;
-    text-align: center;
-    display: flex;
-  }
-  
-  /* 
-  .listHolder {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: blue;
-  } */
-
-  .storeOpacity{
-    --bs-bg-opacity: .6;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  display: flex;
 }
 
-.storeOpacity2{
-  --bs-bg-opacity: .8;
+.storeOpacity {
+  --bs-bg-opacity: 0.6;
 }
 
-.cardSize{
+.cardSize {
   width: 18rem;
   height: 20rem;
 }
 
-.press_btn { 
+.press_btn {
   background: rgb(59, 42, 57) !important;
   color: #fff !important;
   font-weight: bold;
+}
+
+.heart_img {
+  width: 20%;
+  margin-bottom: 20px;
+}
+
+.selected {
+  /* 선택된 버튼에 대한 스타일 지정 */
+  /* 예시: 배경색과 텍스트 색상 변경 */
+  background-color: #ff0000;
+  color: #ffffff;
 }

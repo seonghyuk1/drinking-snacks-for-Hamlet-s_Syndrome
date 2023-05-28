@@ -5,198 +5,196 @@ body {
   margin: 0;
 } */
 
-.slider_center{
-  padding:3em
- 
-
+.slider_center {
+  padding: 3em;
 }
 
 body {
-    /* display: block; */
-    /* width: 100%; */
-    /* height: 100vh; */
-    font-family: "Raleway", sans-serif;
-    position: relative;
-    /* background: #333; */
-    overflow-x: hidden;
-    font-family: "Roboto", sans-serif;
-  }
-  
-  .slider_title {
-    font-size: 3vw;
-    color: gray;
-    text-transform: uppercase;
-    text-align: center;
-    margin-bottom: 2vw;
-  }
-  
-  .card-wrapper {
-    position: relative;
-    width: 100%;
-    padding: 0 10px;
-    box-sizing: border-box;
-  }
-  
-  .card-wrapper:active,
-  .card-wrapper:hover,
-  .card-wrapper:focus {
-    outline: none;
-    border: none;
-  }
-  
-  .card {
-    width: 100%;
-    height: 450px;
-    border-radius: 16px;
-    overflow: hidden;
-    cursor: pointer;
-    position: relative;
-  }
-  
-  .card .card-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    background-color: white;
-    transition: 0.5s;
-  }
-  
-  .card .card-image img {
-    width: 100%;
-    height: 100%;
-    -o-object-fit: cover;
-    object-fit: cover;
-  }
-  
-  .card:hover img {
-    opacity: 0.4;
-    transition: 0.5s;
-  }
-  
-  .card:hover .card-image {
-    transform: translateY(-100px);
-    transition: all 0.9s;
-  }
-  
-  .social-icons {
-    position: absolute;
-    top: 30%;
-    left: 45%;
-    transform: translate(-50%, -50%);
-    z-index: 3;
-    display: -ms-flexbox;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .social-icons li {
-    list-style: none;
-  }
-  
-  .social-icons li a {
-    position: relative;
-    display: block;
-    width: 200px;
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
-    /* background: gray; */
-    font-size: 23px;
-    color: #333;
-    font-weight: bold;
-    margin: 0 6px;
-    transition: 0.9s;
-    transform: translateY(200px);
-    opacity: 0;
-  }
-  
-  .card:hover .social-icons li a {
-    transform: translateY(0px);
-    opacity: 1;
-    text-decoration: none;
-  }
-  
-  .social-icons li a:hover {
-    /* background: rgb(89, 77, 253); */
-    transition: 0.2s;
-  }
-  
-  .social-icons li a:hover .fa {
-    color: #fff;
-  }
-  
-  .social-icons li a .fa {
-    transition: 0.8s;
-  }
-  
-  .social-icons li a .fa:hover {
-    /* 문구 마우스 오버시 색, 동작 */
-    transform: rotateY(360deg);
-    color: rgb(48, 48, 48);
-  }
-  
-  .card:hover li:nth-child(1) a {
-    transition-delay: 0.1s;
-  }
-  
-  .card:hover li:nth-child(2) a {
-    transition-delay: 0.2s;
-  }
-  
-  .card:hover li:nth-child(3) a {
-    transition-delay: 0.3s;
-  }
-  
-  .card:hover li:nth-child(4) a {
-    transition-delay: 0.4s;
-  }
-  
-  .details {
-    position: absolute;
-    bottom: 400px;
-    left: 0;
-    background: #fff;
-    width: 100%;
-    height: 120px;
-    z-index: 1;
-    padding: 10px;
-    transition: 0.6s;
-  }
-  
-  .details h2 {
-    margin: 30px 0;
-    padding: 0;
-    text-align: center;
-  }
-  
-  .details h2 .job-title {
-    font-size: 16px;
-    line-height: 2;
-    color: #333;
-    font-weight: 300;
-    display: block;
-  }
-  
-  .card:hover .details {
-    bottom: 0;
-  }
-  
-  .carousel .slick-dots {
-    bottom: -2.5vw;
-  }
-  
-  /* .carousel .slick-dots li button {
+  /* display: block; */
+  /* width: 100%; */
+  /* height: 100vh; */
+  font-family: "Raleway", sans-serif;
+  position: relative;
+  /* background: #333; */
+  overflow-x: hidden;
+  font-family: "Roboto", sans-serif;
+}
+
+.slider_title {
+  font-size: 3vw;
+  color: gray;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 2vw;
+}
+
+.card-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.card-wrapper:active,
+.card-wrapper:hover,
+.card-wrapper:focus {
+  outline: none;
+  border: none;
+}
+
+.card {
+  width: 100%;
+  height: 450px;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+}
+
+.card .card-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background-color: white;
+  transition: 0.5s;
+}
+
+.card .card-image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.card:hover img {
+  opacity: 0.4;
+  transition: 0.5s;
+}
+
+.card:hover .card-image {
+  transform: translateY(-100px);
+  transition: all 0.9s;
+}
+
+.social-icons {
+  position: absolute;
+  top: 30%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-icons li {
+  list-style: none;
+}
+
+.social-icons li a {
+  position: relative;
+  display: block;
+  width: 200px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  /* background: gray; */
+  font-size: 23px;
+  color: #333;
+  font-weight: bold;
+  margin: 0 6px;
+  transition: 0.9s;
+  transform: translateY(200px);
+  opacity: 0;
+}
+
+.card:hover .social-icons li a {
+  transform: translateY(0px);
+  opacity: 1;
+  text-decoration: none;
+}
+
+.social-icons li a:hover {
+  /* background: rgb(89, 77, 253); */
+  transition: 0.2s;
+}
+
+.social-icons li a:hover .fa {
+  color: #fff;
+}
+
+.social-icons li a .fa {
+  transition: 0.8s;
+}
+
+.social-icons li a .fa:hover {
+  /* 문구 마우스 오버시 색, 동작 */
+  transform: rotateY(360deg);
+  color: rgb(48, 48, 48);
+}
+
+.card:hover li:nth-child(1) a {
+  transition-delay: 0.1s;
+}
+
+.card:hover li:nth-child(2) a {
+  transition-delay: 0.2s;
+}
+
+.card:hover li:nth-child(3) a {
+  transition-delay: 0.3s;
+}
+
+.card:hover li:nth-child(4) a {
+  transition-delay: 0.4s;
+}
+
+.details {
+  position: absolute;
+  bottom: 400px;
+  left: 0;
+  background: #fff;
+  width: 100%;
+  height: 120px;
+  z-index: 1;
+  padding: 10px;
+  transition: 0.6s;
+}
+
+.details h2 {
+  margin: 30px 0;
+  padding: 0;
+  text-align: center;
+}
+
+.details h2 .job-title {
+  font-size: 16px;
+  line-height: 2;
+  color: #333;
+  font-weight: 300;
+  display: block;
+}
+
+.card:hover .details {
+  bottom: 0;
+}
+
+.carousel .slick-dots {
+  bottom: -2.5vw;
+}
+
+/* .carousel .slick-dots li button {
     width: 20px;
     height: 20px;
     border: 1px solid #fff;
     border-radius: 20px;
   } */
-  
-  /* .carousel .slick-dots li button:before {
+
+/* .carousel .slick-dots li button:before {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -212,109 +210,106 @@ body {
     transition: all 0.3s ease-in-out;
   }
    */
-  .carousel .slick-prev,
-  .carousel .slick-next {
-    width: 50px;
-    height: 50px;
-    background-color: #fff;
-  }
-  
-  .carousel .slick-prev:hover,
-  .carousel .slick-prev:focus,
-  .carousel .slick-next:hover,
-  .carousel .slick-next:focus {
-    color: #fff;
-    outline: none;
-    background: #fff;
-  }
-  
-  .carousel .slick-prev:before,
-  .carousel .slick-next:before {
-    color: #000;
-    font-family: "Raleway", sans-serif;
-  }
-  
-  .carousel .slick-next {
-    right: -55px;
-  }
-  
-  .carousel .slick-prev {
-    left: -55px;
-  }
+.carousel .slick-prev,
+.carousel .slick-next {
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+}
 
- 
+.carousel .slick-prev:hover,
+.carousel .slick-prev:focus,
+.carousel .slick-next:hover,
+.carousel .slick-next:focus {
+  color: #fff;
+  outline: none;
+  background: #fff;
+}
 
-  .testBOX {
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    display: flex;
-  }
-  
-  /* ============여기서부터 그냥 CSS */
-  .test2 {
-    /* align-items: center; */
-    /* background-color: rgb(208, 127, 255); */
-    /* justify-content: center; */
-    text-align: center;
-    /* display: flex; */
-    /* display: inline-block; */
-    /* float: left; */
-    margin-top: 2em;
-    padding: 1em;
-  }
+.carousel .slick-prev:before,
+.carousel .slick-next:before {
+  color: #000;
+  font-family: "Raleway", sans-serif;
+}
 
-  /* ====slick-slider dot css==== */
-  .test-css {
-    bottom: -25px;
-    width: 100%;
-    list-style: none;
-    text-align: center;
-    position: absolute;
-    right: 15px;
-    padding: 0;
-  }
-  
-  .test-css li {
-    position: relative;
-    display: inline-block;
-    width: 50px;
-    height: 20px;
-    /*margin: 1px;*/
-    padding: 0;
-    cursor: pointer;
-  }
-  
-  .test-css li button {
-    font-size: 0;
-    line-height: 0;
-    display: block;
-    width: 50px;
-    height: 20px;
-    padding: 5px;
-    cursor: pointer;
-    color: transparent;
-    border: 0;
-    outline: 0;
-    background: 0 0;
-  }
-  
-  .test-css li button:before {
-    font-size: 2.7rem;
-    line-height: 20px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 20px;
-    height: 20px;
-    content: '•';
-    text-align: end;
-    opacity: .75;
-    color: #6D6968;
-  }
-  
-  .test-css li.slick-active button:before {
-    opacity: .75;
-    color: #ffffff;
-  }
+.carousel .slick-next {
+  right: -55px;
+}
 
+.carousel .slick-prev {
+  left: -55px;
+}
+
+.testBOX {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+}
+
+/* ============여기서부터 그냥 CSS */
+.test2 {
+  /* align-items: center; */
+  /* background-color: rgb(208, 127, 255); */
+  /* justify-content: center; */
+  text-align: center;
+  /* display: flex; */
+  /* display: inline-block; */
+  /* float: left; */
+  margin-top: 2em;
+  padding: 1em;
+}
+
+/* ====slick-slider dot css==== */
+.test-css {
+  bottom: -25px;
+  width: 100%;
+  list-style: none;
+  text-align: center;
+  position: absolute;
+  right: 15px;
+  padding: 0;
+}
+
+.test-css li {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 20px;
+  /*margin: 1px;*/
+  padding: 0;
+  cursor: pointer;
+}
+
+.test-css li button {
+  font-size: 0;
+  line-height: 0;
+  display: block;
+  width: 50px;
+  height: 20px;
+  padding: 5px;
+  cursor: pointer;
+  color: transparent;
+  border: 0;
+  outline: 0;
+  background: 0 0;
+}
+
+.test-css li button:before {
+  font-size: 2.7rem;
+  line-height: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  content: "•";
+  text-align: end;
+  opacity: 0.75;
+  color: #6d6968;
+}
+
+.test-css li.slick-active button:before {
+  opacity: 0.75;
+  color: #ffffff;
+}

@@ -3,7 +3,8 @@ import SimpleImageSlider from "react-simple-image-slider";
 import "../styles/Detail.css";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getDetailData, getMyPageData, getFoodsData } from "../lib/api/food";
+import { getDetailData, getMyPageData, getFoodsData, updateFoodWish } from "../lib/api/food";
+import WishListView from "./WishListView";
 
 import axios from "axios";
 
@@ -16,7 +17,8 @@ function Detail() {
 
   const [food, setFood] = useState([]);
   const [foodName, setFoodName] = useState("");
-  const [foodWish, setFoodWish] = useState(false);
+
+  const [selectedButton, setSelectedButton] = useState(null);
 
   useEffect(() => {
     getDetailData(id).then((res) => {
@@ -44,39 +46,6 @@ function Detail() {
 
   console.log("카", categories);
   // 들어온 페이지의 id 받아오기
-
-  const Mine = () => {
-    return (
-      <>
-        <div className="test2">
-          <div className=" col-6 bg-light rounded p-1 mx-auto shadow-lg">
-            <div className="pt-2">
-              <Link to="/Mypage">
-                <div className="btn col-lg-4 btn-lg  press_btn rounded mx-auto ">
-                  <h4 className="text-center text-light ">찜 목록</h4>
-                </div>
-              </Link>
-            </div>
-            <div className="p-2">
-              {mySelect.length != 0 ? (
-                mySelect.map((v, i) => {
-                  return (
-                    <p className="bg-dark mx-3 p-2 text-light rounded storeOpacity">
-                      {mySelect[i].식당}-{mySelect[i].평균가격}
-                    </p>
-                  );
-                })
-              ) : (
-                <div className="p-1">
-                  <h4 className="text-secondary">가게를 찜해보세요😋</h4>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </>
-    );
-  };
 
   const images = [{ url: `/assets/snacks/${id}/0.jpg` }, { url: `/assets/snacks/${id}/1.jpg` }, { url: `/assets/snacks/${id}/2.jpg` }];
 
@@ -134,7 +103,7 @@ function Detail() {
 
       <div className="container">
         <div className="row mx-auto pt-4">
-          {food.map((v, i) => {
+          {food.map((_, i) => {
             return (
               <div className="col-6 col-xl-3 mx-auto">
                 <div className="card mb-3 cardSize" key={i}>
@@ -144,29 +113,34 @@ function Detail() {
                     <div className="text-center p-3">
                       <img
                         src={food[i].wish ? "/assets/heart.png" : "/assets/em_heart.png"}
-                        style={{ width: 50, height: 50 }}
-                        // onClick={() => {
-                        //   axios.get("/wish");
-                        // }}
+                        className="heart_img"
+                        onClick={() => {
+                          updateFoodWish(food[i].식당, !food[i].wish);
+                          getFoodsData(foodName).then((res) => {
+                            setFood([...res.data.food]);
+
+                            // 찜목록 데이터 보내기 구현
+                          });
+                        }}
                         // 이미지를 클릭 했을 때 wish 값을 바꾸어 이미지를 변경하고 true, false값에 따라 마이페이지에 저장
                       />
+                      <h5 className="card-title">{food[i].식당}</h5>
+                      <p className="card-text">
+                        <strong>위치</strong> : {food[i].위치}
+                      </p>
+                      <p className="card-text">
+                        <strong>특징</strong> : {food[i].특징}
+                      </p>
+                      <p className="card-text">
+                        <strong>평균가격</strong> : {food[i].가격}
+                      </p>
                     </div>
-                    <h5 className="card-title">{food[i].식당}</h5>
-                    <p className="card-text">
-                      <strong>위치</strong> : {food[i].위치}
-                    </p>
-                    <p className="card-text">
-                      <strong>특징</strong> : {food[i].특징}
-                    </p>
-                    <p className="card-text">
-                      <strong>평균가격</strong> : {food[i].가격}
-                    </p>
                   </div>
                 </div>
               </div>
             );
           })}
-          <Mine />
+          <WishListView mySelect={mySelect} />
         </div>
       </div>
 
