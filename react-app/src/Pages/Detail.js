@@ -18,8 +18,6 @@ function Detail() {
   const [food, setFood] = useState([]);
   const [foodName, setFoodName] = useState("");
 
-  const [selectedButton, setSelectedButton] = useState(null);
-
   useEffect(() => {
     getDetailData(id).then((res) => {
       setCategories(res.data);
@@ -32,19 +30,18 @@ function Detail() {
 
   const handleClickButton = (e) => {
     const { name } = e.target;
-    console.log(name);
-    // 여기에서 가져온 name을 axios로 보내서 가져오기
+
+    // 여기에서 가져온 name(안주종류)을 axios로 보내서 해당 안주에 대한 식당 정보 가져오기
     getFoodsData(name).then((res) => {
       setFood([...res.data.food]);
       setFoodName(res.data.name);
-      // setFoodWish(!foodWish);
     });
   };
 
-  console.log("푸네", foodName);
-  console.log("푸", food);
+  // console.log("푸네", foodName);
+  // console.log("푸", food);
 
-  console.log("카", categories);
+  // console.log("카", categories);
   // 들어온 페이지의 id 받아오기
 
   const images = [{ url: `/assets/snacks/${id}/0.jpg` }, { url: `/assets/snacks/${id}/1.jpg` }, { url: `/assets/snacks/${id}/2.jpg` }];
@@ -114,6 +111,8 @@ function Detail() {
                       <img
                         src={food[i].wish ? "/assets/heart.png" : "/assets/em_heart.png"}
                         className="heart_img"
+                        // 0529 ★ wish값을 food에서가 아니라 자신의 selection에서 수정해줘야 함
+                        // selection에 있는 정보로 하트 이미지 표시
                         onClick={() => {
                           updateFoodWish(food[i].식당, !food[i].wish);
                           getFoodsData(foodName).then((res) => {
@@ -132,7 +131,7 @@ function Detail() {
                         <strong>특징</strong> : {food[i].특징}
                       </p>
                       <p className="card-text">
-                        <strong>평균가격</strong> : {food[i].가격}
+                        <strong>평균가격</strong> : {food[i].가격}원
                       </p>
                     </div>
                   </div>
@@ -145,7 +144,7 @@ function Detail() {
       </div>
 
       <div className="text-center">
-        <button className="col-xl-2 btn btn-lg press_btn g-2 m-3">
+        <button className="col-xl-2 btn btn-lg press_btn g-2 m-3 hover-opacity">
           <Link to="/Main" style={{ textDecoration: "none", color: "white" }}>
             다른 술 고를래요
           </Link>

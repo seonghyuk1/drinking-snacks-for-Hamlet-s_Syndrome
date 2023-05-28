@@ -5,15 +5,15 @@ const WishListView = ({ mySelect }) => {
     <div className="test2">
       <div className="col-6 bg-light rounded p-1 mx-auto shadow-lg">
         <div className="pt-2">
-          <Link to="/Mypage" className="btn col-lg-4 btn-lg press_btn rounded mx-auto">
-            <h4 className="text-center text-light">찜 목록</h4>
+          <Link to="/Mypage" className="btn col-lg-3 btn-lg press_btn rounded mx-auto hover-opacity">
+            <h4 className="text-center text-light">찜목록</h4>
           </Link>
         </div>
         <div className="p-2">
           {mySelect.length ? (
             mySelect.map((selectCategory, i) => (
               <p className="bg-dark mx-3 p-2 text-light rounded storeOpacity" key={i}>
-                {`${selectCategory.식당}-${selectCategory.평균가격}`}
+                {`${selectCategory.식당} - 평균가 ${selectCategory.평균가격}원`}
               </p>
             ))
           ) : (
