@@ -165,14 +165,30 @@ app.get("/detail/:id", function (req, res) {
 });
 
 // 가장 힘들었었던 update부분 | 어레이 + 배열 조합이라 접근이 어려웠음
+// app.post("/wish", function (req, res) {
+//   const restaurant = req.body.restaurantName;
+//   const newWish = req.body.newWish;
+
+//   db.collection("food")
+//     .updateOne({ restaurantName: restaurant }, { $set: { wish: newWish } })
+//     .then(() => {
+//       console.log("wish 업데이트 완료");
+//     })
+//     .catch((error) => {
+//       console.error(error);
+//       res.status(500).json({ error: "서버 에러 발생" });
+//     });
+// });
+
 app.post("/wish", function (req, res) {
   const restaurant = req.body.restaurantName;
   const newWish = req.body.newWish;
 
-  db.collection("food")
-    .updateOne({ "food.식당": restaurant }, { $set: { "food.$.wish": newWish } })
+  db.collection("selection")
+    .updateOne({ restaurantName: restaurant }, { $set: { wish: newWish } })
     .then(() => {
       console.log("wish 업데이트 완료");
+      res.status(200).json({ message: "wish 업데이트 완료" });
     })
     .catch((error) => {
       console.error(error);
@@ -197,23 +213,23 @@ app.post("/food", function (req, res) {
 //마이페이지 구현 - 저장 (각 음식 페이지에서 활용)
 app.post("/selection", function (req, res) {
   db.collection("selection").insertOne({
+    restaurantName: req.body.restaurantName,
     drink: req.body.drink,
-    식당: req.body.식당,
-    위치: req.body.위치,
-    특징: req.body.특징,
-    평균가격: req.body.평균가격,
-    좋아요: req.body.좋아요,
-    id: req.body.id,
-    종류: req.body.종류,
-    삭제용: req.body.삭제용,
-    사진: req.body.사진,
+    foodCategory: req.body.foodCategory,
+    avgPrice: req.body.avgPrice,
+    feature: req.body.feature,
+    userId: req.body.userId,
+    storeLocation: req.body.storeLocation,
+    wish: req.body.wish,
+    deleteId: req.body.deleteId,
+    foodImg: req.body.foodImg,
   });
 });
 
-// 모든 찜목록 데이터 - 추후에 내 id를 통해 가져올 것
+// 내 id에 해당하는 찜목록
 app.post("/mySelected", function (req, res) {
   db.collection("selection")
-    .find({ id: req.body.data })
+    .find({ userId: req.body.userId })
     .toArray(function (err, result) {
       res.json(result);
       // console.log(result);
@@ -222,7 +238,7 @@ app.post("/mySelected", function (req, res) {
 
 //마이페이지 찜 목록에서 삭제
 app.post("/delete", function (req, res) {
-  db.collection("selection").deleteOne({ 삭제용: req.body.data }, function (err, result) {
+  db.collection("selection").deleteOne({ deleteId: req.body.deleteId }, function (err, result) {
     // console.log(result);
     res.json("삭제완료");
   });
