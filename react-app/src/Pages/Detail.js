@@ -45,27 +45,36 @@ function Detail() {
   };
 
   const handleWishToggle = (restaurantName) => {
+    // 찜 목록에서 해당 식당과 일치하는 항목의 인덱스를 찾기
     const matchingIndex = wishFood.findIndex((wishItem) => wishItem.restaurantName === restaurantName);
+
+    // 찜 목록에 없는 경우, 추가
     if (matchingIndex === -1) {
-      // 찜 목록에 없는 경우, 추가
+      // food 배열에서 식당 이름과 일치하는 항목을 찾기
       const matchingFood = food.find((foodItem) => foodItem.식당 === restaurantName);
       if (matchingFood) {
+        // 찜 목록에 추가할 새로운 항목을 생성
         const newWishItem = {
           restaurantName: matchingFood.식당,
           wish: true,
         };
+        // 기존의 wishFood 배열에 새로운 항목을 추가하여 업데이트
         setWishFood([...wishFood, newWishItem]);
         alert("찜 목록에 추가 완료되었습니다.");
       }
-    } else {
-      // 이미 찜 목록에 있는 경우, 제거
+    }
+    // 찜 목록에 이미 있는 경우, 제거
+    else {
+      // wishFood 배열에서 matchingIndex에 해당하는 항목을 제거
+      // 전개연산자 유의 - 불변성 법칙 : 리액트는 상태가 변경되었음을 감지하고 컴포넌트를 업데이트
+      // 배열 자체라면 같은 배열의 참조이기 때문에 변경이 감지되지 않을 수 있음
       const updatedWishFood = [...wishFood];
       updatedWishFood.splice(matchingIndex, 1);
+      // 업데이트된 wishFood 배열로 설정하여 업데이트
       setWishFood(updatedWishFood);
       alert("찜 목록에서 제거 완료되었습니다.");
     }
   };
-
   console.log("위푸", wishFood);
   console.log("푸네", foodName);
   console.log("푸", food);
@@ -144,6 +153,9 @@ function Detail() {
                           onClick={() => {
                             handleWishToggle(foodItem.식당);
                             deleteWishList(userId + food[i].식당);
+                            getMyPageData(userId).then((res) => {
+                              setMySelect([...res.data]);
+                            });
                           }}
                         />
                       ) : (
@@ -153,6 +165,9 @@ function Detail() {
                           onClick={() => {
                             handleWishToggle(foodItem.식당);
                             insertWishList(food[i].식당, categories.drink, foodName, food[i].가격, userId, food[i].위치, food[i].특징, userId + food[i].식당, `/assets/snacks/${id}/${foodName}/${i}.jpg`, true);
+                            getMyPageData(userId).then((res) => {
+                              setMySelect([...res.data]);
+                            });
                           }}
                         />
                       )}
