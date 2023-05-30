@@ -2,9 +2,9 @@
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import "../styles/Mypage.css";
-import { Wheel } from "react-custom-roulette";
 import { getMyPageData, deleteWishList } from "../lib/api/food";
 import Roulette from "./roulette";
+import MypageMenu from "./MypageMenu";
 
 function Mypage() {
   const userId = sessionStorage.getItem("userId");
@@ -50,38 +50,7 @@ function Mypage() {
 
   return (
     <>
-      {/* 메뉴바를 만들어서 해당 기능으로 이동 */}
-      <nav className="navbar navbar-expand-lg bg-light">
-        <div className="container-fluid">
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <b>
-                  <Link className="nav-link active" to="/Mypage">
-                    찜 목록({count})
-                  </Link>
-                </b>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link active" to="/ChangeNickname">
-                  닉네임 변경
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link active" to="/ChangePassword">
-                  비밀번호 변경
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link active" to="/Resign">
-                  회원 탈퇴
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
+      <MypageMenu count={count} />
       {/* 룰렛 추가(찜이 0개 시, 보이지 않게) */}
       {rouletteData.length !== 0 && (
         <div align="center" className="container pt-3 rounded">

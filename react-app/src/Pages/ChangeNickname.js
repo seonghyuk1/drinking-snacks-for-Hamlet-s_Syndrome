@@ -4,20 +4,28 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Mypage.css";
+import MypageMenu from "./MypageMenu";
+import { getMyPageData } from "../lib/api/food";
 
 function ChangeNickname() {
+  const userId = sessionStorage.getItem("userId");
+  const [mySelect, setMySelect] = useState([]);
+
+  useEffect(() => {
+    getMyPageData(userId).then((res) => {
+      setMySelect([...res.data]);
+    });
+  }, []);
+
+  const count = mySelect.length;
   const [nickname, setNickname] = useState("");
   const nowNickname = sessionStorage.getItem("Nickname");
 
-  const ID = sessionStorage.getItem("ID");
-
-  const [views, setView] = useState([]);
-
-  useEffect(() => {
-    axios.post("/mypage", { data: ID }).then((응답) => {
-      setView([...views, ...응답.data]);
-    });
-  }, []);
+  // useEffect(() => {
+  //   axios.post("/mypage", { data: ID }).then((응답) => {
+  //     setView([...views, ...응답.data]);
+  //   });
+  // }, []);
 
   // 수정할 닉네임
   const Handler = (e) => {
@@ -26,9 +34,6 @@ function ChangeNickname() {
   };
 
   const navigate = useNavigate();
-
-  //찜목록 옆에 현재 찜한 개수 표현하기
-  const count = views.length;
 
   // 닉네임 변경
   async function submitHandler(e) {
@@ -49,37 +54,7 @@ function ChangeNickname() {
 
   return (
     <>
-      {/* 메뉴바를 만들어서 해당 기능으로 이동 */}
-      <nav className="navbar navbar-expand-lg bg-light">
-        <div className="container-fluid">
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <Link className="nav-link active" to="/Mypage">
-                  찜 목록({count})
-                </Link>
-              </li>
-              <li className="nav-item">
-                <b>
-                  <Link className="nav-link active" to="/ChangeNickname">
-                    닉네임 변경
-                  </Link>
-                </b>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link active" to="/ChangePassword">
-                  비밀번호 변경
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link active" to="/Resign">
-                  회원 탈퇴
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+      <MypageMenu count={count} />
 
       <div className=" bg-light rounded m-3 p-3 containerBox  d-flex align-items-center">
         <div className=" border bg-light p-3 container col-8 m-2 rounded col rounded mx-auto ">

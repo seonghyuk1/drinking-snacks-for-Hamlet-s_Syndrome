@@ -6,8 +6,6 @@ import { useEffect, useState } from "react";
 import { getDetailData, getMyPageData, getFoodsData, insertWishList, deleteWishList } from "../lib/api/food";
 import WishListView from "./WishListView";
 
-import axios from "axios";
-
 function Detail() {
   // useParams의 id : 주류의 정보 0~4
   const { id } = useParams();
