@@ -4,8 +4,8 @@ export const getDetailData = (drink_id) => {
   return axios.get(`/detail/${drink_id}`);
 };
 
-export const getMyPageData = () => {
-  return axios.post("/mySelected");
+export const getMyPageData = (userId) => {
+  return axios.post("/mySelected", { userId: userId });
 };
 
 export const getFoodsData = (selectedFoodCate) => {
@@ -14,4 +14,12 @@ export const getFoodsData = (selectedFoodCate) => {
 
 export const updateFoodWish = (name, wishValue) => {
   axios.post("/wish", { restaurantName: name, newWish: wishValue });
+};
+
+export const insertWishList = (name, drink, selectedFoodCate, avgPrice, id, storeLocation, feature, deleteId, foodImg, wish) => {
+  axios.post("/selection", { restaurantName: name, drink: drink, foodCategory: selectedFoodCate, avgPrice: avgPrice, userId: id, storeLocation: storeLocation, feature: feature, deleteId: deleteId, foodImg: foodImg, wish: wish });
+};
+
+export const deleteWishList = (deleteId) => {
+  axios.post("/delete", { deleteId: deleteId });
 };

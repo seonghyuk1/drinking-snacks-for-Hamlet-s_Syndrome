@@ -3,7 +3,7 @@ import SimpleImageSlider from "react-simple-image-slider";
 import "../styles/Detail.css";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getDetailData, getMyPageData, getFoodsData, updateFoodWish } from "../lib/api/food";
+import { getDetailData, getMyPageData, getFoodsData, updateFoodWish, insertWishList, deleteWishList } from "../lib/api/food";
 import WishListView from "./WishListView";
 
 import axios from "axios";
@@ -11,6 +11,7 @@ import axios from "axios";
 function Detail() {
   // useParams의 id : 주류의 정보 0~4
   const { id } = useParams();
+  const userId = sessionStorage.getItem("userId");
 
   const [mySelect, setMySelect] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -18,12 +19,14 @@ function Detail() {
   const [food, setFood] = useState([]);
   const [foodName, setFoodName] = useState("");
 
+  const [wishFood, setWishFood] = useState([]);
+
   useEffect(() => {
     getDetailData(id).then((res) => {
       setCategories(res.data);
     });
 
-    getMyPageData().then((res) => {
+    getMyPageData(userId).then((res) => {
       setMySelect([...res.data]);
     });
   }, []);
@@ -36,13 +39,38 @@ function Detail() {
       setFood([...res.data.food]);
       setFoodName(res.data.name);
     });
+
+    const filteredData = mySelect.filter((item) => item.foodCategory === name);
+    setWishFood(filteredData);
   };
 
-  // console.log("푸네", foodName);
-  // console.log("푸", food);
+  const handleWishToggle = (restaurantName) => {
+    const matchingIndex = wishFood.findIndex((wishItem) => wishItem.restaurantName === restaurantName);
+    if (matchingIndex === -1) {
+      // 찜 목록에 없는 경우, 추가
+      const matchingFood = food.find((foodItem) => foodItem.식당 === restaurantName);
+      if (matchingFood) {
+        const newWishItem = {
+          restaurantName: matchingFood.식당,
+          wish: true,
+        };
+        setWishFood([...wishFood, newWishItem]);
+        alert("찜 목록에 추가 완료되었습니다.");
+      }
+    } else {
+      // 이미 찜 목록에 있는 경우, 제거
+      const updatedWishFood = [...wishFood];
+      updatedWishFood.splice(matchingIndex, 1);
+      setWishFood(updatedWishFood);
+      alert("찜 목록에서 제거 완료되었습니다.");
+    }
+  };
 
-  // console.log("카", categories);
-  // 들어온 페이지의 id 받아오기
+  console.log("위푸", wishFood);
+  console.log("푸네", foodName);
+  console.log("푸", food);
+  console.log("카", categories);
+  console.log("셀렉", mySelect);
 
   const images = [{ url: `/assets/snacks/${id}/0.jpg` }, { url: `/assets/snacks/${id}/1.jpg` }, { url: `/assets/snacks/${id}/2.jpg` }];
 
@@ -81,7 +109,7 @@ function Detail() {
         </div>
       </div>
 
-      {/* button에 함수로 axios를 통해 서버로부터 회에 대한 정보들을 가져오도록 설정 */}
+      {/* button에 함수로 axios를 통해 서버로부터 각 식당에 대한 정보들을 가져오도록 설정 */}
 
       <div className="test2">
         <div className="container bg-light rounded shadow-lg storeOpacity">
@@ -96,33 +124,38 @@ function Detail() {
         </div>
       </div>
 
-      {/* 화면보여주기 */}
-
+      {/* 화면 보여주기 */}
       <div className="container">
         <div className="row mx-auto pt-4">
-          {food.map((_, i) => {
+          {food.map((foodItem, i) => {
+            const matchingData = wishFood.find((wishItem) => wishItem.restaurantName === foodItem.식당);
+            const isWished = matchingData ? matchingData.wish : false;
             return (
               <div className="col-6 col-xl-3 mx-auto">
                 <div className="card mb-3 cardSize" key={i}>
-                  <img className="card-img" src={`/assets/snacks/${id}/${foodName}/${i}.jpg`} alt="..." height="600px" />
+                  <img className="card-img" src={`/assets/snacks/${id}/${foodName}/${i}.jpg`} alt="foodImg" height="600px" />
 
                   <div className="bg-dark card-img-overlay text-white d-flex flex-column justify-content-center storeOpacity">
                     <div className="text-center p-3">
-                      <img
-                        src={food[i].wish ? "/assets/heart.png" : "/assets/em_heart.png"}
-                        className="heart_img"
-                        // 0529 ★ wish값을 food에서가 아니라 자신의 selection에서 수정해줘야 함
-                        // selection에 있는 정보로 하트 이미지 표시
-                        onClick={() => {
-                          updateFoodWish(food[i].식당, !food[i].wish);
-                          getFoodsData(foodName).then((res) => {
-                            setFood([...res.data.food]);
-
-                            // 찜목록 데이터 보내기 구현
-                          });
-                        }}
-                        // 이미지를 클릭 했을 때 wish 값을 바꾸어 이미지를 변경하고 true, false값에 따라 마이페이지에 저장
-                      />
+                      {isWished ? (
+                        <img
+                          src={"/assets/heart.png"}
+                          className="heart_img"
+                          onClick={() => {
+                            handleWishToggle(foodItem.식당);
+                            deleteWishList(userId + food[i].식당);
+                          }}
+                        />
+                      ) : (
+                        <img
+                          src={"/assets/em_heart.png"}
+                          className="heart_img"
+                          onClick={() => {
+                            handleWishToggle(foodItem.식당);
+                            insertWishList(food[i].식당, categories.drink, foodName, food[i].가격, userId, food[i].위치, food[i].특징, userId + food[i].식당, `/assets/snacks/${id}/${foodName}/${i}.jpg`, true);
+                          }}
+                        />
+                      )}
                       <h5 className="card-title">{food[i].식당}</h5>
                       <p className="card-text">
                         <strong>위치</strong> : {food[i].위치}

@@ -13,7 +13,7 @@ const WishListView = ({ mySelect }) => {
           {mySelect.length ? (
             mySelect.map((selectCategory, i) => (
               <p className="bg-dark mx-3 p-2 text-light rounded storeOpacity" key={i}>
-                {`${selectCategory.식당} - 평균가 ${selectCategory.평균가격}원`}
+                {`${selectCategory.restaurantName} - 평균가 ${selectCategory.avgPrice}원`}
               </p>
             ))
           ) : (

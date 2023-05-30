@@ -14,6 +14,7 @@ export async function loginSubmit(id, pw, navigate) {
     const { 패스워드, 닉네임 } = user;
 
     sessionStorage.setItem("Nickname", 닉네임);
+    sessionStorage.setItem("userId", id);
 
     const loginData = await login(id, 패스워드, pw);
 
