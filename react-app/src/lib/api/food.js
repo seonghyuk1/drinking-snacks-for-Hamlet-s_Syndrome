@@ -12,10 +12,6 @@ export const getFoodsData = (selectedFoodCate) => {
   return axios.post("/food", { foodCategory: selectedFoodCate });
 };
 
-export const updateFoodWish = (name, wishValue) => {
-  axios.post("/wish", { restaurantName: name, newWish: wishValue });
-};
-
 export const insertWishList = (name, drink, selectedFoodCate, avgPrice, id, storeLocation, feature, deleteId, foodImg, wish) => {
   axios.post("/selection", { restaurantName: name, drink: drink, foodCategory: selectedFoodCate, avgPrice: avgPrice, userId: id, storeLocation: storeLocation, feature: feature, deleteId: deleteId, foodImg: foodImg, wish: wish });
 };
