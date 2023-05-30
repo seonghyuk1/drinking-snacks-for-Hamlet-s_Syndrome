@@ -36,3 +36,5 @@ export const submitSignUp = async (id, name, pw) => {
     throw err;
   }
 };
+
+// ---------------------------------------------------------------

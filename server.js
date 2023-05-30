@@ -180,22 +180,6 @@ app.get("/detail/:id", function (req, res) {
 //     });
 // });
 
-app.post("/wish", function (req, res) {
-  const restaurant = req.body.restaurantName;
-  const newWish = req.body.newWish;
-
-  db.collection("selection")
-    .updateOne({ restaurantName: restaurant }, { $set: { wish: newWish } })
-    .then(() => {
-      console.log("wish 업데이트 완료");
-      res.status(200).json({ message: "wish 업데이트 완료" });
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).json({ error: "서버 에러 발생" });
-    });
-});
-
 // 안주 이름에 해당하는 식당 정보들 가지고 오기
 app.post("/food", function (req, res) {
   db.collection("food")

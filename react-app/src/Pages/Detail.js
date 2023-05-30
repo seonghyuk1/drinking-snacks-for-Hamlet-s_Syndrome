@@ -3,7 +3,7 @@ import SimpleImageSlider from "react-simple-image-slider";
 import "../styles/Detail.css";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getDetailData, getMyPageData, getFoodsData, updateFoodWish, insertWishList, deleteWishList } from "../lib/api/food";
+import { getDetailData, getMyPageData, getFoodsData, insertWishList, deleteWishList } from "../lib/api/food";
 import WishListView from "./WishListView";
 
 import axios from "axios";
