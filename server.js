@@ -228,24 +228,57 @@ app.post("/delete", function (req, res) {
   });
 });
 
-//비밀번호 변경
-app.post("/changePW", function (req, res) {
-  db.collection("login").findOne({ 아이디: req.body.id }, function (err, result) {
+//닉네임 변경
+app.post("/changeNickname", function (req, res) {
+  db.collection("login").findOne({ 아이디: req.body.userId }, function (err, result) {
     if (result) {
-      bcrypt.compare(req.body.current, req.body.hash).then((result) => {
+      db.collection("login")
+        .updateOne({ 아이디: req.body.userId }, { $set: { 닉네임: req.body.nickName } })
+        .then(() => {
+          res.json(req.body.nickName);
+        });
+    } else {
+      console.log("찾는 아이디 없음");
+    }
+  });
+});
+
+// 데이터베이스에서 암호화된 비밀번호 갖고 오기 - 비밀번호 변경
+app.post("/api/findPw", async (req, res) => {
+  try {
+    // id를 사용하여 데이터베이스에서 해당 사용자의 정보를 가져옴
+    const user = await db.collection("login").findOne({ 아이디: req.body.userId });
+    if (!user) {
+      res.status(404).json({ error: "사용자를 찾을 수 없음" });
+      return;
+    }
+    // 암호화된 비밀번호를 응답으로 전달
+    res.json({ 패스워드: user.패스워드 });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "서버 에러 발생" });
+  }
+});
+
+// 패스워드 변경 API 엔드포인트
+app.post("/api/changePw", (req, res) => {
+  db.collection("login").findOne({ 아이디: req.body.userId }, function (err, result) {
+    if (result) {
+      // 입력한 현재 비밀번호와 데이터베이스의 암호화 비밀번호의 일치 여부 확인
+      bcrypt.compare(req.body.currentPw, req.body.saltPw).then((result) => {
         if (result) {
           //패스워드 일치
           //새 비밀번호와 다시 입력한게 다를때
-          if (req.body.new != req.body.re) {
-            res.json("비밀번호 재입력 오류");
+          if (req.body.newPw != req.body.verifyPw) {
+            res.json("Not match newPw, verifyPw");
           } else {
             //현재 비밀번호와 새로 작성한 비밀번호가 동일할때
-            if (req.body.new == req.body.current) {
-              res.json("비밀번호 동일");
+            if (req.body.newPw == req.body.currentPw) {
+              res.json("match nowPw, newPw");
             } else {
               //정상적으로 바꾸면 DB 업데이트 하고 홈 이동
-              bcrypt.hash(req.body.new, saltRounds, (err, hash) => {
-                db.collection("login").updateOne({ 아이디: req.body.id }, { $set: { 패스워드: hash } }, function (err, result) {
+              bcrypt.hash(req.body.newPw, saltRounds, (err, hash) => {
+                db.collection("login").updateOne({ 아이디: req.body.userId }, { $set: { 패스워드: hash } }, function (err, result) {
                   // console.log("수정완료");
                   res.redirect("/Main");
                 });
@@ -254,11 +287,41 @@ app.post("/changePW", function (req, res) {
           }
         } else {
           //패스워드 일치하지 않음
-          res.json("현재 패스워드 안맞음");
+          res.json("Not match nowPw");
         }
       });
     }
   });
+  // // 현재 패스워드 확인
+  // bcrypt.compare(req.body.currentPw, req.body.saltPw).then((result) => {
+  //   if (!result) {
+  //     res.send("Not match nowPw");
+  //     return;
+  //   }
+  // });
+  // // 새로운 비밀번호 확인
+  // if (req.body.newPw !== req.body.verifyPw) {
+  //   res.send("Not match newPw, verifyPw");
+  //   return;
+  // }
+  // // 기존 비밀번호와 동일한 경우
+  // if (req.body.currentPw === req.body.newPw) {
+  //   res.send("match nowPw, newPw");
+  //   return;
+  // }
+  // //정상적으로 바꾸면 DB 업데이트 하고 홈 이동
+  // bcrypt.hash(req.body.newPw, saltRounds, (err, hash) => {
+  //   db.collection("login")
+  //     .updateOne(
+  //       { 아이디: req.body.userId },
+  //       { $set: { 패스워드: hash } }
+  //       // console.log("수정완료");
+  //     )
+  //     .then(() => {
+  //       res.redirect("/Main");
+  //     });
+  // });
+  // res.send("비밀번호 변경 완료");
 });
 
 //회원탈퇴
@@ -279,21 +342,6 @@ app.post("/resign", function (req, res) {
       });
     } else {
       db.collection("selection").deleteMany({ id: req.body.id });
-    }
-  });
-});
-
-//닉네임 변경
-app.post("/changeNickname", function (req, res) {
-  db.collection("login").findOne({ 아이디: req.body.userId }, function (err, result) {
-    if (result) {
-      db.collection("login")
-        .updateOne({ 아이디: req.body.userId }, { $set: { 닉네임: req.body.nickName } })
-        .then(() => {
-          res.json(req.body.nickName);
-        });
-    } else {
-      console.log("찾는 아이디 없음");
     }
   });
 });

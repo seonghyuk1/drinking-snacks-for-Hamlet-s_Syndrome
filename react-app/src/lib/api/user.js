@@ -34,13 +34,39 @@ export const submitSignUp = async (id, name, pw) => {
   }
 };
 
-// ---------------------------------------------------------------
+// -----------------------------Mypage-------------------------
 
+// 닉네임 변경
 export const updateNickName = async (userId, nickName, navigate) => {
   try {
     axios.post("changeNickname", { userId, nickName }).then((res) => {
       sessionStorage.setItem("Nickname", res.data);
       navigate("/Main");
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+// 비밀번호 변경
+export const changePw = async (userId, currentPw, newPw, verifyPw, navigate) => {
+  try {
+    await axios.post("/api/findPw", { userId }).then((res) => {
+      // 암호화된 비밀번호를 변수에 저장
+      const saltPw = res.data.패스워드;
+
+      axios.post("/api/changePw", { userId, currentPw, saltPw, newPw, verifyPw }).then((res) => {
+        if (res.data === "Not match nowPw") {
+          alert("현재 패스워드를 잘못 입력하셨습니다.");
+        } else if (res.data === "Not match newPw, verifyPw") {
+          alert("입력하신 비밀번호와 비밀번호 확인이 맞지 않습니다.");
+        } else if (res.data === "match nowPw, newPw") {
+          alert("기존 비밀번호와 새로운 비밀번호가 동일합니다.");
+        } else {
+          navigate("/Main");
+          alert("비밀번호 변경이 완료되었습니다.");
+        }
+      });
     });
   } catch (err) {
     console.log(err);
