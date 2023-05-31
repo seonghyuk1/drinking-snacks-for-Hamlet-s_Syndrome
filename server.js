@@ -183,7 +183,7 @@ app.get("/detail/:id", function (req, res) {
 // 안주 이름에 해당하는 식당 정보들 가지고 오기
 app.post("/food", function (req, res) {
   db.collection("food")
-    .findOne({ name: req.body.foodCategory })
+    .findOne({ name: req.body.selectedFoodCate })
     .then((result) => {
       res.json(result);
       // console.log(result);
@@ -199,7 +199,7 @@ app.post("/selection", function (req, res) {
   db.collection("selection").insertOne({
     restaurantName: req.body.restaurantName,
     drink: req.body.drink,
-    foodCategory: req.body.foodCategory,
+    foodCategory: req.body.selectedFoodCate,
     avgPrice: req.body.avgPrice,
     feature: req.body.feature,
     userId: req.body.userId,
@@ -285,16 +285,33 @@ app.post("/resign", function (req, res) {
 
 //닉네임 변경
 app.post("/changeNickname", function (req, res) {
-  db.collection("login").findOne({ 아이디: req.body.id }, function (err, result) {
+  db.collection("login").findOne({ 아이디: req.body.userId }, function (err, result) {
     if (result) {
-      db.collection("login").updateOne({ 아이디: req.body.id }, { $set: { 닉네임: req.body.nickname } }, function (err, result) {
-        res.json(req.body.nickname);
-      });
+      db.collection("login")
+        .updateOne({ 아이디: req.body.userId }, { $set: { 닉네임: req.body.nickName } })
+        .then(() => {
+          res.json(req.body.nickName);
+        });
     } else {
       console.log("찾는 아이디 없음");
     }
   });
 });
+
+// app.post("/wish", function (req, res) {
+//   const restaurant = req.body.restaurantName;
+//   const newWish = req.body.newWish;
+
+//   db.collection("food")
+//     .updateOne({ restaurantName: restaurant }, { $set: { wish: newWish } })
+//     .then(() => {
+//       console.log("wish 업데이트 완료");
+//     })
+//     .catch((error) => {
+//       console.error(error);
+//       res.status(500).json({ error: "서버 에러 발생" });
+//     });
+// });
 
 app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "/react-app/build/index.html"), function (err) {
