@@ -8,7 +8,7 @@ import "../styles/Login_Header.css";
 function Header() {
   // faker.locale = "ko";
 
-  const ID = sessionStorage.getItem("ID");
+  const userId = sessionStorage.getItem("userId");
   const NickName = sessionStorage.getItem("Nickname");
   const myJWT = sessionStorage.getItem("JWT");
 
@@ -65,7 +65,7 @@ function Header() {
                         </span>
                       ) : (
                         <span className="align-middle ">
-                          환영합니다💖! <b>{ID}</b>님!
+                          환영합니다💖! <b>{userId}</b>님!
                         </span>
                       )}
                     </Link>

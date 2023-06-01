@@ -2,6 +2,10 @@ const express = require("express");
 const path = require("path");
 const app = express();
 
+//Socket 사용하는 코드
+// const http = require("http").createServer(app);
+// const { Server } = require("socket.io");
+
 //소켓용
 const http = require("http");
 const Server = require("socket.io").Server;
@@ -30,14 +34,14 @@ io.on("connection", (socket) => {
 
 const cors = require("cors");
 
-//Socket 사용하는 코드
-// const http = require("http").createServer(app);
-// const { Server } = require("socket.io");
-
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "react-app/build")));
+app.use((req, res, next) => {
+  res.setHeader("Set-Cookie", "SameSite=None; Secure"); // SameSite 속성 설정
+  next();
+});
 
 // 환경변수
 require("dotenv").config();
@@ -164,22 +168,6 @@ app.get("/detail/:id", function (req, res) {
     });
 });
 
-// 가장 힘들었었던 update부분 | 어레이 + 배열 조합이라 접근이 어려웠음
-// app.post("/wish", function (req, res) {
-//   const restaurant = req.body.restaurantName;
-//   const newWish = req.body.newWish;
-
-//   db.collection("food")
-//     .updateOne({ restaurantName: restaurant }, { $set: { wish: newWish } })
-//     .then(() => {
-//       console.log("wish 업데이트 완료");
-//     })
-//     .catch((error) => {
-//       console.error(error);
-//       res.status(500).json({ error: "서버 에러 발생" });
-//     });
-// });
-
 // 안주 이름에 해당하는 식당 정보들 가지고 오기
 app.post("/food", function (req, res) {
   db.collection("food")
@@ -191,6 +179,22 @@ app.post("/food", function (req, res) {
     .catch((error) => {
       console.error(error);
       res.status(500).json({ error: "서버 에러 발생" });
+    });
+});
+
+// 데이터베이스 암호화 비밀번호 전달 API
+app.get("/test", function (req, res) {
+  // 배열로 전달 login 데이터베이스 정보 전달
+  db.collection("food")
+    .find()
+    .toArray(function (err, result) {
+      if (err) {
+        console.log(err);
+        res.status(500).json({ error: "서버 에러 발생" });
+      } else {
+        res.json(result);
+        console.log(result);
+      }
     });
 });
 
@@ -278,10 +282,11 @@ app.post("/api/changePw", (req, res) => {
             } else {
               //정상적으로 바꾸면 DB 업데이트 하고 홈 이동
               bcrypt.hash(req.body.newPw, saltRounds, (err, hash) => {
-                db.collection("login").updateOne({ 아이디: req.body.userId }, { $set: { 패스워드: hash } }, function (err, result) {
-                  // console.log("수정완료");
-                  res.redirect("/Main");
-                });
+                db.collection("login")
+                  .updateOne({ 아이디: req.body.userId }, { $set: { 패스워드: hash } })
+                  .then(() => {
+                    res.redirect("/Main");
+                  });
               });
             }
           }
@@ -292,74 +297,31 @@ app.post("/api/changePw", (req, res) => {
       });
     }
   });
-  // // 현재 패스워드 확인
-  // bcrypt.compare(req.body.currentPw, req.body.saltPw).then((result) => {
-  //   if (!result) {
-  //     res.send("Not match nowPw");
-  //     return;
-  //   }
-  // });
-  // // 새로운 비밀번호 확인
-  // if (req.body.newPw !== req.body.verifyPw) {
-  //   res.send("Not match newPw, verifyPw");
-  //   return;
-  // }
-  // // 기존 비밀번호와 동일한 경우
-  // if (req.body.currentPw === req.body.newPw) {
-  //   res.send("match nowPw, newPw");
-  //   return;
-  // }
-  // //정상적으로 바꾸면 DB 업데이트 하고 홈 이동
-  // bcrypt.hash(req.body.newPw, saltRounds, (err, hash) => {
-  //   db.collection("login")
-  //     .updateOne(
-  //       { 아이디: req.body.userId },
-  //       { $set: { 패스워드: hash } }
-  //       // console.log("수정완료");
-  //     )
-  //     .then(() => {
-  //       res.redirect("/Main");
-  //     });
-  // });
-  // res.send("비밀번호 변경 완료");
 });
 
 //회원탈퇴
 app.post("/resign", function (req, res) {
-  db.collection("login").findOne({ 아이디: req.body.id }, function (err, result) {
+  db.collection("login").findOne({ 아이디: req.body.userId }, function (err, result) {
     if (result) {
-      bcrypt.compare(req.body.current, req.body.hash).then((result) => {
+      bcrypt.compare(req.body.currentPw, req.body.saltPw).then((result) => {
         if (result) {
+          // 갖고있던 찜목록 전부 삭제
+          db.collection("selection").deleteMany({ userId: req.body.userId });
+
           //패스워드 일치
-          db.collection("login").deleteOne({ 아이디: req.body.id }, function (err, result) {
-            // console.log("삭제완료");
-            res.redirect("/");
-          });
+          db.collection("login")
+            .deleteOne({ 아이디: req.body.userId })
+            .then(() => {
+              res.redirect("/");
+            });
         } else {
           //패스워드 일치하지 않음
-          res.json("현재 패스워드 안맞음");
+          res.json("Not match currentPw");
         }
       });
-    } else {
-      db.collection("selection").deleteMany({ id: req.body.id });
     }
   });
 });
-
-// app.post("/wish", function (req, res) {
-//   const restaurant = req.body.restaurantName;
-//   const newWish = req.body.newWish;
-
-//   db.collection("food")
-//     .updateOne({ restaurantName: restaurant }, { $set: { wish: newWish } })
-//     .then(() => {
-//       console.log("wish 업데이트 완료");
-//     })
-//     .catch((error) => {
-//       console.error(error);
-//       res.status(500).json({ error: "서버 에러 발생" });
-//     });
-// });
 
 app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "/react-app/build/index.html"), function (err) {

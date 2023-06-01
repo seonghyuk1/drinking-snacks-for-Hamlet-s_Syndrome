@@ -17,8 +17,6 @@ function Mypage() {
     });
   }, []);
 
-  console.log("뷰", mySelect);
-
   const count = mySelect.length;
   // 룰렛 관련
 

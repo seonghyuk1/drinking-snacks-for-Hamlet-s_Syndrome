@@ -65,7 +65,7 @@ function ChangePassword() {
             <label className="p-3 font-500">비밀번호 변경하기</label>
             <input type="password" className="form-control form-control-lg rounded-pill" placeholder="변경할 비밀번호를 입력하세요." value={newPw} onChange={nPWHandler}></input>
 
-            <input type="password" className="form-control form-control-lg mt-3 rounded-pill" placeholder="변경할새 비밀번호를 다시 입력하세요." value={verifyPw} onChange={rPWHandler} />
+            <input type="password" className="form-control form-control-lg mt-3 rounded-pill" placeholder="변경할 새 비밀번호를 다시 입력하세요." value={verifyPw} onChange={rPWHandler} />
 
             <div className="d-grid gap-2 col-md-11 mx-auto">
               <button onSubmit={submitHandler} className="btn btn-lg press_btn mt-5 gap-2 " type="submit">

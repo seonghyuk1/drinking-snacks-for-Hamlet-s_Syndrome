@@ -4,8 +4,13 @@ import axios from "axios";
 export const checkDuplicateID = async (id) => {
   try {
     const res = await axios.post("api/signup/checkDuplicateID", id);
-    console.log("검사여부 : " + res.data);
-    return res.data;
+    // console.log("검사여부 : " + res.data);
+
+    if (res === "Exist") {
+      alert("이미 존재하는 아이디입니다.");
+    } else {
+      alert("아이디가 사용이 가능합니다.");
+    }
   } catch (err) {
     console.log(err);
     throw err;
@@ -65,6 +70,32 @@ export const changePw = async (userId, currentPw, newPw, verifyPw, navigate) => 
         } else {
           navigate("/Main");
           alert("비밀번호 변경이 완료되었습니다.");
+        }
+      });
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+// 회원탈퇴
+export const withDrawal = async (userId, currentPw, navigate) => {
+  try {
+    await axios.post("/api/findPw", { userId }).then((res) => {
+      // 암호화된 비밀번호를 변수에 저장
+      const saltPw = res.data.패스워드;
+      console.log(saltPw);
+
+      axios.post("/resign", { userId, currentPw, saltPw }).then((res) => {
+        if (res.data === "Not match currentPw") {
+          alert("비밀번호가 일치하지 않습니다.");
+        } else {
+          //DB에서 회원정보 지우기
+          //로그인 정보 날리기
+          alert("회원탈퇴가 완료되었습니다.");
+          sessionStorage.clear();
+          navigate("/");
+          window.location.reload();
         }
       });
     });

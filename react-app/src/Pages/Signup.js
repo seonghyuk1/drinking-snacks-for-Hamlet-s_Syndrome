@@ -49,13 +49,7 @@ function Signup() {
   // 아이디 중복확인
   const userIdDupchk = async () => {
     try {
-      const res = await checkDuplicateID(id);
-
-      if (res === "Exist") {
-        alert("이미 존재하는 아이디입니다.");
-      } else {
-        alert("아이디가 사용이 가능합니다.");
-      }
+      await checkDuplicateID(id);
     } catch (err) {
       console.log(err);
     }

@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { getDetailData, getMyPageData, getFoodsData, insertWishList, deleteWishList } from "../lib/api/food";
 import WishListView from "./WishListView";
 
+import axios from "axios";
+
 function Detail() {
   // useParams의 id : 주류의 정보 0~4
   const { id } = useParams();
@@ -27,6 +29,10 @@ function Detail() {
     getMyPageData(userId).then((res) => {
       setMySelect([...res.data]);
     });
+
+    // axios.get("/test").then((res) => {
+    //   console.log(res.data);
+    // });
   }, []);
 
   const handleClickButton = (e) => {
@@ -131,16 +137,16 @@ function Detail() {
         </div>
       </div>
 
-      {/* 화면 보여주기 */}
+      {/* 식당 카드 */}
       <div className="container">
         <div className="row mx-auto pt-4">
           {food.map((foodItem, i) => {
             const matchingData = wishFood.find((wishItem) => wishItem.restaurantName === foodItem.식당);
             const isWished = matchingData ? matchingData.wish : false;
             return (
-              <div className="col-6 col-xl-3 mx-auto">
-                <div className="card mb-3 cardSize" key={i}>
-                  <img className="card-img" src={`/assets/snacks/${id}/${foodName}/${i}.jpg`} alt="foodImg" height="600px" />
+              <div className="col-6 col-xl-3 mx-auto" key={i}>
+                <div className="card mb-3 cardSize">
+                  <img className="card-img" src={`${process.env.PUBLIC_URL}/assets/snacks/${id}/${foodName}/${i}.jpg`} alt="foodImg" height="600px" />
 
                   <div className="bg-dark card-img-overlay text-white d-flex flex-column justify-content-center storeOpacity">
                     <div className="text-center p-3">
